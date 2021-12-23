@@ -9,14 +9,14 @@ echo "--------------------------------------------"
 # echo "Select your current distro [1-3]"
 # read $distro
 
-if [ $SHELL != "/bin/zsh" ]; then
+if [ $SHELL != "/bin/zsh"|"/usr/bin/zsh" ]; then
     echo "Zsh is not your current defaut shell, do you want to set it? [Y/n]"
 
     read prompt
 
     case $prompt in
         [yY])
-            chsh -s $(which zsh)
+            sudo chsh -s /bin/zsh
             echo "Zsh was setted as the default shell, a reboot is needed to see the changes.";;
         *)
             echo "Ok, zsh won't be setted as the default shell."
