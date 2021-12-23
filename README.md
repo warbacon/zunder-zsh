@@ -6,7 +6,7 @@
 
 This a simple bash script that configures the shell to be the default shell and applies some configuratons and installs plugins to make your shell prompt pretty confortable.
 
-### Changes made
+### Changes made:
 
 - Enables zsh history.
 - Adds some new aliases.
@@ -14,6 +14,14 @@ This a simple bash script that configures the shell to be the default shell and 
 - Replaces the ```ls``` command for [lsd](https://github.com/Peltoche/lsd).
 - Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions.git) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugins.
 
+#### New aliases:
+
+| Alias | Command |
+|-------|---------|
+| ls    | lsd     |
+| ll    | lsd -l  |
+| q     | exit    |
+| clr   | clear   |
 
 ## Installation
 
