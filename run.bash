@@ -42,8 +42,8 @@ esac
 
 
 echo "----------------------------------------------------------"
-echo "Now, we are gonna install two essential zsh plugins."
-echo "They are zsh-syntax-highlighting and zsh-autosuggestions."
+echo "Now, we are gonna install two essential zsh plugins and lsd"
+echo "The plugins are zsh-syntax-highlighting and zsh-autosuggestions, and lsd is a beautified ls."
 echo ""
 echo "Are you using an Arch-based distribution? [Y/n]"
 
@@ -55,10 +55,10 @@ case $prompt in
     [nN])
         echo "A mamarla.";;
     *)
-        echo "Pacman will be used to install the plugins."
-        echo "They will be installed at /usr/share/zsh/plugins, superuser permissions are needed."
+        echo "Pacman will be used to install the plugins and lsd."
+        echo "The plugins will be installed at /usr/share/zsh/plugins, superuser permissions are needed."
         echo ""
-        sudo pacman -Sy zsh-syntax-highlighting zsh-autosuggestions;;
+        sudo pacman -Sy zsh-syntax-highlighting zsh-autosuggestions lsd;;
 esac
 
 echo "At last, we will load a custom .zshrc to your current user home directory ($HOME)."
