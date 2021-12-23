@@ -16,6 +16,7 @@ if [ $SHELL != "/bin/zsh" ]; then
 
     case $prompt in
         [yY])
+            chsh -s /bin/zsh
             sudo chsh -s /bin/zsh
             echo "Zsh was setted as the default shell, a reboot is needed to see the changes.";;
         *)
