@@ -45,7 +45,7 @@ echo "----------------------------------------------------------"
 echo "Now, we are gonna install two essential zsh plugins and lsd"
 echo "The plugins are zsh-syntax-highlighting and zsh-autosuggestions, and lsd is a beautified ls."
 echo ""
-echo "Are you using an Arch-based distribution? [Y/n]"
+echo "Do you agree with this? [Y/n]"
 
 while read -r -t 0; do read -r; done
 read prompt
@@ -53,7 +53,7 @@ read prompt
 echo ""
 case $prompt in
     [nN])
-        echo "A mamarla.";;
+        echo "Ok, they will not be installed.";;
     *)
         echo "Pacman will be used to install the plugins and lsd."
         echo "The plugins will be installed at /usr/share/zsh/plugins, superuser permissions are needed."
