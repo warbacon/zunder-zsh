@@ -22,7 +22,6 @@ if [ $SHELL != "/bin/zsh" ]; then
             echo "Ok, zsh won't be setted as the default shell."
     esac
 fi
-echo ""
 
 echo "A important part of the configuration is the Starship prompt,"
 echo "you can see all the information at https://starship.rs/."
