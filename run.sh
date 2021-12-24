@@ -28,6 +28,7 @@ if [ $SHELL != "/bin/zsh" ]; then
 
     case $prompt in
         [yY])
+            sudo dnf install util-linux-user
             chsh -s /bin/zsh
             echo "Zsh was setted as the default shell, a reboot is needed to see the changes."
             echo "";;
