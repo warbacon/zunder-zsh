@@ -28,7 +28,7 @@ if [ $SHELL != "/bin/zsh" ]; then
 
     case $prompt in
         [yY])
-            if [ $distro = 3 ]
+            if [ $distro = 3 ]; then
                 sudo dnf install util-linux-user
             fi
             chsh -s /bin/zsh
