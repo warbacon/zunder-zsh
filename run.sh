@@ -76,7 +76,7 @@ case $prompt in
         3)
             echo "Lsd will be installed."
             echo ""
-            sudo dnf install lsd
+            sudo dnf install lsd fontawesome-fonts.noarch
             install_plugins;;
         *)
             echo "Pacman will be used to install the plugins and lsd."
