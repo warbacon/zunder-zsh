@@ -31,7 +31,7 @@ Please report any bug or undesired behaviour you encounter.
 - Debian/Ubuntu-based distributions.
 - Fedora.
 
-## Installation
+## Usage
 
 Make sure that zsh is installed. It can be installed using:
 
