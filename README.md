@@ -1,10 +1,12 @@
 # Warbacon's zsh configurator
 
-**WARNING:** Only compatible with Arch-based distributions and zsh will not be installed by default at the moment, you should install it first. Sudo must be installed and configured for the current user.
+**WARNING:** Zsh will not be installed by default at the moment, you should install it first. Sudo must be installed and configured for the current user.
 
 ## Information
 
 This is a simple shell script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable.
+
+Please report any bug or undesired behaviour you encounter.
 
 ### Changes made:
 
@@ -23,12 +25,29 @@ This is a simple shell script that sets zsh as the default shell, applies variou
 | q     | exit    |
 | clr   | clear   |
 
+### Supported Linux distributions:
+
+- Arch-based distributions.
+- Debian/Ubuntu-based distributions.
+- Fedora.
+
 ## Installation
 
-Make sure that zsh is installed. It can be installed in Arch-based distributions using:
+Make sure that zsh is installed. It can be installed using:
 
+**Arch-based distributions**
 ```bash
 sudo pacman -Sy zsh
+```
+
+**Debian/Ubuntu-based distributions**
+```bash
+sudo apt-get install zsh
+```
+
+**Fedora distributions**
+```bash
+sudo dnf install zsh
 ```
 
 1. Clone the repository:
@@ -48,7 +67,7 @@ sudo pacman -Sy zsh
 
 ## Roadmap
 
-- Make it work in Debian/Ubuntu-based distributions and Fedora.
+- ~~Make it work in Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
 - Install zsh if it's not.
 - Clean up the code.
 - Make it work in Mac OS (?).
