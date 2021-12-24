@@ -67,7 +67,7 @@ sudo dnf install zsh
 
 ## Roadmap
 
-- ~~Make it work in Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
+- ~~Make it work on Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
 - Install zsh if it's not.
 - Clean up the code.
-- Make it work in Mac OS (?).
+- Make it work on Mac OS (?).
