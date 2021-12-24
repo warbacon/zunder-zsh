@@ -1,10 +1,10 @@
-# Warbacon's zsh configurer
+# Warbacon's zsh configurator
 
 **WARNING:** Only compatible with Arch-based distributions and zsh will not be installed by default at the moment, you should install it first. Sudo must be installed and configured for the current user.
 
 ## Information
 
-This a simple bash script that configures the shell to be the default shell and applies some configuratons and installs plugins to make your shell prompt pretty confortable.
+This a simple shell script that configures the shell to be the default shell and applies some configuratons and installs plugins to make your shell prompt pretty confortable.
 
 ### Changes made:
 
@@ -34,14 +34,14 @@ sudo pacman -Sy zsh
 1. Clone the repository:
    
     ```bash
-    git clone https://github.com/Warbacon/zsh-configurer.git
+    git clone https://github.com/Warbacon/zsh-configurator.git
     ```
 
-2. Navigate to the cloned project folder and run the ```run.bash``` script.
+2. Navigate to the cloned project folder and run the ```run.sh``` script.
    
    ```bash
-   cd ./zsh-configurer
-   ./run.bash
+   cd ./zsh-configurator
+   ./run.sh
    ```
 
 3. Follow the script's installation and enjoy.
