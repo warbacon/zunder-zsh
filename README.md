@@ -10,7 +10,7 @@ This is a simple shell script that sets zsh as the default shell, applies variou
 
 - Enables zsh history.
 - Adds some new aliases.
-- Installs [Starship prompt](https://starship.rs).
+- Installs the [Starship prompt](https://starship.rs).
 - Replaces the ```ls``` command for [lsd](https://github.com/Peltoche/lsd).
 - Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions.git) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugins.
 
@@ -41,8 +41,14 @@ sudo pacman -Sy zsh
    
    ```bash
    cd ./zsh-configurator
-   ./run.sh
+   bash run.sh
    ```
 
 3. Follow the script's installation and enjoy.
 
+## Roadmap
+
+- Make it work in Debian/Ubuntu-based distributions and Fedora.
+- Install zsh if it's not.
+- Clean up the code.
+- Make it work in Mac OS (?).

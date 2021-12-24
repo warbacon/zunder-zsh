@@ -7,7 +7,7 @@ echo "--------------------------------------------"
 # echo "2. Debian/Ubuntu based (apt)"
 # echo "3. Red Hat/Fedora based (dnf)"
 # echo "Select your current distro [1-3]"
-# read $distro
+# read distro
 
 if [ $SHELL != "/bin/zsh" ]; then
     echo "Zsh is not your current defaut shell, do you want to set it? [Y/n]"
@@ -61,6 +61,7 @@ case $prompt in
         sudo pacman -Sy zsh-syntax-highlighting zsh-autosuggestions lsd;;
 esac
 
+echo "------------------------------------------------------------------------------------"
 echo "At last, we will load a custom .zshrc to your current user home directory ($HOME)."
 echo ""
 echo "BACKUP YOUR .ZSHRC BEFORE CONTINUE TO RESET THE CONFIGURATION IN CASE YOU WERE NOT SATISFIED."
@@ -75,7 +76,7 @@ case $prompt in
     [yY])
         cp .zshrc $HOME;;
     *)
-        echo "Canceled."
+        echo "Canceled. This will not apply your changes at all, try running the script again."
 esac
 
 echo "--------------------------------------------"
