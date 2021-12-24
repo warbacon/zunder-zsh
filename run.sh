@@ -28,7 +28,9 @@ if [ $SHELL != "/bin/zsh" ]; then
 
     case $prompt in
         [yY])
-            sudo dnf install util-linux-user
+            if [ $distro = 3 ]
+                sudo dnf install util-linux-user
+            fi
             chsh -s /bin/zsh
             echo "Zsh was setted as the default shell, a reboot is needed to see the changes."
             echo "";;
@@ -70,9 +72,10 @@ case $prompt in
     *)
     case $distro in
         2)
+            sudo apt-get install fonts-font-awesome
             echo "Lsd is not available in the Debian and Ubuntu repositories. The binary file will be downloaded and installed."
-            wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb ||  (printf "\nWget needs to be installed\n\n" && sudo apt-get install wget && wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb
-            sudo dpkg -i lsd.deb)
+            wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb ||  (printf "\nWget needs to be installed\n\n" && sudo apt-get install wget && wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb)
+            sudo dpkg -i lsd.deb
             install_plugins;;
         3)
             echo "Lsd will be installed."
