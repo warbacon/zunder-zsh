@@ -4,7 +4,7 @@
 
 ## Information
 
-This a simple shell script that sets zsh as the default shell and applies some configurations and installs plugins to make your shell prompt pretty comfortable.
+This is a simple shell script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable.
 
 ### Changes made:
 
