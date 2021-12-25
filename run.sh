@@ -19,17 +19,16 @@ function zsh_default() {
 
     read prompt
 
+    echo ""
     case $prompt in
         [yY])
             if [ $distro = 3 ]; then
                 sudo dnf install -q util-linux-user
             fi
             chsh -s /bin/zsh
-            echo "Zsh was setted as the default shell, a reboot is needed to see the changes."
-            echo "";;
+            echo "Zsh was setted as the default shell, a reboot is needed to see the changes.";;
         *)
-            echo "Ok, zsh won't be setted as the default shell."
-            echo "";;
+            echo "Ok, zsh won't be setted as the default shell.";;
     esac
     fi
 }
@@ -90,6 +89,8 @@ function install_plugins() {
     echo ""
     echo "Do wou want to install the plugins? [Y/n]"
 
+    read prompt
+
     echo ""
     case $prompt in
         [nN])
@@ -130,6 +131,8 @@ starhip_install
 lsd_install
 
 install_plugins
+
+load_zshrc
 
 echo "--------------------------------------------"
 echo "We are done."
