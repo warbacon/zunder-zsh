@@ -3,7 +3,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -e
 
-zstyle :compinstall filename '/home/joaquing/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -15,7 +15,7 @@ alias ls="lsd"
 alias ll="ls -l"
 alias clr="clear"
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(starship init zsh)"

@@ -27,22 +27,23 @@ Please report any bug or undesired behaviour you encounter.
 
 ### Supported Linux distributions:
 
-- Arch-based distributions.
-- Debian/Ubuntu-based distributions.
-- Fedora.
+- Arch based.
+- Debian/Ubuntu based.
+- Red Hat/Fedora based.
 
-## Usage
+## Dependecies
 
-Make sure that zsh is installed. It can be installed using:
+Make sure that ```zsh``` is installed as it will be used as a base.
 
 **Arch-based distributions**
+
 ```bash
 sudo pacman -Sy zsh
 ```
 
 **Debian/Ubuntu-based distributions**
 ```bash
-sudo apt-get install zsh
+sudo apt-get install zsh wget curl
 ```
 
 **Fedora distributions**
@@ -50,7 +51,9 @@ sudo apt-get install zsh
 sudo dnf install zsh
 ```
 
-1. Clone the repository:
+## Usage
+
+1. Clone the repository (check that ```git``` is installed):
    
     ```bash
     git clone https://github.com/Warbacon/zsh-configurator.git
