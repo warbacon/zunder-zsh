@@ -51,6 +51,8 @@ sudo apt-get install zsh wget curl
 sudo dnf install zsh
 ```
 
+**You must install a (Nerd Font)[https://www.nerdfonts.com/font-downloads] and set it as default font in your terminal in order to see all the icons correctly.**
+
 ## Usage
 
 1. Clone the repository (check that ```git``` is installed):

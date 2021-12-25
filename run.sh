@@ -47,6 +47,7 @@ function starhip_install() {
 
             echo "Starhip will be instaled."
             sh -c "$(curl -fsSL https://starship.rs/install.sh)";;
+            cp starship.toml $HOME/.config
     esac
 }
 
@@ -77,7 +78,7 @@ function lsd_install() {
         *)
             echo "Lsd will be installed."
             echo ""
-            sudo pacman -S lsd ttf-font-awesome;;
+            sudo pacman -S lsd;;
     esac
 esac
 }
