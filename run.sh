@@ -13,7 +13,7 @@ function distro_select() {
 }
 
 function zsh_default() {
-    if [ $SHELL != "/bin/zsh" ] || [ $SHELL != "/usr/bin/zsh" ]; then
+    if [ $SHELL != "/bin/zsh" ] && [ $SHELL != "/usr/bin/zsh" ]; then
     echo "--------------------------------------------------------------------"
     echo "Zsh is not your current defaut shell, do you want to set it? [Y/n]"
 
