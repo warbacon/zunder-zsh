@@ -35,18 +35,18 @@ Please report any bug or undesired behaviour you encounter.
 
 Make sure that ```zsh``` is installed as it will be used as a base.
 
-**Arch-based distributions**
+**Arch based distributions**
 
 ```bash
 sudo pacman -Sy zsh
 ```
 
-**Debian/Ubuntu-based distributions**
+**Debian/Ubuntu based distributions**
 ```bash
 sudo apt-get install zsh wget curl
 ```
 
-**Fedora distributions**
+**Red Hat/Fedora based distributions**
 ```bash
 sudo dnf install zsh
 ```
