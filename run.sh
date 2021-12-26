@@ -46,8 +46,8 @@ function starhip_install() {
         *)
 
             echo "Starhip will be instaled."
-            sh -c "$(curl -fsSL https://starship.rs/install.sh)";;
-            cp starship.toml $HOME/.config
+            sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+            cp starship.toml $HOME/.config;;
     esac
 }
 
