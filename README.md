@@ -33,7 +33,7 @@ Please report any bug or undesired behaviour you encounter.
 
 ## Dependecies
 
-**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal in order to see all the icons correctly.** Make sure that ```zsh``` is installed as it will be used as a base.
+**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal in order to see all the icons correctly.**
 
 **Arch based distributions**
 
