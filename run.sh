@@ -22,9 +22,6 @@ function zsh_default() {
     echo ""
     case $prompt in
         [yY])
-            if [ $distro = 3 ]; then
-                sudo dnf install -q util-linux-user
-            fi
             chsh -s /bin/zsh
             echo "Zsh was setted as the default shell, a reboot is needed to see the changes.";;
         *)
