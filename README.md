@@ -38,22 +38,22 @@ Please report any bug or undesired behaviour you encounter.
 **Arch based distributions**
 
 ```bash
-sudo pacman -Sy zsh
+sudo pacman -Sy zsh git
 ```
 
 **Debian/Ubuntu based distributions**
 ```bash
-sudo apt-get install zsh wget curl
+sudo apt-get install zsh wget curl git
 ```
 
 **Red Hat/Fedora based distributions**
 ```bash
-sudo dnf install zsh util-linux-user
+sudo dnf install zsh util-linux-user git
 ```
 
 ## Usage
 
-1. Clone the repository (check that ```git``` is installed):
+1. Clone the repository:
    
     ```bash
     git clone https://github.com/Warbacon/zsh-configurator.git
