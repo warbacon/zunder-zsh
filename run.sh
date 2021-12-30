@@ -12,6 +12,32 @@ function distro_select() {
     read distro
 }
 
+function install_zsh() {
+    echo "--------------------------------------------------------------------"
+    echo "Zsh is not installed, do you want to install it? [Y/n]"
+
+    read prompt
+
+    echo ""
+    case $prompt in
+        [nN])
+            echo "Zsh is needed to run the script.";;
+        *)
+            echo "Zsh will be installed."
+            echo ""
+
+            case $distro in
+                2)
+                    sudo apt-get install zsh;;
+                3)
+                    sudo dnf install zsh;;
+                *)
+                    sudo pacman -S zsh;;
+            esac;;
+    esac
+    fi
+}
+
 function zsh_default() {
     if [ $SHELL != "/bin/zsh" ] && [ $SHELL != "/usr/bin/zsh" ]; then
     echo "--------------------------------------------------------------------"
@@ -119,6 +145,11 @@ function load_zshrc() {
 }
 
 distro_select
+
+if  ! command -v zsh &> /dev/null
+then
+    install_zsh
+fi
 
 zsh_default
 

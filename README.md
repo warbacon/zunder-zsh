@@ -1,6 +1,6 @@
 # Warbacon's zsh configurator
 
-**WARNING:** Zsh will not be installed by default at the moment, you should install it first. Sudo must be installed and configured for the current user.
+**WARNING:** Sudo must be installed and configured for the current user.
 
 ## Information
 
@@ -38,17 +38,17 @@ Please report any bug or undesired behaviour you encounter.
 **Arch based distributions**
 
 ```bash
-sudo pacman -Sy zsh git
+sudo pacman -Sy git
 ```
 
 **Debian/Ubuntu based distributions**
 ```bash
-sudo apt-get install zsh wget curl git
+sudo apt-get install wget curl git
 ```
 
 **Red Hat/Fedora based distributions**
 ```bash
-sudo dnf install zsh util-linux-user git
+sudo dnf install util-linux-user git
 ```
 
 ## Usage
@@ -71,6 +71,6 @@ sudo dnf install zsh util-linux-user git
 ## Roadmap
 
 - ~~Make it work on Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
-- Install zsh if it's not.
-- Clean up the code.
-- Make it work on Mac OS (?).
+- ~~Install zsh if it's not.~~ *(done)*
+- Clean up the code. *(working on it)*
+- Make it work on Mac OS (maybe).
