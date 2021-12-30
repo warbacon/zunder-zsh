@@ -35,7 +35,6 @@ function install_zsh() {
                     sudo pacman -S zsh;;
             esac;;
     esac
-    fi
 }
 
 function zsh_default() {
@@ -146,7 +145,7 @@ function load_zshrc() {
 
 distro_select
 
-if  ! command -v zsh &> /dev/null
+if  ! type zsh &> /dev/null
 then
     install_zsh
 fi
