@@ -72,5 +72,4 @@ sudo dnf install util-linux-user git
 
 - ~~Make it work on Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
 - ~~Install zsh if it's not.~~ *(done)*
-- Clean up the code. *(working on it)*
 - Make it work on Mac OS (maybe).

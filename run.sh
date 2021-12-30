@@ -83,23 +83,23 @@ function lsd_install() {
 
     echo ""
     case $prompt in
-    [nN])
-        echo "Lsd won't be installed.";;
+        [nN])
+            echo "Lsd won't be installed.";;
     *)
-    case $distro in
-        2)
-            echo "Lsd is not available in the Debian and Ubuntu repositories. The binary file will be downloaded and installed."
-            wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb
-            sudo dpkg -i lsd.deb;;
-        3)
-            echo "Lsd will be installed."
-            echo ""
-            sudo dnf install lsd;;
-        *)
-            echo "Lsd will be installed."
-            echo ""
-            sudo pacman -S lsd;;
-    esac
+        case $distro in
+            2)
+                echo "Lsd is not available in the Debian and Ubuntu repositories. The binary file will be downloaded and installed."
+                wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb
+                sudo dpkg -i lsd.deb;;
+            3)
+                echo "Lsd will be installed."
+                echo ""
+                sudo dnf install lsd;;
+            *)
+                echo "Lsd will be installed."
+                echo ""
+                sudo pacman -S lsd;;
+        esac
 esac
 }
 
