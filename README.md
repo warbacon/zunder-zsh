@@ -19,7 +19,7 @@ Please report any bug or undesired behaviour you encounter.
 #### New aliases:
 
 | Alias | Command |
-|-------|---------|
+| ----- | ------- |
 | ls    | lsd     |
 | ll    | lsd -l  |
 | q     | exit    |
@@ -30,6 +30,7 @@ Please report any bug or undesired behaviour you encounter.
 - Arch based.
 - Debian/Ubuntu based.
 - Red Hat/Fedora based.
+- Android ([Termux](https://termux.com/)).
 
 ## Dependecies
 
@@ -42,22 +43,30 @@ sudo pacman -Sy git
 ```
 
 **Debian/Ubuntu based distributions**
+
 ```bash
 sudo apt-get install wget curl git
 ```
 
 **Red Hat/Fedora based distributions**
+
 ```bash
 sudo dnf install util-linux-user git
+```
+
+Android (via [Termux](https://termux.com/))
+
+```bash
+pkg install git
 ```
 
 ## Usage
 
 1. Clone the repository:
    
-    ```bash
-    git clone https://github.com/Warbacon/zsh-configurator.git
-    ```
+   ```bash
+   git clone https://github.com/Warbacon/zsh-configurator.git
+   ```
 
 2. Navigate to the cloned project folder and run the ```run.sh``` script.
    
@@ -72,4 +81,4 @@ sudo dnf install util-linux-user git
 
 - ~~Make it work on Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
 - ~~Install zsh if it's not.~~ *(done)*
-- Make it work on Mac OS (maybe).
+- ~~Make it work on Android via Termux.~~ *(done)*
