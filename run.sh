@@ -105,7 +105,6 @@ function lsd_install() {
                 echo ""
                 sudo dnf install lsd;;
             4)
-                3)
                 echo "Lsd will be installed."
                 echo ""
                 pkg install lsd;;
