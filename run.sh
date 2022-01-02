@@ -1,4 +1,5 @@
 # !/bin/bash
+# -*- ENCODING: UTF-8 -*-
 
 function distro_select() {
     echo "Welcome to the Warbacon's zsh configurator"
@@ -6,8 +7,9 @@ function distro_select() {
     echo "1. Arch based (pacman)"
     echo "2. Debian/Ubuntu based (apt)"
     echo "3. Red Hat/Fedora based (dnf)"
+    echo "4. Android (termux)"
     echo ""
-    echo "Select your current distro [1-3]"
+    echo "Select your current distro [1-4]"
 
     read distro
 }
@@ -31,6 +33,8 @@ function install_zsh() {
                     sudo apt-get install zsh;;
                 3)
                     sudo dnf install zsh;;
+                4)
+                    pkg install zsh;;
                 *)
                     sudo pacman -S zsh;;
             esac;;
@@ -38,7 +42,6 @@ function install_zsh() {
 }
 
 function zsh_default() {
-    if [ $SHELL != "/bin/zsh" ] && [ $SHELL != "/usr/bin/zsh" ]; then
     echo "--------------------------------------------------------------------"
     echo "Zsh is not your current defaut shell, do you want to set it? [Y/n]"
 
@@ -47,12 +50,15 @@ function zsh_default() {
     echo ""
     case $prompt in
         [yY])
+            if [[ $distro = 4 ]]; then
+                chsh -s zsh
+            else
             chsh -s /bin/zsh
+            fi
             echo "Zsh was setted as the default shell, a reboot is needed to see the changes.";;
         *)
             echo "Ok, zsh won't be setted as the default shell.";;
     esac
-    fi
 }
 
 function starhip_install() {
@@ -66,10 +72,13 @@ function starhip_install() {
         [nN])
             echo "Starship won't be installed.";;
         *)
-
             echo "Starhip will be instaled."
-            sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-            cp starship.toml $HOME/.config;;
+            if [[ $distro = 4 ]]; then
+                pkg install starship
+            else
+                sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+            fi
+            mkdir -p $HOME/.config && cp starship.toml $HOME/.config;;
     esac
 }
 
@@ -95,6 +104,11 @@ function lsd_install() {
                 echo "Lsd will be installed."
                 echo ""
                 sudo dnf install lsd;;
+            4)
+                3)
+                echo "Lsd will be installed."
+                echo ""
+                pkg install lsd;;
             *)
                 echo "Lsd will be installed."
                 echo ""
@@ -145,12 +159,13 @@ function load_zshrc() {
 
 distro_select
 
-if  ! type zsh &> /dev/null
-then
+if  ! type zsh &> /dev/null; then
     install_zsh
 fi
 
-zsh_default
+if [ $SHELL != "/bin/zsh" ] && [ $SHELL != "/usr/bin/zsh" ] && [ $SHELL != "/data/data/com.termux/files/usr/bin/zsh" ]; then
+    zsh_default
+fi
 
 starhip_install
 
