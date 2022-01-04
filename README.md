@@ -13,7 +13,7 @@ Please report any bug or undesired behaviour you encounter.
 - Enables zsh history.
 - Adds some new aliases.
 - Installs the [Starship prompt](https://starship.rs).
-- Replaces the ```ls``` command for [lsd](https://github.com/Peltoche/lsd).
+- Replaces the `ls` command for [lsd](https://github.com/Peltoche/lsd).
 - Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions.git) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugins.
 
 #### New aliases:
@@ -56,6 +56,8 @@ sudo dnf install util-linux-user git
 
 Android (via [Termux](https://termux.com/))
 
+
+
 ```bash
 pkg install git
 ```
@@ -68,7 +70,7 @@ pkg install git
    git clone https://github.com/Warbacon/zsh-configurator.git
    ```
 
-2. Navigate to the cloned project folder and run the ```run.sh``` script.
+2. Navigate to the cloned project folder and run the `run.sh` script.
    
    ```bash
    cd ./zsh-configurator
