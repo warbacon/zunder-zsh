@@ -133,7 +133,7 @@ function lsd_install() {
 
 function install_plugins() {
     echo "-----------------------------------------------------------------------------"
-    echo "Zsh-syntax-highlighting and zsh-ausuggestions are two essential zsh plugins."
+    echo "Zsh-syntax-highlighting, zsh-ausuggestions and zsh-completions are three essential zsh plugins."
     echo "The plugins' repositories will be cloned at $HOME/.config/zsh/plugins."
     echo ""
     echo "Do wou want to install the plugins? [Y/n]"
@@ -150,6 +150,7 @@ function install_plugins() {
         mkdir -p $HOME/.config/zsh
         git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/plugins/zsh-autosuggestions
         git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.config/zsh/plugins/zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-completions.git $HOME/.config/zsh/plugins/zsh-completions
         ;;
     esac
 }

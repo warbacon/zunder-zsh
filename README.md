@@ -66,15 +66,15 @@ pkg install git
 
 1. Clone the repository:
    
-   ```bash
+   ```sh
    git clone https://github.com/Warbacon/zsh-configurator.git
    ```
 
 2. Navigate to the cloned project folder and run the `run.sh` script.
    
-   ```bash
+   ```sh
    cd ./zsh-configurator
-   bash run.sh
+   sh run.sh
    ```
 
 3. Follow the script's installation and enjoy.
