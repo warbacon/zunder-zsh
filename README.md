@@ -38,27 +38,25 @@ Please report any bug or undesired behaviour you encounter.
 
 **Arch based distributions**
 
-```bash
+```sh
 sudo pacman -Sy git
 ```
 
 **Debian/Ubuntu based distributions**
 
-```bash
+```sh
 sudo apt-get install wget curl git
 ```
 
 **Red Hat/Fedora based distributions**
 
-```bash
+```sh
 sudo dnf install util-linux-user git
 ```
 
 Android (via [Termux](https://termux.com/))
 
-
-
-```bash
+```sh
 pkg install git
 ```
 
