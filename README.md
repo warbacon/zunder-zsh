@@ -82,3 +82,4 @@ pkg install git
 - ~~Make it work on Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
 - ~~Install zsh if it's not.~~ *(done)*
 - ~~Make it work on Android via Termux.~~ *(done)*
+- Add colors
