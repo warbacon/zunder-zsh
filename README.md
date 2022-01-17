@@ -18,12 +18,12 @@ Please report any bug or undesired behaviour you encounter.
 
 #### New aliases:
 
-| Alias | Command |
-| ----- | ------- |
-| ls    | lsd     |
-| ll    | lsd -l  |
-| q     | exit    |
-| clr   | clear   |
+| Alias | Command                       |
+| ----- | ----------------------------- |
+| ls    | lsd (only if is installed)    |
+| ll    | ls -l                         |
+| q     | exit                          |
+| clr   | clear                         |
 
 ### Supported Linux distributions:
 
@@ -68,7 +68,7 @@ pkg install git
    git clone https://github.com/Warbacon/zsh-configurator.git
    ```
 
-2. Navigate to the cloned project folder and run the `run.sh` script.
+2. Navigate to the cloned repository and run the `run.sh` script.
    
    ```sh
    cd ./zsh-configurator
