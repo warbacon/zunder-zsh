@@ -1,10 +1,4 @@
-# Warbacon's zsh configurator
-
-![Logo](logotype.png)
-
-**WARNING:** Sudo must be installed and configured for the current user.
-
-## Information
+<p align="center"><img src="logo.png" /></p>
 
 This is a simple shell script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable.
 
@@ -33,6 +27,9 @@ Please report any bug or undesired behaviour you encounter.
 - Debian/Ubuntu based.
 - Red Hat/Fedora based.
 - Android ([Termux](https://termux.com/)).
+
+
+**WARNING:** Sudo must be installed and configured for the current user.
 
 ## Dependecies
 
