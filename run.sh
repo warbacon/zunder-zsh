@@ -1,32 +1,45 @@
-# !/bin/bash
+#!/bin/bash
+
+#Output styling
+WARNING="\e[1;33m"
+SUCCESS="\e[3;32m"
+RED="\e[31m"
+REDITALIC="\e[3;31m"
+BLUE="\e[34m"
+BLUEBOLD="\e[1;34m"
+CYAN="\e[36m"
+CYANBOLD="\e[1;36m"
+GREEN="\e[32m"
+BOLD="\e[1m"
+ITALIC="\e[3m"
+NORMAL="\e[0m"
 
 function distro_select() {
-    echo "Welcome to the Warbacon's zsh configurator"
+    echo -e "\n${REDITALIC}Welcome to the Warbacon zsh configurator${NORMAL}"
     echo "--------------------------------------------"
-    echo "1. Arch based (pacman)"
-    echo "2. Debian/Ubuntu based (apt)"
-    echo "3. Red Hat/Fedora based (dnf)"
-    echo "4. Android (termux)"
-    echo ""
-    echo "Select your current distro [1-4]"
+    echo -e "${BOLD}1.${NORMAL} Arch based (${BLUE}pacman${NORMAL})"
+    echo -e "${BOLD}2.${NORMAL} Debian/Ubuntu based (${RED}apt${NORMAL})"
+    echo -e "${BOLD}3.${NORMAL} Red Hat/Fedora based (${CYAN}dnf${NORMAL})"
+    echo -e "${BOLD}4.${NORMAL} Android (${GREEN}termux${NORMAL})\n"
+    echo -e "${BOLD}Select your current distro [1-4]${NORMAL}"
 
     read distro
 }
 
 function install_zsh() {
     echo "--------------------------------------------------------------------"
-    echo "Zsh is not installed, do you want to install it? [Y/n]"
+    echo -e "${WARNING}Zsh is not installed, do you want to install it? [Y/n]${NORMAL}"
 
     read prompt
 
     echo ""
     case $prompt in
     [nN])
-        echo "Zsh is needed to run the script."
+        echo -e "${RED}Zsh is needed to run the script.${NORMAL}"
+        exit
         ;;
     *)
-        echo "Zsh will be installed."
-        echo ""
+        echo -e "Zsh will be installed.\n"
 
         case $distro in
         2)
@@ -48,7 +61,7 @@ function install_zsh() {
 
 function zsh_default() {
     echo "--------------------------------------------------------------------"
-    echo "Zsh is not your current defaut shell, do you want to set it? [Y/n]"
+    echo -e "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]${NORMAL}"
 
     read prompt
 
@@ -60,24 +73,24 @@ function zsh_default() {
         else
             chsh -s /bin/zsh
         fi
-        echo "Zsh was setted as the default shell, a reboot is needed to see the changes."
+        echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
         ;;
     *)
-        echo "Ok, zsh won't be setted as the default shell."
+        echo -e "${WARNING}Zsh won't be setted as the default shell.${NORMAL}"
         ;;
     esac
 }
 
 function starhip_install() {
     echo "-------------------------------------------------------------------------"
-    echo "Do you want to install the Starship prompt (https://starship.rs)? [Y/n]"
+    echo -e "${BOLD}Do you want to install the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]${NORMAL}"
 
     read prompt
 
     echo ""
     case $prompt in
     [nN])
-        echo "Starship won't be installed."
+        echo -e "${WARNING}Starship won't be installed.${NORMAL}"
         ;;
     *)
         echo "Starhip will be instaled."
@@ -86,16 +99,15 @@ function starhip_install() {
         else
             sh -c "$(curl -fsSL https://starship.rs/install.sh)"
         fi
-        mkdir -p $HOME/.config && cp starship.toml $HOME/.config
+        mkdir -p "$HOME"/.config && cp starship.toml "$HOME"/.config
         ;;
     esac
 }
 
 function lsd_install() {
     echo "--------------------------------------------------------------------------------------------"
-    echo "Lsd is a beautified ls command. It will show icons and colors for every file or directory."
-    echo ""
-    echo "Do you want to install lsd? [Y/n]"
+    echo -e "Lsd is a beautified ls command. It will show icons and colors for every file or directory.\n"
+    echo -e "${BOLD}Do you want to install ${BLUEBOLD}lsd${NORMAL}${BOLD}? [Y/n]${NORMAL}"
 
     read prompt
 
@@ -103,28 +115,26 @@ function lsd_install() {
     case $prompt in
     [nN])
         nolsd=1
-        echo "Lsd won't be installed."
+        echo -e "${WARNING}Lsd won't be installed.${NORMAL}"
         ;;
     *)
         case $distro in
         2)
-            echo "Lsd is not available in the Debian and Ubuntu repositories. The binary file will be downloaded and installed."
-            wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P $HOME -O lsd.deb
+            echo "Lsd is not available in the Debian and Ubuntu repositories."
+            echo -e "${YELLOW}The binary file will be downloaded and installed.${NORMAL}\n"
+            wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -O lsd.deb
             sudo dpkg -i lsd.deb
             ;;
         3)
-            echo "Lsd will be installed."
-            echo ""
+            echo -e "Lsd will be installed.\n"
             sudo dnf install lsd
             ;;
         4)
-            echo "Lsd will be installed."
-            echo ""
+            echo -e "Lsd will be installed.\n"
             pkg install lsd
             ;;
         *)
-            echo "Lsd will be installed."
-            echo ""
+            echo -e "Lsd will be installed.\n"
             sudo pacman -S lsd
             ;;
         esac
@@ -134,47 +144,44 @@ function lsd_install() {
 
 function install_plugins() {
     echo "-----------------------------------------------------------------------------"
-    echo "Zsh-syntax-highlighting and zsh-ausuggestions are two essential zsh plugins."
-    echo "The plugins' repositories will be cloned at $HOME/.config/zsh/plugins."
-    echo ""
-    echo "Do wou want to install the plugins? [Y/n]"
+    echo -e "${BLUEBOLD}Zsh-syntax-highlighting${NORMAL}${BOLD} and ${BLUEBOLD}zsh-ausuggestions${NORMAL}${BOLD} are two essential zsh plugins."
+    echo -e "The plugins' repositories will be cloned at ${CYAN}$HOME/.config/zsh/plugins.${NORMAL}\n"
+    echo -e "${BOLD}Do wou want to install the plugins? [Y/n]${NORMAL}"
 
     read prompt
 
     echo ""
     case $prompt in
     [nN])
-        echo "The plugins won't be installed."
+        echo -e "${WARNING}The plugins won't be installed.${NORMAL}"
         ;;
     *)
 
-        mkdir -p $HOME/.config/zsh
-        git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/plugins/zsh-autosuggestions
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.config/zsh/plugins/zsh-syntax-highlighting
+        mkdir -p "$HOME"/.config/zsh
+        git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.config/zsh/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME"/.config/zsh/plugins/zsh-syntax-highlighting
         ;;
     esac
 }
 
 function load_zshrc() {
     echo "------------------------------------------------------------------------------------"
-    echo "At last, we will load a custom .zshrc to your current user home directory ($HOME)."
-    echo ""
-    echo "BACKUP YOUR .ZSHRC BEFORE CONTINUE AS IT WILL BE REPLACED."
-    echo ""
-    echo "Continue? [y/N]"
+    echo -e "At last, we will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
+    echo -e "${WARNING}BACKUP YOUR .ZSHRC BEFORE CONTINUE AS IT WILL BE REPLACED.${NORMAL}\n"
+    echo -e "${BOLD}Continue? [y/N]${NORMAL}"
 
     read prompt
 
     echo ""
     case $prompt in
     [yY])
-        cp zshrc $HOME/.zshrc
+        cp zshrc "$HOME"/.zshrc
         if  [[ $nolsd = 1 ]]; then
-            sed -i '15d' $HOME/.zshrc
+            sed -i '15d' "$HOME"/.zshrc
         fi
         ;;
     *)
-        echo "Canceled. This will not apply your changes at all, try running the script again."
+        echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
         ;;
     esac
 }
@@ -185,7 +192,7 @@ if ! type zsh &>/dev/null; then
     install_zsh
 fi
 
-if [ $SHELL != "/bin/zsh" ] && [ $SHELL != "/usr/bin/zsh" ] && [ $SHELL != "/data/data/com.termux/files/usr/bin/zsh" ]; then
+if [ "$SHELL" != "/bin/zsh" ] && [ "$SHELL" != "/usr/bin/zsh" ] && [ "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]; then
     zsh_default
 fi
 
@@ -198,4 +205,4 @@ install_plugins
 load_zshrc
 
 echo "--------------------------------------------"
-echo "We are done."
+echo -e "${SUCCESS}We are done.${NORMAL} 🎉"

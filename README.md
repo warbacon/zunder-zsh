@@ -72,7 +72,7 @@ pkg install git
    
    ```sh
    cd ./zsh-configurator
-   sh run.sh
+   bash run.sh
    ```
 
 3. Follow the script's installation and enjoy.
@@ -82,4 +82,5 @@ pkg install git
 - [x] Make it work on Debian/Ubuntu-based distributions and Fedora.
 - [x] Install zsh if it's not.
 - [x] Make it work on Android via Termux.
-- [ ] Add  colors
+- [x] Add  colors
+- [ ] Document code
