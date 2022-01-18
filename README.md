@@ -79,7 +79,7 @@ pkg install git
 
 ## Roadmap
 
-- ~~Make it work on Debian/Ubuntu-based distributions and Fedora.~~ *(done)*
-- ~~Install zsh if it's not.~~ *(done)*
-- ~~Make it work on Android via Termux.~~ *(done)*
-- Add colors
+- [x] Make it work on Debian/Ubuntu-based distributions and Fedora.
+- [x] Install zsh if it's not.
+- [x] Make it work on Android via Termux.
+- [ ] Add  colors
