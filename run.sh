@@ -177,7 +177,7 @@ function load_zshrc() {
     [yY])
         cp zshrc "$HOME"/.zshrc
         if  [[ $nolsd = 1 ]]; then
-            sed -i '15d' "$HOME"/.zshrc
+            sed "s/lsd/ls --color/" zshrc
         fi
         ;;
     *)
