@@ -1,5 +1,7 @@
 # Warbacon's zsh configurator
 
+![Logo](logotype.png)
+
 **WARNING:** Sudo must be installed and configured for the current user.
 
 ## Information
