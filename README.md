@@ -1,6 +1,6 @@
 # Warbacon zsh configurator
 
-This is a simple shell script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable. 
+This is a simple bash script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable. 
 
 *Please report any bug or undesired behaviour you encounter.*
 
