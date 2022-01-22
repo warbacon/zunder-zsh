@@ -4,25 +4,23 @@
 ERROR="\e[1;31m"
 WARNING="\e[1;33m"
 SUCCESS="\e[3;32m"
-RED="\e[31m"
-REDITALIC="\e[3;31m"
+ITALICRED="\e[3;31m"
 BLUE="\e[34m"
 BLUEBOLD="\e[1;34m"
 CYAN="\e[36m"
 CYANBOLD="\e[1;36m"
-GREEN="\e[32m"
 BOLD="\e[1m"
 ITALIC="\e[3m"
 NORMAL="\e[0m"
 
 function distro_select() {
-    echo -e "\n${REDITALIC}Welcome to the Warbacon zsh configurator${NORMAL}"
+    echo -e "\n${ITALIC}Welcome to the ${ITALICRED}Warbacon${NORMAL}${ITALIC} zsh configurator${NORMAL}"
     echo "--------------------------------------------"
-    echo -e "${BOLD}1.${NORMAL} Arch based (${BLUE}pacman${NORMAL})"
-    echo -e "${BOLD}2.${NORMAL} Debian/Ubuntu based (${RED}apt${NORMAL})"
-    echo -e "${BOLD}3.${NORMAL} Red Hat/Fedora based (${CYAN}dnf${NORMAL})"
-    echo -e "${BOLD}4.${NORMAL} Android (${GREEN}termux${NORMAL})\n"
-    echo -e "${BOLD}Select your current distro [1-4]${NORMAL}"
+    echo -e "1. Arch based (pacman)"
+    echo -e "2. Debian/Ubuntu based (apt)"
+    echo -e "3. Red Hat/Fedora based (dnf)"
+    echo -e "4. Android (termux)\n"
+    echo -e "Select your current distro [1-4]${NORMAL}"
 
     read distro
 }
@@ -121,8 +119,8 @@ function lsd_install() {
     *)
         case $distro in
         2)
-            echo "Lsd is not available in the Debian and Ubuntu repositories."
-            echo -e "${YELLOW}The binary file will be downloaded and installed.${NORMAL}\n"
+            echo -e "${WARNING}Lsd isn't available in the Debian and Ubuntu repositories.${NORMAL}"
+            echo -e "The binary file will be downloaded and installed.\n"
             wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -O lsd.deb
             sudo dpkg -i lsd.deb
             ;;
