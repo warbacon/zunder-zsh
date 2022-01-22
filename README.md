@@ -1,12 +1,10 @@
-<h1 align="center">Warbacon zsh configurator</h1>
+# Warbacon zsh configurator
 
-## Information
+This is a simple shell script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable. 
 
-This is a simple shell script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable.
+*Please report any bug or undesired behaviour you encounter.*
 
-Please report any bug or undesired behaviour you encounter.
-
-### Changes made:
+## Changes made:
 
 - Enables zsh history.
 - Adds some new aliases.
@@ -14,7 +12,7 @@ Please report any bug or undesired behaviour you encounter.
 - Replaces the `ls` command for [lsd](https://github.com/Peltoche/lsd).
 - Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions.git) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugins.
 
-#### New aliases:
+### New aliases:
 
 | Alias | Command                       |
 | ----- | ----------------------------- |
@@ -73,7 +71,7 @@ pkg install git
    
    ```sh
    cd ./zsh-configurator
-   bash run.sh
+   sh run.sh
    ```
 
 3. Follow the script's installation and enjoy.
