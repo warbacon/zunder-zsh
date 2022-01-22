@@ -71,7 +71,7 @@ pkg install git
    
    ```sh
    cd ./zsh-configurator
-   sh run.sh
+   bash run.sh
    ```
 
 3. Follow the script's installation and enjoy.
