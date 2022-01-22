@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Output styling
+ERROR="\e[1;31m"
 WARNING="\e[1;33m"
 SUCCESS="\e[3;32m"
 RED="\e[31m"
@@ -35,7 +36,7 @@ function install_zsh() {
     echo ""
     case $prompt in
     [nN])
-        echo -e "${RED}Zsh is needed to run the script.${NORMAL}"
+        echo -e "${ERROR}Zsh is needed to run the script.${NORMAL}"
         exit
         ;;
     *)
