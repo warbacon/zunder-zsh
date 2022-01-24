@@ -13,7 +13,7 @@ BOLD="\e[1m"
 ITALIC="\e[3m"
 NORMAL="\e[0m"
 
-function distro_select() {
+distro_select() {
     echo -e "\n${ITALIC}Welcome to the ${ITALICRED}Warbacon${NORMAL}${ITALIC} zsh configurator${NORMAL}"
     echo "--------------------------------------------"
     echo -e "1. Arch based (pacman)"
@@ -25,7 +25,7 @@ function distro_select() {
     read distro
 }
 
-function install_zsh() {
+install_zsh() {
     echo "--------------------------------------------------------------------"
     echo -e "${WARNING}Zsh is not installed, do you want to install it? [Y/n]${NORMAL}"
 
@@ -58,7 +58,7 @@ function install_zsh() {
     esac
 }
 
-function zsh_default() {
+zsh_default() {
     echo "--------------------------------------------------------------------"
     echo -e "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]${NORMAL}"
 
@@ -80,7 +80,7 @@ function zsh_default() {
     esac
 }
 
-function starhip_install() {
+starhip_install() {
     echo "-------------------------------------------------------------------------"
     echo -e "${BOLD}Do you want to install the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]${NORMAL}"
 
@@ -103,7 +103,7 @@ function starhip_install() {
     esac
 }
 
-function lsd_install() {
+lsd_install() {
     echo "--------------------------------------------------------------------------------------------"
     echo -e "Lsd is a beautified ls command. It will show icons and colors for every file or directory.\n"
     echo -e "${BOLD}Do you want to install ${BLUEBOLD}lsd${NORMAL}${BOLD}? [Y/n]${NORMAL}"
@@ -141,7 +141,7 @@ function lsd_install() {
     esac
 }
 
-function install_plugins() {
+install_plugins() {
     echo "-----------------------------------------------------------------------------"
     echo -e "${BLUEBOLD}Zsh-syntax-highlighting${NORMAL}${BOLD} and ${BLUEBOLD}zsh-ausuggestions${NORMAL}${BOLD} are two essential zsh plugins."
     echo -e "The plugins' repositories will be cloned at ${CYAN}$HOME/.config/zsh/plugins.${NORMAL}\n"
@@ -163,7 +163,7 @@ function install_plugins() {
     esac
 }
 
-function load_zshrc() {
+load_zshrc() {
     echo "------------------------------------------------------------------------------------"
     echo -e "At last, we will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
     echo -e "${WARNING}BACKUP YOUR .ZSHRC BEFORE CONTINUE AS IT WILL BE REPLACED.${NORMAL}\n"
