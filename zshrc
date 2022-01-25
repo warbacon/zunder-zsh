@@ -12,8 +12,9 @@ source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlightin
 source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 alias q="exit"
-alias ls="lsd"
+alias ls="exa --icons"
 alias ll="ls -l"
+alias la="ls -a"
 alias clr="clear"
 
 eval "$(starship init zsh)"

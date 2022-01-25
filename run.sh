@@ -1,17 +1,17 @@
 #!/bin/bash
 
 #Output styling
-ERROR="\e[1;31m"
-WARNING="\e[1;33m"
-SUCCESS="\e[3;32m"
-ITALICRED="\e[3;31m"
-BLUE="\e[34m"
-BLUEBOLD="\e[1;34m"
-CYAN="\e[36m"
-CYANBOLD="\e[1;36m"
-BOLD="\e[1m"
-ITALIC="\e[3m"
-NORMAL="\e[0m"
+ERROR="\033[1;31m"
+WARNING="\033[1;33m"
+SUCCESS="\033[3;32m"
+ITALICRED="\033[3;31m"
+BLUE="\033[34m"
+BLUEBOLD="\033[1;34m"
+CYAN="\033[36m"
+CYANBOLD="\033[1;36m"
+BOLD="\033[1m"
+ITALIC="\033[3m"
+NORMAL="\033[0m"
 
 function distro_select() {
     echo -e "\n${ITALIC}Welcome to the ${ITALICRED}Warbacon${NORMAL}${ITALIC} zsh configurator${NORMAL}"
@@ -103,6 +103,42 @@ function starhip_install() {
     esac
 }
 
+function exa_install() {
+    echo "--------------------------------------------------------------------------------------------"
+    echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
+    echo -e "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]${NORMAL}"
+
+    read prompt
+
+    echo ""
+    case $prompt in
+    [nN])
+        noexa=1
+        echo -e "${WARNING}Exa won't be installed.${NORMAL}"
+        ;;
+    *)
+        case $distro in
+        2)
+            echo -e "Exa will be installed.\n"
+            sudo apt install exa
+            ;;
+        3)
+            echo -e "Exa will be installed.\n"
+            sudo dnf install exa
+            ;;
+        4)
+            echo -e "Exa will be installed.\n"
+            pkg install exa
+            ;;
+        *)
+            echo -e "Exa will be installed.\n"
+            sudo pacman -S exa
+            ;;
+        esac
+        ;;
+    esac
+}
+
 function lsd_install() {
     echo "--------------------------------------------------------------------------------------------"
     echo -e "Lsd is a beautified ls command. It will show icons and colors for every file or directory.\n"
@@ -113,7 +149,7 @@ function lsd_install() {
     echo ""
     case $prompt in
     [nN])
-        nolsd=1
+        noexa=1
         echo -e "${WARNING}Lsd won't be installed.${NORMAL}"
         ;;
     *)
@@ -175,8 +211,8 @@ function load_zshrc() {
     case $prompt in
     [yY])
         cp zshrc "$HOME"/.zshrc
-        if  [[ $nolsd = 1 ]]; then
-            sed "s/lsd/ls --color/" zshrc >> "$HOME"/.zshrc
+        if  [[ $noexa = 1 ]]; then
+            sed "s/exa/ls --color/" zshrc >> "$HOME"/.zshrc
         fi
         ;;
     *)
@@ -191,13 +227,13 @@ if ! type zsh &>/dev/null; then
     install_zsh
 fi
 
-if [ "$SHELL" != "/bin/zsh" ] && [ "$SHELL" != "/usr/bin/zsh" ] && [ "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]; then
+if [[ "$SHELL" != "/bin/zsh" ]] && [[ "$SHELL" != "/usr/bin/zsh" ]] && [[ "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
     zsh_default
 fi
 
 starhip_install
 
-lsd_install
+exa_install
 
 install_plugins
 

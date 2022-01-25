@@ -9,17 +9,18 @@ This is a simple bash script that sets zsh as the default shell, applies various
 - Enables zsh history.
 - Adds some new aliases.
 - Installs the [Starship prompt](https://starship.rs).
-- Replaces the `ls` command for [lsd](https://github.com/Peltoche/lsd).
+- Replaces the `ls` command with [exa](https://the.exa.website/).
 - Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions.git) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugins.
 
 ### New aliases:
 
-| Alias | Command                       |
-| ----- | ----------------------------- |
-| ls    | lsd (only if is installed)    |
-| ll    | ls -l                         |
-| q     | exit                          |
-| clr   | clear                         |
+| Alias | Command                               |
+| ----- | -----------------------------         |
+| ls    | exa --icons (only if is installed)    |
+| ll    | ls -l                                 |
+| la    | ls -a                                 |
+| q     | exit                                  |
+| clr   | clear                                 |
 
 ### Supported Linux distributions:
 
@@ -28,12 +29,11 @@ This is a simple bash script that sets zsh as the default shell, applies various
 - Red Hat/Fedora based.
 - Android ([Termux](https://termux.com/)).
 
-**WARNING:** Sudo must be installed and configured for the current user.
-
-
 ## Dependecies
 
 **You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal in order to see all the icons correctly.**
+
+**WARNING:** Sudo must be installed and configured for the current user.
 
 **Arch based distributions**
 
@@ -44,7 +44,7 @@ sudo pacman -Sy git
 **Debian/Ubuntu based distributions**
 
 ```sh
-sudo apt-get install wget curl git
+sudo apt-get install curl git
 ```
 
 **Red Hat/Fedora based distributions**
