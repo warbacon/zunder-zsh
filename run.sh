@@ -212,7 +212,7 @@ function load_zshrc() {
     [yY])
         cp zshrc "$HOME"/.zshrc
         if  [[ $noexa = 1 ]]; then
-            sed "s/exa/ls --color/" zshrc >> "$HOME"/.zshrc
+            sed "s/exa --icons/ls --color=auto/" zshrc > "$HOME"/.zshrc
         fi
         ;;
     *)

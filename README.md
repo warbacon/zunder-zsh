@@ -25,7 +25,7 @@ This is a simple bash script that sets zsh as the default shell, applies various
 ### Supported Linux distributions:
 
 - Arch based.
-- Debian/Ubuntu based.
+- Debian/Ubuntu based. (**EXA DOESN'T WORK AT THE MOMENT**)
 - Red Hat/Fedora based.
 - Android ([Termux](https://termux.com/)).
 
@@ -78,8 +78,9 @@ pkg install git
 
 ## Roadmap
 
-- [x] Make it work on Debian/Ubuntu-based distributions and Fedora.
+- [x] Make it work on Debian/Ubuntu based distributions and Fedora.
 - [x] Install zsh if it's not.
 - [x] Make it work on Android via Termux.
 - [x] Add  colors
+- [ ] Make exa command work in Debian/Ubuntu based distributions.
 - [ ] Document code
