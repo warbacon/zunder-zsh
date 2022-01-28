@@ -120,7 +120,10 @@ function exa_install() {
         case $distro in
         2)
             echo -e "Exa will be installed.\n"
-            sudo apt install exa
+            wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
+            unzip exa.zip
+            sudo mv ./bin/exa /bin
+            # sudo apt install exa
             ;;
         3)
             echo -e "Exa will be installed.\n"
