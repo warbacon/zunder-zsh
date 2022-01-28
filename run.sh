@@ -120,7 +120,7 @@ function exa_install() {
         case $distro in
         2)
             echo -e "Exa will be installed.\n"
-            wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
+            wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip -O exa.zip
             unzip exa.zip
             sudo mv ./bin/exa /bin
             # sudo apt install exa
