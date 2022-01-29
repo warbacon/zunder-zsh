@@ -1,20 +1,25 @@
+# HISTORY FILE
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-autoload -Uz compinit
-compinit
+# COMPLETIONS
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list '' '' 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*' menu select
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+autoload -U select-word-style
+select-word-style bash
 
-source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
+# ALIASES
 alias q="exit"
 alias ls="exa --icons"
 alias ll="ls -l"
 alias la="ls -a"
 alias clr="clear"
 
+# PLUGINS
+source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# STARSHIP PROMPT
 eval "$(starship init zsh)"
