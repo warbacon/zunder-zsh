@@ -1,6 +1,7 @@
 # Warbacon zsh configurator
 
-This is a simple bash script that sets zsh as the default shell, applies various settings and installs some plugins to make the shell prompt more enjoyable. 
+This is a simple bash script that configures zsh the way it should work out of the box. It install a few plugins, adds icons to
+the ls command and the prompt and make some basic configuration.
 
 *Please report any bug or undesired behaviour you encounter.*
 
@@ -10,17 +11,16 @@ This is a simple bash script that sets zsh as the default shell, applies various
 - Adds some new aliases.
 - Installs the [Starship prompt](https://starship.rs).
 - Replaces the `ls` command with [exa](https://the.exa.website/).
-- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions.git) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugins.
-
+- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
 ### New aliases:
 
-| Alias | Command                               |
-| ----- | -----------------------------         |
-| ls    | exa --icons (only if is installed)    |
-| ll    | ls -l                                 |
-| la    | ls -a                                 |
-| q     | exit                                  |
-| clr   | clear                                 |
+| Alias | Command                             |
+| ----- | -----------------------------       |
+| ls    | exa --icons (only if is installed)  |
+| ll    | ls -l                               |
+| la    | ls -a                               |
+| q     | exit                                |
+| clr   | clear                               |
 
 ### Supported Linux distributions:
 
@@ -83,4 +83,3 @@ pkg install git
 - [x] Make it work on Android via Termux.
 - [x] Add  colors
 - [x] Make exa command work in Debian/Ubuntu based distributions.
-- [ ] Document code

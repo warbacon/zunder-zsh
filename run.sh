@@ -70,7 +70,7 @@ function zsh_default() {
         if [[ $distro = 4 ]]; then
             chsh -s zsh
         else
-            chsh -s /bin/zsh
+            chsh -s $(which zsh)
         fi
         echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
         ;;
@@ -182,7 +182,7 @@ function lsd_install() {
 
 function install_plugins() {
     echo "-----------------------------------------------------------------------------"
-    echo -e "${BLUEBOLD}Zsh-syntax-highlighting${NORMAL}${BOLD} and ${BLUEBOLD}zsh-ausuggestions${NORMAL}${BOLD} are two essential zsh plugins."
+    echo -e "${BLUEBOLD}fast-syntax-highlighting${NORMAL}${BOLD}, ${BLUEBOLD}zsh-ausuggestions${NORMAL}${BOLD} and ${BLUEBOLD}zsh-autopair${NORMAL}${BOLD} are three essential zsh plugins."
     echo -e "The plugins' repositories will be cloned at ${CYAN}$HOME/.config/zsh/plugins.${NORMAL}\n"
     echo -e "${BOLD}Do wou want to install the plugins? [Y/n]${NORMAL}"
 
@@ -196,8 +196,9 @@ function install_plugins() {
     *)
 
         mkdir -p "$HOME"/.config/zsh
-        git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.config/zsh/plugins/zsh-autosuggestions
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME"/.config/zsh/plugins/zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME"/.config/zsh/plugins
+        git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "$HOME"/.config/zsh/plugins
+        git clone https://github.com/hlissner/zsh-autopair.git "$HOME"/.config/zsh/plugins
         ;;
     esac
 }
@@ -214,6 +215,7 @@ function load_zshrc() {
     case $prompt in
     [yY])
         cp zshrc "$HOME"/.zshrc
+        cp key-bindings.zsh "$HOME"/.config/zsh
         if  [[ $noexa = 1 ]]; then
             sed "s/exa --icons/ls --color=auto/" zshrc > "$HOME"/.zshrc
         fi

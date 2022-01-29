@@ -17,9 +17,14 @@ alias ll="ls -l"
 alias la="ls -a"
 alias clr="clear"
 
+# KEY-BINDINGS
+source ~/.config/zsh/key-bindings.zsh
+
 # PLUGINS
-source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.config/zsh/plugins/zsh-autopair/autopair.zsh
+autopair-init
 
 # STARSHIP PROMPT
 eval "$(starship init zsh)"
