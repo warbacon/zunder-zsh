@@ -113,10 +113,11 @@ function exa_install() {
     echo ""
     case $prompt in
     [nN])
-        noexa=1
+        exa=0
         echo -e "${WARNING}Exa won't be installed.${NORMAL}"
         ;;
     *)
+        exa=1
         case $distro in
         2)
             echo -e "Exa will be installed.\n"
@@ -152,15 +153,16 @@ function lsd_install() {
     echo ""
     case $prompt in
     [nN])
-        noexa=1
+        lsd=0
         echo -e "${WARNING}Lsd won't be installed.${NORMAL}"
         ;;
     *)
+        lsd=1
         case $distro in
         2)
             echo -e "${WARNING}Lsd isn't available in the Debian and Ubuntu repositories.${NORMAL}"
             echo -e "The binary file will be downloaded and installed.\n"
-            wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -O lsd.deb
+            wget https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb -O lsd.deb
             sudo dpkg -i lsd.deb
             ;;
         3)
@@ -216,8 +218,8 @@ function load_zshrc() {
     [yY])
         cp zshrc "$HOME"/.zshrc
         cp key-bindings.zsh "$HOME"/.config/zsh
-        if  [[ $noexa = 1 ]]; then
-            sed "s/exa --icons/ls --color=auto/" zshrc > "$HOME"/.zshrc
+        if [[ $lsd = 0 ]]; then
+            sed "s/lsd/ls --color=auto/" zshrc >"$HOME"/.zshrc
         fi
         ;;
     *)
@@ -238,7 +240,7 @@ fi
 
 starhip_install
 
-exa_install
+lsd_install
 
 install_plugins
 

@@ -12,7 +12,7 @@ select-word-style bash
 
 # ALIASES
 alias q="exit"
-alias ls="exa --icons"
+alias ls="lsd"
 alias ll="ls -l"
 alias la="ls -a"
 alias clr="clear"

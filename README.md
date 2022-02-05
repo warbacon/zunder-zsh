@@ -10,13 +10,13 @@ the ls command and the prompt and make some basic configuration.
 - Enables zsh history.
 - Adds some new aliases.
 - Installs the [Starship prompt](https://starship.rs).
-- Replaces the `ls` command with [exa](https://the.exa.website/).
+- Replaces the `ls` command with [lsd](https://github.com/Peltoche/lsd).
 - Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
 ### New aliases:
 
 | Alias | Command                             |
 | ----- | -----------------------------       |
-| ls    | exa --icons (only if is installed)  |
+| ls    | lsd (only if is installed)          |
 | ll    | ls -l                               |
 | la    | ls -a                               |
 | q     | exit                                |
