@@ -44,7 +44,7 @@ sudo pacman -Sy git
 **Debian/Ubuntu based distributions**
 
 ```sh
-sudo apt-get install wget unzip curl git
+sudo apt-get install wget curl git
 ```
 
 **Red Hat/Fedora based distributions**
