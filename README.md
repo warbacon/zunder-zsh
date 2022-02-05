@@ -82,4 +82,3 @@ pkg install git
 - [x] Install zsh if it's not.
 - [x] Make it work on Android via Termux.
 - [x] Add  colors
-- [x] Make exa command work in Debian/Ubuntu based distributions.
