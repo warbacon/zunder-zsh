@@ -124,10 +124,6 @@ disabled = true
 format = '\[[$symbol($version)]($style)\]'
 disabled = true
 
-[pulumi]
-format = '\[[$symbol$stack]($style)\]'
-disabled = true
-
 [purescript]
 format = '\[[$symbol($version)]($style)\]'
 disabled = true
@@ -149,9 +145,6 @@ format = '\[[$symbol($version)]($style)\]'
 [scala]
 format = '\[[$symbol($version)]($style)\]'
 disabled = true
-
-[sudo]
-format = '\[[as $symbol]\]'
 
 [swift]
 format = '\[[$symbol($version)]($style)\]'
