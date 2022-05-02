@@ -26,6 +26,8 @@ the ls command, and the prompt and make some basic configuration.
 | lla   | ll -a                        |
 | q     | exit                         |
 | clr   | clear                        |
+| ..    | cd ..                        |
+
 
 ### Supported Linux distributions:
 

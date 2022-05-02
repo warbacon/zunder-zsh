@@ -29,6 +29,7 @@ alias la="ls -a"
 alias lla="ll -a"
 alias q="exit"
 alias clr="clear"
+alias ..="cd .."
 
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
@@ -46,6 +47,7 @@ source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
 
   # specify plugins here
+  zgen oh-my-zsh plugins/sudo
   zgen load romkatv/powerlevel10k powerlevel10k
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-completions
