@@ -1,7 +1,7 @@
 # Warbacon zsh configurator
 
 This is a simple bash script that configures zsh the way it should work out of the box. It install a few plugins, adds icons to
-the ls command and the prompt and make some basic configuration.
+the ls command, and the prompt and make some basic configuration.
 
 *Please report any bug or undesired behaviour you encounter.*
 
@@ -9,18 +9,21 @@ the ls command and the prompt and make some basic configuration.
 
 - Enables zsh history.
 - Adds some new aliases.
-- Installs the [Starship prompt](https://starship.rs).
-- Replaces the `ls` command with [lsd](https://github.com/Peltoche/lsd).
-- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
+- Powerfull completions.
+- intuitive keybindings.
+- Replaces the `ls` command with [exa](https://github.com/ogham/exa).
+- Installs the [Powerlevel10k prompt](https://github.com/romkatv/powerlevel10k).
+- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
+
 ### New aliases:
 
-| Alias | Command                             |
-| ----- | -----------------------------       |
-| ls    | lsd (only if is installed)          |
-| ll    | ls -l                               |
-| la    | ls -a                               |
-| q     | exit                                |
-| clr   | clear                               |
+| Alias | Command                      |
+| ----- | -----------------------------|
+| ll    | ls -l                        |
+| la    | ls -a                        |
+| lla   | ll -a                        |
+| q     | exit                         |
+| clr   | clear                        |
 
 ### Supported Linux distributions:
 
@@ -31,9 +34,7 @@ the ls command and the prompt and make some basic configuration.
 
 ## Dependecies
 
-**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal in order to see all the icons correctly.**
-
-**WARNING:** Sudo must be installed and configured for the current user.
+**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly.**
 
 **Arch based distributions**
 
@@ -81,4 +82,6 @@ pkg install git
 - [x] Make it work on Debian/Ubuntu based distributions and Fedora.
 - [x] Install zsh if it's not.
 - [x] Make it work on Android via Termux.
-- [x] Add  colors
+- [x] Add colors to the installer.
+
+**The script will be updated every time I discover new ways to configure the shell.**
