@@ -1,3 +1,5 @@
+pfetch
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -29,13 +31,6 @@ alias q="exit"
 alias clr="clear"
 alias ..="cd .."
 
-autoload -U compinit; compinit
-zstyle ':completion:*' completer _extensions _complete _approximate
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-
 autoload -U select-word-style
 select-word-style bash
 
@@ -58,6 +53,14 @@ if ! zgenom saved; then
   # generate the init script from plugins above
   zgenom save
 fi
+
+autoload -U compinit; compinit
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
