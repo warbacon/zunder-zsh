@@ -1,3 +1,5 @@
+autoload -U compinit; compinit
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -19,6 +21,7 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey '^H' backward-kill-word
+bindkey '^[[Z' reverse-menu-complete
 
 alias ls="exa --icons"
 alias ll="ls -lh"
@@ -27,7 +30,6 @@ alias lla="ll -a"
 alias q="exit"
 alias clr="clear"
 
-autoload -U compinit; compinit
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
@@ -46,6 +48,7 @@ if ! zgen saved; then
   # specify plugins here
   zgen load romkatv/powerlevel10k powerlevel10k
   zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-completions
   zgen load zsh-users/zsh-autosuggestions
   zgen load hlissner/zsh-autopair
 

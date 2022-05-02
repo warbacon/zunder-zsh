@@ -3,6 +3,8 @@
 This is a simple bash script that configures zsh the way it should work out of the box. It install a few plugins, adds icons to
 the ls command, and the prompt and make some basic configuration.
 
+![example](images/example.png)
+
 *Please report any bug or undesired behaviour you encounter.*
 
 ## Changes made:
@@ -13,7 +15,7 @@ the ls command, and the prompt and make some basic configuration.
 - intuitive keybindings.
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Installs the [Powerlevel10k prompt](https://github.com/romkatv/powerlevel10k).
-- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
+- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), [zsh-completions](https://github.com/zsh-users/zsh-completions) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
 
 ### New aliases:
 
@@ -29,7 +31,7 @@ the ls command, and the prompt and make some basic configuration.
 
 - Arch based.
 - Debian/Ubuntu based.
-- Red Hat/Fedora based.
+- Fedora.
 - Android ([Termux](https://termux.com/)).
 
 ## Dependecies
@@ -39,22 +41,22 @@ the ls command, and the prompt and make some basic configuration.
 **Arch based distributions**
 
 ```sh
-sudo pacman -Sy git
+sudo pacman -S git
 ```
 
 **Debian/Ubuntu based distributions**
 
 ```sh
-sudo apt-get install wget curl git
+sudo apt-get install git
 ```
 
-**Red Hat/Fedora based distributions**
+**Fedora**
 
 ```sh
-sudo dnf install util-linux-user git
+sudo dnf install util-linux-user
 ```
 
-Android (via [Termux](https://termux.com/))
+**Android** (via [Termux](https://termux.com/))
 
 ```sh
 pkg install git

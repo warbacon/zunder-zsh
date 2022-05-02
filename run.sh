@@ -18,7 +18,7 @@ distro_select() {
     echo "--------------------------------------------"
     echo -e "1. Arch based (pacman)"
     echo -e "2. Debian/Ubuntu based (apt)"
-    echo -e "3. Red Hat/Fedora based (dnf)"
+    echo -e "3. Fedora (dnf)"
     echo -e "4. Android (termux)\n"
     echo -e "Select your current distro [1-4]${NORMAL}"
 
