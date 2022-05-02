@@ -219,8 +219,9 @@ load_zshrc() {
     echo ""
     case $prompt in
     [yY])
-        cp zshrc ~/.zshrc
-        cp key-bindings.zsh ~/.config/zsh/
+        cp ./config/zshrc ~/.zshrc
+        cp ./config/p10k.zsh ~/.p10k.zsh
+
         if [[ $exa = 0 ]]; then
             sed "s/exa --icons/ls --color=auto/" ./config/zshrc > ~/.zshrc
             sed "s/ls -lh/ls -l/" ./config/zshrc > ~/.zshrc
