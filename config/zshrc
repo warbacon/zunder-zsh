@@ -24,7 +24,7 @@ bindkey '^H' backward-kill-word
 bindkey '^[[Z' reverse-menu-complete
 
 alias ls="exa --icons"
-alias ll="ls -lh"
+alias ll="ls -lh --git"
 alias la="ls -a"
 alias lla="ll -a"
 alias q="exit"
@@ -40,22 +40,24 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 autoload -U select-word-style
 select-word-style bash
 
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+zgenom autoupdate
 
 # if the init script doesn't exist
-if ! zgen saved; then
+if ! zgenom saved; then
 
   # specify plugins here
-  zgen oh-my-zsh plugins/sudo
-  zgen load romkatv/powerlevel10k powerlevel10k
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen load zsh-users/zsh-completions
-  zgen load zsh-users/zsh-autosuggestions
-  zgen load hlissner/zsh-autopair
+  zgenom oh-my-zsh plugins/sudo
+  zgenom load romkatv/powerlevel10k powerlevel10k
+  zgenom load zsh-users/zsh-syntax-highlighting
+  zgenom load zsh-users/zsh-completions
+  zgenom load zsh-users/zsh-autosuggestions
+  zgenom load hlissner/zsh-autopair
 
   # generate the init script from plugins above
-  zgen save
+  zgenom save
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

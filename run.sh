@@ -179,10 +179,10 @@ exa_install() {
 #     esac
 # }
 
-install_zgen() {
+install_zgenom() {
     echo "------------------------------------------------------------------------------------"
-    echo -e "The plugin manager zgen will be installed in ${CYAN}$HOME/.zgen${NORMAL}.\n"
-    git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+    echo -e "The plugin manager zgenom will be installed in ${CYAN}$HOME/.zgen${NORMAL}.\n"
+    git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 }
 
 # install_plugins() {
@@ -245,7 +245,7 @@ fi
 
 exa_install
 
-install_zgen
+install_zgenom
 
 load_zshrc
 
