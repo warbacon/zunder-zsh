@@ -7,7 +7,7 @@ fi
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
-SAVEHIST=1000
+SAVEHIST=10000
 setopt SHARE_HISTORY
 
 bindkey -e
@@ -43,7 +43,7 @@ if ! zgenom saved; then
   # specify plugins here
   zgenom oh-my-zsh plugins/sudo
   zgenom load romkatv/powerlevel10k powerlevel10k
-  zgenom load zsh-users/zsh-syntax-highlighting
+  zgenom load zdharma-continuum/fast-syntax-highlighting
   zgenom load zsh-users/zsh-completions
   zgenom load zsh-users/zsh-autosuggestions
   zgenom load hlissner/zsh-autopair

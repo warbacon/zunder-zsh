@@ -15,7 +15,7 @@ the ls command, and the prompt and make some basic configuration.
 - intuitive keybindings.
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Installs the [Powerlevel10k prompt](https://github.com/romkatv/powerlevel10k).
-- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), [zsh-completions](https://github.com/zsh-users/zsh-completions) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
+- Installs the [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting), [zsh-completions](https://github.com/zsh-users/zsh-completions) and [zsh-autopair](https://github.com/hlissner/zsh-autopair) plugins.
 
 ### New aliases:
 
