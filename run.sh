@@ -113,11 +113,9 @@ exa_install() {
     echo ""
     case $prompt in
     [nN])
-        exa=0
         echo -e "${WARNING}Exa won't be installed.${NORMAL}"
         ;;
     *)
-        exa=1
         case $distro in
         2)
             echo -e "Exa will be installed.\n"
@@ -221,11 +219,6 @@ load_zshrc() {
     [yY])
         cp ./config/zshrc ~/.zshrc
         cp ./config/p10k.zsh ~/.p10k.zsh
-
-        if [[ $exa = 0 ]]; then
-            sed "s/exa --icons/ls --color=auto/" ./config/zshrc > ~/.zshrc
-            sed "s/ls -lh/ls -l/" ./config/zshrc > ~/.zshrc
-        fi
         ;;
     *)
         echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
