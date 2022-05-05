@@ -1,21 +1,20 @@
+# Run pfetch at start if installed ------------------------------------------------------
 if which pfetch > /dev/null; then
     pfetch
 fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Enable Powerlevel10k instant prompt. --------------------------------------------------
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Enable history
+# Enable history ------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
 
-# Key bindings
+# Key bindings --------------------------------------------------------------------------
 bindkey -e
 
 bindkey "^[[3~" delete-char
@@ -30,14 +29,13 @@ bindkey '^[[Z' reverse-menu-complete
 autoload -U select-word-style
 select-word-style bash
 
-
-# Aliases
+# Aliases -------------------------------------------------------------------------------
 if which exa > /dev/null; then
-  alias ls="exa --icons"
-  alias ll="ls -lh"
+    alias ls="exa --icons"
+    alias ll="ls -lh"
 else
-  alias ls="ls --color"
-  alias ll="ls -l"
+    alias ls="ls --color"
+    alias ll="ls -l"
 fi
 alias la="ls -a"
 alias lla="ll -a"
@@ -45,45 +43,40 @@ alias q="exit"
 alias clr="clear"
 alias ..="cd .."
 
-
-# Fzf integration
+# Fzf integration -------------------------------------------------------------------------
 if which fzf > /dev/null; then
-
-  source "/usr/share/fzf/key-bindings.zsh"
-  source "/usr/share/fzf/completion.zsh"
     
-  export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
+    source "/usr/share/fzf/key-bindings.zsh"
+    source "/usr/share/fzf/completion.zsh"
+    
+    export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
+    --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
 fi
 
-
-# Load zgenom
+# Load zgenom ------------------------------------------------------------------------------
 source "${HOME}/.zgenom/zgenom.zsh"
 
-# Run zgenom update every week
+# run zgenom update every week
 zgenom autoupdate
 
 # if the init script doesn't exist
 if ! zgenom saved; then
-
-  zgenom oh-my-zsh plugins/sudo
-  zgenom oh-my-zsh plugins/colored-man-pages
-  zgenom load romkatv/powerlevel10k powerlevel10k
-  zgenom load zdharma-continuum/fast-syntax-highlighting
-  zgenom load zsh-users/zsh-completions
-  zgenom load zsh-users/zsh-autosuggestions
-  zgenom load hlissner/zsh-autopair
-
-  # generate the init script from plugins above
-  zgenom save
+    
+    zgenom oh-my-zsh plugins/sudo
+    zgenom load romkatv/powerlevel10k powerlevel10k
+    zgenom load zdharma-continuum/fast-syntax-highlighting
+    zgenom load zsh-users/zsh-completions
+    zgenom load zsh-users/zsh-autosuggestions
+    zgenom load hlissner/zsh-autopair
+    
+    # generate the init script from plugins above
+    zgenom save
 fi
 
-
-# Command completions
+# Command completions ----------------------------------------------------------------------
 zstyle ':completion:*' completer _extensions _complete _approximate
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# Start Powerlevel10k ----------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
