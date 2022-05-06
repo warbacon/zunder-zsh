@@ -1,5 +1,5 @@
 # Run pfetch at start if installed ------------------------------------------------------
-if hash pfetch > /dev/null; then
+if hash pfetch &> /dev/null; then
     pfetch
 fi
 
