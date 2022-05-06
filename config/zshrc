@@ -29,7 +29,7 @@ autoload -U select-word-style
 select-word-style bash
 
 # Aliases -------------------------------------------------------------------------------
-if hash exa > /dev/null; then
+if hash exa &> /dev/null; then
     alias ls="exa --icons"
     alias ll="ls -lh"
 else
