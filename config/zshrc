@@ -1,5 +1,5 @@
 # Run pfetch at start if installed ------------------------------------------------------
-if which pfetch > /dev/null; then
+if hash pfetch > /dev/null; then
     pfetch
 fi
 
@@ -23,14 +23,13 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
-bindkey '^H' backward-kill-word
 bindkey '^[[Z' reverse-menu-complete
 
 autoload -U select-word-style
 select-word-style bash
 
 # Aliases -------------------------------------------------------------------------------
-if which exa > /dev/null; then
+if hash exa > /dev/null; then
     alias ls="exa --icons"
     alias ll="ls -lh"
 else
@@ -77,6 +76,11 @@ fi
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+# Load .dircolors --------------------------------------------------------------------------
+if [ -f .dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+fi
 
 # Start Powerlevel10k ----------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

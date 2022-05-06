@@ -117,7 +117,7 @@ exa_install() {
 
 install_zgenom() {
     echo "------------------------------------------------------------------------------------"
-    echo -e "The plugin manager zgenom will be installed in ${CYAN}$HOME/.zgen${NORMAL}.\n"
+    echo -e "The plugin manager zgenom will be installed in ${CYAN}$HOME/.zgenom${NORMAL}.\n"
     git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 }
 
@@ -147,7 +147,7 @@ if ! type zsh &>/dev/null; then
     install_zsh
 fi
 
-if [[ "$SHELL" != "/bin/zsh" ]] && [[ "$SHELL" != "/usr/bin/zsh" ]] && [[ "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
+if [ "$SHELL" != "/bin/zsh" -a "$SHELL" != "/usr/bin/zsh" -a "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]; then
     zsh_default
 fi
 
