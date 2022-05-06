@@ -43,7 +43,7 @@ alias clr="clear"
 alias ..="cd .."
 
 # Fzf integration -------------------------------------------------------------------------
-if which fzf > /dev/null; then
+if which fzf &> /dev/null; then
     
     source "/usr/share/fzf/key-bindings.zsh"
     source "/usr/share/fzf/completion.zsh"
