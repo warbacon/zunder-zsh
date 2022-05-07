@@ -153,7 +153,7 @@ fi
 
 exa_install
 
-install_zgenom
+# install_zgenom
 
 load_zshrc
 
