@@ -42,45 +42,52 @@ alias q="exit"
 alias clr="clear"
 alias ..="cd .."
 
-# Fzf integration -------------------------------------------------------------------------
+# Load .dircolors --------------------------------------------------------------------------
+if [ -f .dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+fi
+
+# Load Zinit --------------------------------------------------------------------------------
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Plugins -----------------------------------------------------------------------------------
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit light hlissner/zsh-autopair
+
+# Fzf integration ----------------------------------------------------------------------------
 if which fzf &> /dev/null; then
     
-    source "/usr/share/fzf/key-bindings.zsh"
-    source "/usr/share/fzf/completion.zsh"
+    zinit snippet "/usr/share/fzf/key-bindings.zsh"
+    zinit snippet "/usr/share/fzf/completion.zsh"
     
     export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
     --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
 fi
 
-# Load zgenom ------------------------------------------------------------------------------
-source "${HOME}/.zgenom/zgenom.zsh"
-
-# run zgenom update every week
-zgenom autoupdate
-
-# if the init script doesn't exist
-if ! zgenom saved; then
-    
-    zgenom oh-my-zsh plugins/sudo
-    zgenom load romkatv/powerlevel10k powerlevel10k
-    zgenom load zdharma-continuum/fast-syntax-highlighting
-    zgenom load zsh-users/zsh-completions
-    zgenom load zsh-users/zsh-autosuggestions
-    zgenom load hlissner/zsh-autopair
-    
-    # generate the init script from plugins above
-    zgenom save
-fi
-
 # Command completions ----------------------------------------------------------------------
+autoload -Uz compinit; compinit
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-
-# Load .dircolors --------------------------------------------------------------------------
-if [ -f .dircolors ]; then
-    eval "$(dircolors -b ~/.dircolors)"
-fi
 
 # Start Powerlevel10k ----------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
