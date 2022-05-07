@@ -60,18 +60,13 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Plugins -----------------------------------------------------------------------------------
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zinit light hlissner/zsh-autopair
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
 # Fzf integration ----------------------------------------------------------------------------
 if which fzf &> /dev/null; then
@@ -83,8 +78,20 @@ if which fzf &> /dev/null; then
     --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
 fi
 
+# Plugins -----------------------------------------------------------------------------------
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit light hlissner/zsh-autopair
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
 # Command completions ----------------------------------------------------------------------
-autoload -Uz compinit; compinit
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
