@@ -67,7 +67,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 # Fzf integration ----------------------------------------------------------------------------
-if which fzf &> /dev/null; then
+if which fzf &> /dev/null && [ -f "/usr/share/fzf/key-bindings.zsh" ] && [ -f "/usr/share/fzf/completion.zsh" ]; then
     zinit is-snippet light-mode for \
         "/usr/share/fzf/key-bindings.zsh" \
         "/usr/share/fzf/completion.zsh"
