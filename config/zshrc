@@ -79,7 +79,7 @@ fi
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light-mode wait lucid for \
-    OMZ::plugins/sudo/sudo.plugin.zsh \
+    OMZP::sudo/sudo.plugin.zsh \
     hlissner/zsh-autopair
 
 zinit wait lucid for \
