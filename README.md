@@ -49,7 +49,7 @@ Check the .zshrc file in your home directory for more info.
 - Arch Linux and derivatives (Manjaro, Endeavour OS...).
 - Debian/Ubuntu and derivatives (Pop OS, Kubuntu, Linux Mint...).
 - Fedora.
-- Android (using [Termux](https://termux.com/)).
+- ~~Android (using [Termux](https://termux.com/)).~~ Currently not working.
 
 Might support more in the future, depending on requests.
 
@@ -75,12 +75,6 @@ sudo apt-get install git
 
 ```sh
 sudo dnf install util-linux-user
-```
-
-**Android** (using [Termux](https://termux.com/))
-
-```sh
-pkg install git
 ```
 
 ### Installation
