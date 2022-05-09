@@ -19,8 +19,8 @@ distro_select() {
     echo -e "1. Arch based (pacman)"
     echo -e "2. Debian/Ubuntu based (apt)"
     echo -e "3. Fedora (dnf)"
-    # echo -e "4. Android (termux)\n"
-    echo -e "Select your current distro [1-3]${NORMAL}"
+    echo -e "4. Android (termux)\n"
+    echo -e "Select your current distro [1-4]${NORMAL}"
     
     read distro
 }
@@ -47,9 +47,9 @@ install_zsh() {
                 3)
                     sudo dnf install zsh
                 ;;
-                #4)
-                #    pkg install zsh
-                #;;
+                4)
+                    pkg install zsh
+                ;;
                 *)
                     sudo pacman -S zsh
                 ;;
@@ -67,11 +67,11 @@ zsh_default() {
     echo ""
     case $prompt in
         [yY])
-            #if [[ $distro = 4 ]]; then
-            #    chsh -s zsh
-            #else
-            chsh -s $(which zsh)
-            #fi
+            if [[ $distro = 4 ]]; then
+                chsh -s zsh
+            else
+                chsh -s $(which zsh)
+            fi
             echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
         ;;
         *)
@@ -102,10 +102,10 @@ exa_install() {
                     echo -e "Exa will be installed.\n"
                     sudo dnf install exa
                 ;;
-                #4)
-                #    echo -e "Exa will be installed.\n"
-                #    pkg install exa
-                #;;
+                4)
+                    echo -e "Exa will be installed.\n"
+                    pkg install exa
+                ;;
                 *)
                     echo -e "Exa will be installed.\n"
                     sudo pacman -S exa
@@ -145,7 +145,9 @@ if [ "$SHELL" != "/bin/zsh" -a "$SHELL" != "/usr/bin/zsh" -a "$SHELL" != "/data/
     zsh_default
 fi
 
-exa_install
+if [ $distro -ne 4 ]; then
+    exa_install
+fi
 
 load_zshrc
 

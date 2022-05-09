@@ -2,7 +2,7 @@
 
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
-This is a simple bash script that configures zsh the way it should work out of the box. It is build on top of Zinit and Powerlevel10k prompt, so it's insanely fast.
+Zunder is a simple bash script that configures zsh the way it should work out of the box. It is build on top of Zinit and Powerlevel10k prompt, so it's insanely fast.
 
 ![example](images/example.png)
 
@@ -13,8 +13,8 @@ This is a simple bash script that configures zsh the way it should work out of t
 - Minimal and fast.
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto) plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
-- Replaces the `ls` command with [exa](https://github.com/ogham/exa).
-- [Fzf](https://github.com/junegunn/fzf) integration (only on Arch based distros at the moment).
+- Replaces the `ls` command with [exa](https://github.com/ogham/exa) ([not on Android](https://github.com/Warbacon/zunder-zsh/issues/1)).
+- [Fzf](https://github.com/junegunn/fzf) integration (only on Arch based distros at this time).
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
 - Some useful aliases.
@@ -49,7 +49,7 @@ Check the .zshrc file in your home directory for more info.
 - Arch Linux and derivatives (Manjaro, Endeavour OS...).
 - Debian/Ubuntu and derivatives (Pop OS, Kubuntu, Linux Mint...).
 - Fedora.
-- ~~Android (using [Termux](https://termux.com/)).~~ Currently not working.
+- Android (using [Termux](https://termux.com/)).
 
 Might support more in the future, depending on requests.
 
@@ -75,6 +75,12 @@ sudo apt-get install git
 
 ```sh
 sudo dnf install util-linux-user
+```
+
+**Android** (using [Termux](https://termux.com/))
+
+```sh
+pkg install git
 ```
 
 ### Installation
@@ -106,4 +112,4 @@ Zunder was born as a personal project to configure the shell of the virtual mach
 
 This is in very active development and not that popular at the moment, so
 I'm alone maintaining this thing and it's possible that something unexpected
-happens. **I appreciate that bugs are reported and new ideas are suggested.**
+happens. **I appreciate that bugs are reported and new ideas are suggested.** 
