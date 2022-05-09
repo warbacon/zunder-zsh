@@ -115,12 +115,6 @@ exa_install() {
     esac
 }
 
-install_zgenom() {
-    echo "------------------------------------------------------------------------------------"
-    echo -e "The plugin manager zgenom will be installed in ${CYAN}$HOME/.zgenom${NORMAL}.\n"
-    git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
-}
-
 load_zshrc() {
     echo "------------------------------------------------------------------------------------"
     echo -e "At last, we will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
@@ -152,8 +146,6 @@ if [ "$SHELL" != "/bin/zsh" -a "$SHELL" != "/usr/bin/zsh" -a "$SHELL" != "/data/
 fi
 
 exa_install
-
-# install_zgenom
 
 load_zshrc
 
