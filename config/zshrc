@@ -1,7 +1,7 @@
 # Run pfetch at start if installed ------------------------------------------------------
-if hash pfetch &> /dev/null; then
-    pfetch
-fi
+# if hash pfetch &> /dev/null; then
+#     pfetch
+# fi
 
 # Enable Powerlevel10k instant prompt. --------------------------------------------------
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -31,7 +31,7 @@ select-word-style bash
 # Aliases -------------------------------------------------------------------------------
 if hash exa &> /dev/null; then
     alias ls="exa --icons"
-    alias ll="ls -lh"
+    alias ll="ls -lh --git 2> /dev/null || ls -lh"
 else
     alias ls="ls --color"
     alias ll="ls -l"
