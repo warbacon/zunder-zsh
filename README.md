@@ -6,7 +6,7 @@ This is a simple bash script that configures zsh the way it should work out of t
 
 ![example](images/example.png)
 
-*"You have convinced me, let's try it out!"*
+*"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
 ## Features:
 
@@ -42,7 +42,7 @@ Check the .zshrc file in your home directory for more info.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggest previously executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
 - [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses, quotes and more
-- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh - press the Esc key to and ```sudo``` at the beginning.
+- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh - press the Esc key twice to put ```sudo``` at the beginning.
 
 ### Supported operating systems:
 
@@ -55,7 +55,7 @@ Might support more in the future, depending on requests.
 
 ## Getting started:
 
-### Dependecies
+### Dependencies
 
 **You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly.**
 
