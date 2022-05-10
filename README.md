@@ -88,7 +88,7 @@ pkg install git
 1. Clone the repository:
    
    ```sh
-   git clone https://github.com/Warbacon/zsh-configurator.git
+   git clone https://github.com/Warbacon/zunder-zsh.git
    ```
 
 2. Navigate to the cloned repository and run the `run.sh` script.
