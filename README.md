@@ -94,7 +94,7 @@ pkg install git
 2. Navigate to the cloned repository and run the `run.sh` script.
    
    ```sh
-   cd ./zsh-configurator
+   cd ./zunder-zsh
    bash run.sh
    ```
 
