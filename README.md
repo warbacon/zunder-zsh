@@ -1,4 +1,4 @@
-# Zunder zsh configuration
+# Zunder zsh configuratior
 
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
@@ -11,16 +11,19 @@ Zunder is a simple bash script that configures zsh the way it should work out of
 ## Features
 
 - Minimal and fast.
-- Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto) plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
+- Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto)
+plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
-- Replaces the `ls` command with [exa](https://github.com/ogham/exa) ([not on Android](https://github.com/Warbacon/zunder-zsh/issues/1#issuecomment-1121312633)).
-- [Fzf](https://github.com/junegunn/fzf) integration (only on Arch based distros at this time).
+- Replaces the `ls` command with [exa](https://github.com/ogham/exa) 
+([not on Android](https://github.com/Warbacon/zunder-zsh/issues/1#issuecomment-1121312633)).
+- [Fzf](https://github.com/junegunn/fzf) integration (only on Arch based distros for now).
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
 - Some useful aliases.
+- Change the current directory by simply typing it, no ```cd``` needed.
 - Much more and it's updating!
 
-*"Umm, that's a lot to be minimal..."*
+*"Umm, that's a lot to being minimal..."*
 
 ### New aliases:
 
@@ -38,11 +41,15 @@ Check the .zshrc file in your home directory for more info.
 
 ### Plugins installed:
 
-- [fast-syntax-hightlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - better and faster than zsh-syntax-highlighting.
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggest previously executed commands.
+- [fast-syntax-hightlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - better
+and faster than zsh-syntax-highlighting.
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggest previously
+executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
-- [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses, quotes and more
-- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh - press the Esc key twice to put ```sudo``` at the beginning.
+- [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses,
+quotes and more
+- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
+press the Esc key twice to put ```sudo``` at the beginning.
 
 ### Supported operating systems:
 
@@ -57,7 +64,8 @@ Might support more in the future, depending on requests.
 
 ### Dependencies:
 
-**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly.**
+**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly. On Android, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and
+use for example Fira Code**
 
 **Arch based distributions**
 
@@ -107,11 +115,11 @@ pkg install git
 Zunder is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
 Anyway, if you didn't like it or want to go back to your previous settings, you can.
 
-- First of all, **make sure you made a backup of your previous .zshrc file**. It isn't needed if you hadn't configured
-anything of your zsh.
-
-- Then, you must remove the .zshrc file in your home directory (```~/.zshrc```) and put there
-your backed up file (if you have one).
+- you must replace the .zshrc file in your home directory (```~/.zshrc```) with the previously backed up file
+.zshrc.bak:
+```bash
+mv .zshrc.bak .zshrc
+```
 
 - You can also remove the p10k.zsh file and the Zinit directories:
 

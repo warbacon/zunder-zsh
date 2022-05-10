@@ -4,7 +4,7 @@
 ERROR="\033[1;31m"
 WARNING="\033[1;33m"
 SUCCESS="\033[3;32m"
-ITALICRED="\033[3;31m"
+ITALICYELLOW="\033[3;33m"
 BLUE="\033[34m"
 BLUEBOLD="\033[1;34m"
 CYAN="\033[36m"
@@ -14,20 +14,20 @@ ITALIC="\033[3m"
 NORMAL="\033[0m"
 
 distro_select() {
-    echo -e "\n${ITALIC}Welcome to the ${ITALICRED}Warbacon${NORMAL}${ITALIC} zsh configurator${NORMAL}"
+    echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder${NORMAL}${ITALIC} zsh configurator${NORMAL}"
     echo "--------------------------------------------"
     echo -e "1. Arch based (pacman)"
     echo -e "2. Debian/Ubuntu based (apt)"
     echo -e "3. Fedora (dnf)"
     echo -e "4. Android (termux)\n"
-    echo -e "Select your current distro [1-4]${NORMAL}"
+    printf "Select your current operating system [1-4]: "
     
     read distro
 }
 
 install_zsh() {
     echo "--------------------------------------------------------------------"
-    echo -e "${WARNING}Zsh is not installed, do you want to install it? [Y/n]${NORMAL}"
+    printf "${WARNING}Zsh is not installed, do you want to install it? [Y/n]: ${NORMAL}"
     
     read prompt
     
@@ -60,7 +60,7 @@ install_zsh() {
 
 zsh_default() {
     echo "--------------------------------------------------------------------"
-    echo -e "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]${NORMAL}"
+    printf "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]: ${NORMAL}"
     
     read prompt
     
@@ -83,7 +83,7 @@ zsh_default() {
 exa_install() {
     echo "--------------------------------------------------------------------------------------------"
     echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
-    echo -e "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]${NORMAL}"
+    printf "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]: ${NORMAL}"
     
     read prompt
     
@@ -117,15 +117,16 @@ exa_install() {
 
 load_zshrc() {
     echo "------------------------------------------------------------------------------------"
-    echo -e "At last, we will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
-    echo -e "${WARNING}BACKUP YOUR .ZSHRC BEFORE CONTINUE AS IT WILL BE REPLACED.${NORMAL}\n"
-    echo -e "${BOLD}Continue? [y/N]${NORMAL}"
+    echo -e "Zunder will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
+    echo -e "${WARNING}YOUR CURRENT .ZSHRC CONFIGURATION FILE WILL BE BACKED UP WITH THE NAME .ZSHRC.BAK${NORMAL}\n"
+    printf "${BOLD}Continue? [y/N]: ${NORMAL}"
     
     read prompt
     
     echo ""
     case $prompt in
         [yY])
+            mv "$HOME/.zshrc" .zshrc.bak 
             cp ./config/zshrc ~/.zshrc
             cp ./config/p10k.zsh ~/.p10k.zsh
         ;;
