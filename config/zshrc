@@ -45,14 +45,14 @@ alias clr="clear"
 alias ..="cd .."
 
 # Load .dircolors --------------------------------------------------------------------------
-if [ -f .dircolors ]; then
+if [[ -f .dircolors ]]; then
     eval "$(dircolors -b ~/.dircolors)"
 fi
 
 # Load Zinit --------------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-if ! [ -d "$HOME/.local/share/zinit" ]; then
+if [[ ! -d "$HOME/.local/share/zinit" ]]; then
     mkdir -p "$(dirname $ZINIT_HOME)"
     echo "\033[1;33mInstalling Zinit in $HOME/.local/share/zinit...\033[0m\n"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"

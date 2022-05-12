@@ -122,7 +122,9 @@ load_zshrc() {
     echo ""
     case $prompt in
         [yY])
-            mv "$HOME/.zshrc" "$HOME/.zshrc.bak "
+            if [[ -f "$HOME/.zshrc" ]]; then
+                mv "$HOME/.zshrc" "$HOME/.zshrc.bak "
+            fi
             cp "./config/zshrc" "$HOME/.zshrc"
             cp "./config/p10k.zsh" "$HOME/.p10k.zsh"
         ;;
