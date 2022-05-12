@@ -1,8 +1,3 @@
-# Run pfetch at start if installed ------------------------------------------------------
-# if hash pfetch &> /dev/null; then
-#     pfetch
-# fi
-
 # Enable Powerlevel10k instant prompt. --------------------------------------------------
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -39,7 +34,7 @@ else
     alias ll="ls -l"
 fi
 alias la="ls -a"
-alias lla="ll -a"
+alias lla="ls -lha --git 2> /dev/null || ls -lha"
 alias q="exit"
 alias clr="clear"
 alias ..="cd .."
@@ -67,8 +62,8 @@ autoload -Uz _zinit
 if which fzf &> /dev/null && [ -f "/usr/share/fzf/key-bindings.zsh" ] && [ -f "/usr/share/fzf/completion.zsh" ]; then
     zinit is-snippet light-mode for \
         "/usr/share/fzf/key-bindings.zsh" \
-        "/usr/share/fzf/completion.zsh"
-    
+        "/usr/share/fzf/completion.zsh"  
+
     export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
     --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
 fi
@@ -76,8 +71,8 @@ fi
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light-mode wait lucid for \
-OMZP::sudo/sudo.plugin.zsh \
-hlissner/zsh-autopair
+    OMZP::sudo \
+    hlissner/zsh-autopair
 
 zinit wait lucid for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \

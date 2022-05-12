@@ -31,7 +31,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 | ----- | -----------------------------|
 | ll    | ls -l                        |
 | la    | ls -a                        |
-| lla   | ll -a                        |
+| lla   | ls -la                        |
 | q     | exit                         |
 | clr   | clear                        |
 | ..    | cd ..                        |
