@@ -50,23 +50,18 @@ if [ -f .dircolors ]; then
 fi
 
 # Load Zinit --------------------------------------------------------------------------------
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-    print -P "%F{33} %F{34}Installation successful.%f%b" || \
-    print -P "%F{160} The clone has failed.%f%b"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if ! [ -d "$HOME/.local/share/zinit" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    echo "\033[1;33mInstalling Zinit in $HOME/.local/share/zinit...\033[0m\n"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+source "${ZINIT_HOME}/zinit.zsh"
+
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
 
 # Fzf integration ----------------------------------------------------------------------------
 if which fzf &> /dev/null && [ -f "/usr/share/fzf/key-bindings.zsh" ] && [ -f "/usr/share/fzf/completion.zsh" ]; then
@@ -81,8 +76,8 @@ fi
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light-mode wait lucid for \
-    OMZP::sudo/sudo.plugin.zsh \
-    hlissner/zsh-autopair
+OMZP::sudo/sudo.plugin.zsh \
+hlissner/zsh-autopair
 
 zinit wait lucid for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \

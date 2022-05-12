@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 #Output styling
 ERROR="\033[1;31m"
@@ -39,7 +39,6 @@ install_zsh() {
         ;;
         *)
             echo -e "Zsh will be installed.\n"
-            
             case $distro in
                 2)
                     sudo apt-get install zsh
@@ -93,21 +92,18 @@ exa_install() {
             echo -e "${WARNING}Exa won't be installed.${NORMAL}"
         ;;
         *)
+            echo -e "Exa will be installed.\n"
             case $distro in
                 2)
-                    echo -e "Exa will be installed.\n"
                     sudo apt install exa
                 ;;
                 3)
-                    echo -e "Exa will be installed.\n"
                     sudo dnf install exa
                 ;;
                 4)
-                    echo -e "Exa will be installed.\n"
                     pkg install exa
                 ;;
                 *)
-                    echo -e "Exa will be installed.\n"
                     sudo pacman -S exa
                 ;;
             esac
@@ -126,9 +122,9 @@ load_zshrc() {
     echo ""
     case $prompt in
         [yY])
-            mv "$HOME/.zshrc" .zshrc.bak 
-            cp ./config/zshrc ~/.zshrc
-            cp ./config/p10k.zsh ~/.p10k.zsh
+            mv "$HOME/.zshrc" "$HOME/.zshrc.bak "
+            cp "./config/zshrc" "$HOME/.zshrc"
+            cp "./config/p10k.zsh" "$HOME/.p10k.zsh"
         ;;
         *)
             echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
@@ -142,11 +138,11 @@ if ! type zsh &>/dev/null; then
     install_zsh
 fi
 
-if [ "$SHELL" != "/bin/zsh" -a "$SHELL" != "/usr/bin/zsh" -a "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]; then
+if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
     zsh_default
 fi
 
-if [ $distro -ne 4 ]; then
+if [[ $distro != 4 ]]; then
     exa_install
 fi
 
