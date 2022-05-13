@@ -28,13 +28,15 @@ bindkey '^[[Z' reverse-menu-complete
 # Aliases -------------------------------------------------------------------------------
 if hash exa &> /dev/null; then
     alias ls="exa --icons"
-    alias ll="ls -lh --git 2> /dev/null || ls -lh"
+    alias ll="ls -lh --git"
+    alias la="ls -a"
+    alias lla="ls -lha --git"
 else
     alias ls="ls --color"
     alias ll="ls -l"
+    alias la="ls -A"
+    alias lla="ls -lA"
 fi
-alias la="ls -a"
-alias lla="ls -lha --git 2> /dev/null || ls -lha"
 alias q="exit"
 alias clr="clear"
 alias ..="cd .."

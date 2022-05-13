@@ -125,8 +125,11 @@ load_zshrc() {
             if [[ -f "$HOME/.zshrc" ]]; then
                 mv "$HOME/.zshrc" "$HOME/.zshrc.bak "
             fi
-            cp "./config/zshrc" "$HOME/.zshrc"
             cp "./config/p10k.zsh" "$HOME/.p10k.zsh"
+            cp "./config/zshrc" "$HOME/.zshrc"
+            if [[ $distro = 2 ]]; then
+                sed -i 's/ --git//g' "$HOME/.zshrc"
+            fi
         ;;
         *)
             echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
