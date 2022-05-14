@@ -1,8 +1,8 @@
-# Zunder zsh configuratior
+# Zunder Zsh
 
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
-Zunder is a simple bash script that configures zsh the way it should work out of the box. It is build on top of Zinit and Powerlevel10k prompt, so it's insanely fast.
+Zunder is a configuration utility for configuring Zsh the way it should work out of the box. The configuration is build on top of Zinit and Powerlevel10k prompt, so it's insanely fast.
 
 ![example](images/example.png)
 
