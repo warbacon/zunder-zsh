@@ -17,7 +17,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa) 
 ([not on Android](https://github.com/Warbacon/zunder-zsh/issues/1#issuecomment-1121312633)).
-- [Fzf](https://github.com/junegunn/fzf) integration (only on Arch based distros for now).
+- [Fzf](https://github.com/junegunn/fzf) integration.
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
 - Some useful aliases.

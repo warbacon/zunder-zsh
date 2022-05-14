@@ -26,7 +26,7 @@ bindkey "^[[1;3D" backward-word
 bindkey '^[[Z' reverse-menu-complete
 
 # Aliases -------------------------------------------------------------------------------
-if hash exa &> /dev/null; then
+if hash exa 2> /dev/null; then
     alias ls="exa --icons"
     alias ll="ls -lh --git"
     alias la="ls -a"
@@ -61,13 +61,13 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Fzf integration ----------------------------------------------------------------------------
-if which fzf &> /dev/null && [ -f "/usr/share/fzf/key-bindings.zsh" ] && [ -f "/usr/share/fzf/completion.zsh" ]; then
-    zinit is-snippet light-mode for \
-        "/usr/share/fzf/key-bindings.zsh" \
-        "/usr/share/fzf/completion.zsh"  
+if hash fzf 2> /dev/null; then
+    zinit ice light-mode wait lucid
+    zinit snippet OMZP::fzf
 
-    export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
-    --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
+    # One Dark colorscheme
+    # export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
+    # --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
 fi
 
 # Plugins -----------------------------------------------------------------------------------
