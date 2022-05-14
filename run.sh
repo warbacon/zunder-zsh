@@ -147,7 +147,7 @@ if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data
     zsh_default
 fi
 
-if [[ $distro != 4 ]]; then
+if [[ $distro != 4 ]] && ! type exa &>/dev/null; then
     exa_install
 fi
 
