@@ -17,8 +17,8 @@ NORMAL="\033[0m"
 
 # Will ask you for your current operating system.
 select_system() {
-    echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder${NORMAL}${ITALIC} zsh configurator${NORMAL}"
-    echo "--------------------------------------------"
+    echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder${NORMAL}${ITALIC} Zsh configuration utility.${NORMAL}"
+    echo "------------------------------------------------"
     echo -e "1. Arch based (pacman)"
     echo -e "2. Debian/Ubuntu based (apt)"
     echo -e "3. Fedora (dnf)"
