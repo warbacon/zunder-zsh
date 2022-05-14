@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-#Output styling
+#OUTPUT STYLING
 ERROR="\033[1;31m"
 WARNING="\033[1;33m"
 SUCCESS="\033[3;32m"
@@ -13,7 +13,10 @@ BOLD="\033[1m"
 ITALIC="\033[3m"
 NORMAL="\033[0m"
 
-distro_select() {
+# FUNCTIONS
+
+# Will ask you for your current operating system.
+select_system() {
     echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder${NORMAL}${ITALIC} zsh configurator${NORMAL}"
     echo "--------------------------------------------"
     echo -e "1. Arch based (pacman)"
@@ -25,6 +28,7 @@ distro_select() {
     read distro
 }
 
+# Will install Zsh if it's not.
 install_zsh() {
     echo "--------------------------------------------------------------------"
     printf "${WARNING}Zsh is not installed, do you want to install it? [Y/n]: ${NORMAL}"
@@ -57,6 +61,7 @@ install_zsh() {
     esac
 }
 
+# Will set as default Zsh if it's not.
 zsh_default() {
     echo "--------------------------------------------------------------------"
     printf "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]: ${NORMAL}"
@@ -79,7 +84,8 @@ zsh_default() {
     esac
 }
 
-exa_install() {
+# Will install exa if not it's installed and you are not using Android.
+install_exa() {
     echo "--------------------------------------------------------------------------------------------"
     echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
     printf "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]: ${NORMAL}"
@@ -111,7 +117,8 @@ exa_install() {
     esac
 }
 
-load_zshrc() {
+# Will back up your .zshrc and copy the configuration files to yout home directory.
+load_files() {
     echo "------------------------------------------------------------------------------------"
     echo -e "Zunder will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
     echo -e "${WARNING}YOUR CURRENT .ZSHRC CONFIGURATION FILE WILL BE BACKED UP WITH THE NAME .ZSHRC.BAK${NORMAL}\n"
@@ -137,7 +144,9 @@ load_zshrc() {
     esac
 }
 
-distro_select
+# START
+
+select_system
 
 if ! type zsh &>/dev/null; then
     install_zsh
@@ -148,10 +157,10 @@ if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data
 fi
 
 if [[ $distro != 4 ]] && ! type exa &>/dev/null; then
-    exa_install
+    install_exa
 fi
 
-load_zshrc
+load_files
 
 echo "--------------------------------------------"
 echo -e "${SUCCESS}We are done.${NORMAL} 🎉"
