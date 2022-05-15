@@ -104,7 +104,7 @@ pkg install git
    
    ```sh
    cd ./zunder-zsh
-   bash run.sh
+   ./run.sh
    ```
 
 3. Follow the script's configuration.

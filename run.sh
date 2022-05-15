@@ -130,7 +130,7 @@ load_files() {
     case $prompt in
         [yY])
             if [[ -f "$HOME/.zshrc" ]]; then
-                mv "$HOME/.zshrc" "$HOME/.zshrc.bak "
+                mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
             fi
             cp "./config/p10k.zsh" "$HOME/.p10k.zsh"
             cp "./config/zshrc" "$HOME/.zshrc"
