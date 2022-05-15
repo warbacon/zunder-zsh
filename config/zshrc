@@ -62,8 +62,7 @@ autoload -Uz _zinit
 
 # Fzf integration ----------------------------------------------------------------------------
 if hash fzf 2> /dev/null; then
-    zinit ice light-mode wait lucid
-    zinit snippet OMZP::fzf
+    zinit wait lucid light-mode for OMZP::fzf
 
     # One Dark colorscheme
     # export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
@@ -72,17 +71,17 @@ fi
 
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit light-mode wait lucid for \
+zinit wait lucid light-mode for \
     OMZP::sudo \
     hlissner/zsh-autopair
 
-zinit wait lucid for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+zinit wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
-    blockf \
-        zsh-users/zsh-completions \
     atload"!_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions
+        zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .'\
+        zsh-users/zsh-completions
 
 # Command completions ----------------------------------------------------------------------
 zstyle ':completion:*' completer _extensions _complete _approximate
