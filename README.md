@@ -48,9 +48,12 @@ and faster than zsh-syntax-highlighting.
 executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
 - [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses,
-quotes and more
+quotes and more.
+- [bd-zsh](https://github.com/Tarrasch/zsh-bd) - use the ```bd``` command to go back to a directory.
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
 press the Esc key twice to put ```sudo``` at the beginning.
+- [fzf](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf) plugin from Oh My Zsh -
+try using ALT+C, CTRL+T and CTRL+R.
 
 ### Supported operating systems:
 
@@ -122,7 +125,7 @@ Anyway, if you didn't like it or want to go back to your previous settings, you 
 mv .zshrc.bak .zshrc
 ```
 
-- You can also remove the p10k.zsh file and the Zinit directories:
+- You can also remove the .p10k.zsh file and the Zinit directory:
 
 ```bash
 rm -rf ~/.p10k.zsh ~/.local/share/zinit

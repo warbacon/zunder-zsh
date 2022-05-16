@@ -65,14 +65,15 @@ if hash fzf 2> /dev/null; then
     zinit wait lucid light-mode for OMZP::fzf
 
     # One Dark colorscheme
-    # export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
-    # --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
+    export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
+    --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
 fi
 
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit wait lucid light-mode for \
     OMZP::sudo \
+    Tarrasch/zsh-bd \
     hlissner/zsh-autopair
 
 zinit wait lucid light-mode for \
