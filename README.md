@@ -7,6 +7,8 @@ The setup is built on top of Zinit and the Powerlevel10k indicator, so it's blaz
 
 ![example](images/example.png)
 
+> Using a custom One Dark Theme in Kitty with JetBrainsMono Nerd Font
+
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
 ## Features

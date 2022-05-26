@@ -130,10 +130,10 @@ load_files() {
     case $prompt in
         [yY])
             if [[ -f "$HOME/.zshrc" ]]; then
-                mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+                mv --verbose "$HOME/.zshrc" "$HOME/.zshrc.bak"
             fi
-            cp "./config/p10k.zsh" "$HOME/.p10k.zsh"
-            cp "./config/zshrc" "$HOME/.zshrc"
+            cp --verbose "./config/p10k.zsh" "$HOME/.p10k.zsh"
+            cp --verbose "./config/zshrc" "$HOME/.zshrc"
             if [[ $distro = 2 ]]; then
                 sed -i 's/ --git//g' "$HOME/.zshrc"
             fi
