@@ -3,7 +3,7 @@
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
 Zunder is a configuration utility that sets up Zsh the way it should work out of the box. 
-The setup is built on top of Zinit and the Powerlevel10k indicator, so it's blazingly fast.
+The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazingly fast.
 
 ![example](images/example.png)
 
