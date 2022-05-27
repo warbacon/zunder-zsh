@@ -7,7 +7,7 @@ The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazing
 
 ![example](images/example.png)
 
-> Using a custom One Dark Theme in Kitty with JetBrainsMono Nerd Font
+> Using a custom One Dark theme in Kitty with JetBrainsMono Nerd Font
 
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
@@ -34,7 +34,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 | ----- | -----------------------------|
 | ll    | ls -l                        |
 | la    | ls -a                        |
-| lla   | ls -la                        |
+| lla   | ls -la                       |
 | q     | exit                         |
 | clr   | clear                        |
 | ..    | cd ..                        |
@@ -70,8 +70,8 @@ Might support more in the future, depending on requests.
 
 ### Dependencies:
 
-**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly. On Android, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and
-use for example Fira Code**
+**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly. 
+On Android, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code**
 
 **Arch based distributions**
 
@@ -114,8 +114,6 @@ pkg install git
 
 3. Follow the script's configuration.
 
-**Zinit requires you to run the ```zinit update``` command regularly to make sure everything is working properly.**
-
 ## Something went wrong?
 
 Zunder is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
@@ -139,6 +137,8 @@ chsh -s $(which shell)
 
  # where shell is the name of the shell that you want to revert to, usually bash.
 ```
+
+**I'm working on an automated script to simplify this process.**
 
 ## Extend your configuration
 

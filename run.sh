@@ -126,11 +126,13 @@ load_files() {
     
     read prompt
     
-    echo ""
+    printf "\n"
     case $prompt in
         [yY])
-            if [[ -f "$HOME/.zshrc" ]]; then
+            if [[ -f "$HOME/.zshrc" && ! -f "$HOME/.zshrc.bak" ]]; then
                 mv --verbose "$HOME/.zshrc" "$HOME/.zshrc.bak"
+            else
+                printf "${WARNING}There is a file named .zshrc.bak, so it will not be replaced.${NORMAL}\n"
             fi
             cp --verbose "./config/p10k.zsh" "$HOME/.p10k.zsh"
             cp --verbose "./config/zshrc" "$HOME/.zshrc"
@@ -163,4 +165,9 @@ fi
 load_files
 
 echo "--------------------------------------------"
-echo -e "${SUCCESS}We are done.${NORMAL} 🎉"
+printf "${SUCCESS}We are done.${NORMAL}"
+if [[ $TERM = "xterm-kitty" || $TERM = "alacritty" ]]; then
+    printf " 🎉\n"
+else
+    printf "\n"
+fi
