@@ -19,7 +19,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa) 
 ([not on Android](https://github.com/Warbacon/zunder-zsh/issues/1#issuecomment-1121312633)).
-- [Fzf](https://github.com/junegunn/fzf) integration.
+- [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
 - Some useful aliases.
@@ -51,11 +51,8 @@ executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
 - [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses,
 quotes and more.
-- [bd-zsh](https://github.com/Tarrasch/zsh-bd) - use the ```bd``` command to go back to a directory.
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
 press the Esc key twice to put ```sudo``` at the beginning.
-- [fzf](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf) plugin from Oh My Zsh -
-try using ALT+C, CTRL+T and CTRL+R.
 
 ### Supported operating systems:
 
