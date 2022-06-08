@@ -17,8 +17,7 @@ The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazing
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto)
 plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
-- Replaces the `ls` command with [exa](https://github.com/ogham/exa) 
-([not on Android](https://github.com/Warbacon/zunder-zsh/issues/1#issuecomment-1121312633)).
+- Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
