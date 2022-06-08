@@ -43,7 +43,9 @@ alias ..="cd .."
 
 # Load .dircolors --------------------------------------------------------------------------
 if [[ -f .dircolors ]]; then
-    eval "$(dircolors -b ~/.dircolors)"
+  eval "$(dircolors ~/.dircolors)"
+  eval $(dircolors)
+
 fi
 
 # Load Zinit --------------------------------------------------------------------------------
@@ -89,6 +91,7 @@ zinit wait lucid light-mode for \
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Start Powerlevel10k ----------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
