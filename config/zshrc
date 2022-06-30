@@ -43,9 +43,7 @@ alias ..="cd .."
 
 # Load .dircolors --------------------------------------------------------------------------
 if [[ -f .dircolors ]]; then
-  eval "$(dircolors ~/.dircolors)"
-  eval $(dircolors)
-
+    eval "$(dircolors ~/.dircolors)"
 fi
 
 # Load Zinit --------------------------------------------------------------------------------
@@ -76,8 +74,9 @@ fi
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit wait lucid light-mode for \
-OMZP::sudo \
-hlissner/zsh-autopair
+    OMZP::sudo \
+    hlissner/zsh-autopair \
+    dominik-schwabe/zsh-fnm
 
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
@@ -91,7 +90,6 @@ zinit wait lucid light-mode for \
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Start Powerlevel10k ----------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
