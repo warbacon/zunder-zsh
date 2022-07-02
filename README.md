@@ -106,28 +106,18 @@ pkg install git
 
 ## Troubleshooting
 Zunder is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
-Anyway, if you didn't like it or want to go back to your previous settings, you can.
-
-- you must replace the .zshrc file in your home directory (```~/.zshrc```) with the previously backed up file
-.zshrc.bak:
-```bash
-mv .zshrc.bak .zshrc
-```
-
-- You can also remove the .p10k.zsh file and the Zinit directory:
+Anyway, if you didn't like it or want to go back to your previous configuration, you can run the ``remove.sh`` script located in this same repository:
 
 ```bash
-rm -rf ~/.p10k.zsh ~/.local/share/zinit
+./remove.sh
 ```
 
-- Additionally, if you used previously another shell, you can revert it using the following command:
+Additionally, if you used previously another shell, you can revert it using the following command:
 ```bash
 chsh -s $(which shell)
 
  # where shell is the name of the shell that you want to revert to, usually bash.
 ```
-
-**I plan to make an automated script to simplify this process.**
 
 ### Known bugs
 - There is a bug in Arch Linux own of [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.

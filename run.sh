@@ -1,17 +1,6 @@
 #!/bin/env bash
 
-#OUTPUT STYLING
-ERROR="\033[1;31m"
-WARNING="\033[1;33m"
-SUCCESS="\033[3;32m"
-ITALICYELLOW="\033[3;33m"
-BLUE="\033[34m"
-BLUEBOLD="\033[1;34m"
-CYAN="\033[36m"
-CYANBOLD="\033[1;36m"
-BOLD="\033[1m"
-ITALIC="\033[3m"
-NORMAL="\033[0m"
+source source/output.sh
 
 # FUNCTIONS
 
@@ -84,7 +73,6 @@ zsh_default() {
     esac
 }
 
-# Will install exa if not it's installed and you are not using Android.
 install_exa() {
     echo "--------------------------------------------------------------------------------------------"
     echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
