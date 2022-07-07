@@ -73,10 +73,10 @@ fi
 
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light dominik-schwabe/zsh-fnm
 zinit wait lucid light-mode for \
     OMZP::sudo \
-    hlissner/zsh-autopair \
-    dominik-schwabe/zsh-fnm
+    hlissner/zsh-autopair
 
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
