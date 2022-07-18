@@ -3,6 +3,50 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Load Zinit --------------------------------------------------------------------------------
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [[ ! -d "$HOME/.local/share/zinit" ]]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    echo "\033[1;33mInstalling Zinit in $HOME/.local/share/zinit...\033[0m\n"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+skip_global_compinit=1
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Fzf integration ----------------------------------------------------------------------------
+if hash fzf 2> /dev/null; then
+    zinit snippet "https://github.com/junegunn/fzf/tree/master/shell/key-bindings.zsh"
+    
+    # One Dark colorscheme
+    # export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
+    # --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
+fi
+
+# Plugins -----------------------------------------------------------------------------------
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice wait lucid silent; zinit light dominik-schwabe/zsh-fnm
+zinit wait lucid light-mode for \
+    OMZP::sudo \
+    hlissner/zsh-autopair
+
+zinit wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .'\
+        zsh-users/zsh-completions
+
+# Command completions ----------------------------------------------------------------------
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
 # Enable history ------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -40,56 +84,6 @@ fi
 alias q="exit"
 alias clr="clear"
 alias ..="cd .."
-
-# Load .dircolors --------------------------------------------------------------------------
-if [[ -f .dircolors ]]; then
-    eval "$(dircolors ~/.dircolors)"
-fi
-
-# Load Zinit --------------------------------------------------------------------------------
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-if [[ ! -d "$HOME/.local/share/zinit" ]]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    echo "\033[1;33mInstalling Zinit in $HOME/.local/share/zinit...\033[0m\n"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-source "${ZINIT_HOME}/zinit.zsh"
-
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Fzf integration ----------------------------------------------------------------------------
-if hash fzf 2> /dev/null; then
-    zinit wait lucid light-mode for \
-        "https://github.com/junegunn/fzf/tree/master/shell/completion.zsh" \
-        "https://github.com/junegunn/fzf/tree/master/shell/key-bindings.zsh"
-    
-    # One Dark colorscheme
-    # export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
-    # --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
-fi
-
-# Plugins -----------------------------------------------------------------------------------
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit light dominik-schwabe/zsh-fnm
-zinit wait lucid light-mode for \
-    OMZP::sudo \
-    hlissner/zsh-autopair
-
-zinit wait lucid light-mode for \
-    atinit"zicompinit; zicdreplay" \
-        zdharma-continuum/fast-syntax-highlighting \
-    atload"!_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .'\
-        zsh-users/zsh-completions
-
-# Command completions ----------------------------------------------------------------------
-zstyle ':completion:*' completer _extensions _complete _approximate
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Start Powerlevel10k ----------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
