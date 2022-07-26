@@ -19,7 +19,7 @@ select_system() {
 
 # Will install Zsh if it's not.
 install_zsh() {
-    echo "--------------------------------------------------------------------"
+    echo "----------------------------------------------------------------------"
     printf "${WARNING}Zsh is not installed, do you want to install it? [Y/n]: ${NORMAL}"
     
     read prompt
@@ -52,7 +52,7 @@ install_zsh() {
 
 # Will set as default Zsh if it's not.
 zsh_default() {
-    echo "--------------------------------------------------------------------"
+    echo "----------------------------------------------------------------------"
     printf "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]: ${NORMAL}"
     
     read prompt
@@ -74,7 +74,7 @@ zsh_default() {
 }
 
 install_exa() {
-    echo "--------------------------------------------------------------------------------------------"
+    echo "----------------------------------------------------------------------"
     echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
     printf "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]: ${NORMAL}"
     
@@ -107,7 +107,7 @@ install_exa() {
 
 # Will back up your .zshrc and copy the configuration files to yout home directory.
 load_files() {
-    echo "------------------------------------------------------------------------------------"
+    echo "----------------------------------------------------------------------"
     echo -e "Zunder will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
     echo -e "${WARNING}YOUR CURRENT .ZSHRC CONFIGURATION FILE WILL BE BACKED UP WITH THE NAME .ZSHRC.BAK${NORMAL}\n"
     printf "${BOLD}Continue? [y/N]: ${NORMAL}"
@@ -152,10 +152,5 @@ fi
 
 load_files
 
-echo "--------------------------------------------"
-printf "${SUCCESS}We are done.${NORMAL}"
-if [[ $TERM = "xterm-kitty" || $TERM = "alacritty" ]]; then
-    printf " 🎉\n"
-else
-    printf "\n"
-fi
+echo "------------"
+printf "${SUCCESS}We are done.${NORMAL}\n"

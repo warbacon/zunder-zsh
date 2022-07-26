@@ -21,7 +21,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
 - Some useful aliases.
-- Change the current directory by simply typing it, no ```cd``` needed.
+- Change the current directory by simply typing it, no `cd` needed.
 - Much more and it's updating!
 
 *"Umm, that's a lot to being minimal..."*
@@ -49,7 +49,7 @@ executed commands.
 quotes and more.
 - [zsh-fnm](https://github.com/dominik-schwabe/zsh-fnm) - installs and loads Fast Node Manager (fnm).
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
-press the Esc key twice to put ```sudo``` at the beginning.
+press the Esc key twice to put `sudo` at the beginning.
 
 ### Supported operating systems:
 - Arch Linux and derivatives (Manjaro, Endeavour OS...).
@@ -67,7 +67,7 @@ On Android, you can install [Termux:Styling](https://f-droid.org/es/packages/com
 **Arch based distributions**
 
 ```sh
-sudo pacman -S git
+sudo pacman -S git unzip
 ```
 
 **Debian/Ubuntu based distributions**
