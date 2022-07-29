@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-source source/output.sh
+source ./source/output.sh
 
 # FUNCTIONS
 
@@ -14,7 +14,7 @@ select_system() {
     echo -e "4. Android (termux)\n"
     printf "Select your current operating system [1-4]: "
     
-    read distro
+    read -r distro
 }
 
 # Will install Zsh if it's not.
@@ -22,7 +22,7 @@ install_zsh() {
     echo "----------------------------------------------------------------------"
     printf "${WARNING}Zsh is not installed, do you want to install it? [Y/n]: ${NORMAL}"
     
-    read prompt
+    read -r prompt
     
     echo ""
     case $prompt in
@@ -55,7 +55,7 @@ zsh_default() {
     echo "----------------------------------------------------------------------"
     printf "${WARNING}Zsh is not your current defaut shell, do you want to set it? [Y/n]: ${NORMAL}"
     
-    read prompt
+    read -r prompt
     
     echo ""
     case $prompt in
@@ -63,7 +63,7 @@ zsh_default() {
             if [[ $distro = 4 ]]; then
                 chsh -s zsh
             else
-                chsh -s $(which zsh)
+                chsh -s "$(which zsh)"
             fi
             echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
         ;;
@@ -78,7 +78,7 @@ install_exa() {
     echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
     printf "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]: ${NORMAL}"
     
-    read prompt
+    read -r prompt
     
     echo ""
     case $prompt in
@@ -112,7 +112,7 @@ load_files() {
     echo -e "${WARNING}YOUR CURRENT .ZSHRC CONFIGURATION FILE WILL BE BACKED UP WITH THE NAME .ZSHRC.BAK${NORMAL}\n"
     printf "${BOLD}Continue? [y/N]: ${NORMAL}"
     
-    read prompt
+    read -r prompt
     
     printf "\n"
     case $prompt in
