@@ -1,8 +1,3 @@
-# Enable Powerlevel10k instant prompt. --------------------------------------------------
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Load Zinit --------------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -29,7 +24,7 @@ fi
 
 # Plugins -----------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice wait lucid silent; zinit light dominik-schwabe/zsh-fnm
+zinit ice wait lucid; zinit light dominik-schwabe/zsh-fnm
 zinit wait lucid light-mode for \
     OMZP::sudo \
     hlissner/zsh-autopair
@@ -41,6 +36,12 @@ zinit wait lucid light-mode for \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .'\
         zsh-users/zsh-completions
+
+# Enable Powerlevel10k instant prompt. --------------------------------------------------
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 # Command completions ----------------------------------------------------------------------
 zstyle ':completion:*' completer _extensions _complete _approximate
