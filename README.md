@@ -60,7 +60,7 @@ Might support more in the future, depending on requests.
 ## Getting started
 ### Dependencies:
 You **must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal** to see all the icons correctly. 
-On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code**
+On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
 
 **Arch based distributions**
 
