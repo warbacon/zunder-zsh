@@ -1,4 +1,9 @@
-# Load Zinit --------------------------------------------------------------------------------
+# Enable Powerlevel10k instant prompt. --------------------------------------------------
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Load Zinit ----------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [[ ! -d "$HOME/.local/share/zinit" ]]; then
@@ -13,18 +18,20 @@ skip_global_compinit=1
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Fzf integration ----------------------------------------------------------------------------
+# Fzf integration -----------------------------------------------------------------------
 if hash fzf 2> /dev/null; then
     zinit snippet "https://github.com/junegunn/fzf/tree/master/shell/key-bindings.zsh"
     
-    # One Dark colorscheme
-    # export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#282c34,hl:#61afef --color=fg+:#d0d0d0,bg+:#343a46,hl+:#61afef \
-    # --color=info:#d19a66,prompt:#e06c75,pointer:#c678dd --color=marker:#98c379,spinner:#c678dd,header:#56b6c2"
+    # Catppuccin colorscheme
+    # export FZF_DEFAULT_OPTS=" \
+    # --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+    # --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+    # --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 fi
 
-# Plugins -----------------------------------------------------------------------------------
+# Plugins -------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice wait lucid; zinit light dominik-schwabe/zsh-fnm
+zinit ice wait lucid silent; zinit light dominik-schwabe/zsh-fnm
 zinit wait lucid light-mode for \
     OMZP::sudo \
     hlissner/zsh-autopair
@@ -37,13 +44,7 @@ zinit wait lucid light-mode for \
     blockf atpull'zinit creinstall -q .'\
         zsh-users/zsh-completions
 
-# Enable Powerlevel10k instant prompt. --------------------------------------------------
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-
-# Command completions ----------------------------------------------------------------------
+# Command completions --------------------------------------------------------------------
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
@@ -86,5 +87,5 @@ alias q="exit"
 alias clr="clear"
 alias ..="cd .."
 
-# Start Powerlevel10k ----------------------------------------------------------------------
+# Start Powerlevel10k -------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

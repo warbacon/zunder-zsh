@@ -4,9 +4,9 @@
 Zunder is a configuration utility that sets up Zsh the way it should work out of the box. 
 The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazingly fast.
 
-![example](images/example.png)
+![example](images/example.avif)
 
-> Using a custom One Dark theme in Kitty with JetBrainsMono Nerd Font
+> Using the Catppuccin colorscheme in Kitty with JetBrainsMono Nerd Font
 
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
@@ -18,13 +18,11 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Automatic [fnm](https://github.com/Schniz/fnm) installation.
+- Full [Git](https://git-scm.com/) integration.
 - Fish-like autosuggestions and syntax highlighting. 
 - Bash-like key bindings.
 - Some useful aliases.
-- Change the current directory by simply typing it, no `cd` needed.
 - Much more and it's updating!
-
-*"Umm, that's a lot to being minimal..."*
 
 ### New aliases:
 | Alias | Command                      |
@@ -61,8 +59,8 @@ Might support more in the future, depending on requests.
 
 ## Getting started
 ### Dependencies:
-**You must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal to see all the icons correctly. 
-On Android, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code**
+You **must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal** to see all the icons correctly. 
+On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code**
 
 **Arch based distributions**
 
@@ -102,7 +100,7 @@ pkg install git
    ./run.sh
    ```
 
-3. Follow the script's configuration.
+3. Follow the script setup.
 
 ## Troubleshooting
 Zunder is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
@@ -125,9 +123,6 @@ It will not detect your man pages and will highlight them in red. ([#35](https:/
 
 
 ## Extra info
-Zunder was born as a personal project to configure the shell of the virtual machines 
-that I test and it has become something that I think is amazing, so I am trying hard to measure up.
-
-This is in very active development and not that popular at the moment, so
+Zunder is in active development and not that popular at the moment, so
 I'm alone maintaining this thing and it's possible that something unexpected
 happens. **I appreciate that bugs are reported and new ideas are suggested.** 
