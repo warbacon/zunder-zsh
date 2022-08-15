@@ -25,14 +25,14 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Much more and it's updating!
 
 ### New aliases:
-| Alias | Command                      |
-| ----- | -----------------------------|
-| ll    | ls -l                        |
-| la    | ls -a                        |
-| lla   | ls -la                       |
-| q     | exit                         |
-| clr   | clear                        |
-| ..    | cd ..                        |
+| Alias | Command                           |
+| ----- | --------------------------------- |
+| ll    | ls -lh --group-directories-first  |
+| la    | ls -A                             |
+| lla   | ll -A                             |
+| q     | exit                              |
+| clr   | clear                             |
+| ..    | cd ..                             |
 
 Some of these aliases are adapted to the packages installed on your system.
 Check the .zshrc file in your home directory for more info.

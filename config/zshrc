@@ -23,10 +23,10 @@ if hash fzf 2> /dev/null; then
     zinit snippet "https://github.com/junegunn/fzf/tree/master/shell/key-bindings.zsh"
     
     # Catppuccin colorscheme
-    # export FZF_DEFAULT_OPTS=" \
-    # --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-    # --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-    # --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+    export FZF_DEFAULT_OPTS=" \
+    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+    --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 fi
 
 # Plugins -------------------------------------------------------------------------------
@@ -73,15 +73,15 @@ bindkey '^[[Z' reverse-menu-complete
 
 # Aliases -------------------------------------------------------------------------------
 if hash exa 2> /dev/null; then
-    alias ls="exa --icons"
+    alias ls="exa --icons --group-directories-first"
     alias ll="ls -lh --git"
     alias la="ls -a"
-    alias lla="ls -lha --git"
+    alias lla="ll -a"
 else
-    alias ls="ls --color"
-    alias ll="ls -l"
+    alias ls="ls --color --group-directories-first"
+    alias ll="ls -lh"
     alias la="ls -A"
-    alias lla="ls -lA"
+    alias lla="ll -A"
 fi
 alias q="exit"
 alias clr="clear"
