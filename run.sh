@@ -1,6 +1,6 @@
-#!/bin/env bash
+#!/bin/bash
 
-source ./source/output.sh
+source ./lib/output.sh
 
 # FUNCTIONS
 

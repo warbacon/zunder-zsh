@@ -1,6 +1,6 @@
-#!/bin/env bash
+#!/bin/bash
 
-source source/output.sh
+source ./lib/output.sh
 
 # FUNCTIONS
 
@@ -30,10 +30,5 @@ if [[ -f "$HOME/.zshrc.bak" ]]; then
     restoreBackup
 fi
 
-echo "--------------------------------------------"
-printf "${SUCCESS}All done.${NORMAL}"
-if [[ $TERM = "xterm-kitty" || $TERM = "alacritty" ]]; then
-    printf " 🎉\n"
-else
-    printf "\n"
-fi
+echo "------------"
+printf "${SUCCESS}All done.${NORMAL}\n"
