@@ -93,14 +93,15 @@ pkg install git
    git clone https://github.com/Warbacon/zunder-zsh.git
    ```
 
-2. Navigate to the cloned repository and run the `run.sh` script.
+2. Enter the cloned repository and run the `run.sh` script.
    
    ```sh
    cd ./zunder-zsh
    ./run.sh
    ```
 
-3. Follow the script setup.
+And everything should be ready. 
+Zinit will be installed along with all plugins when starting a new zsh instance. 
 
 ## Troubleshooting
 Zunder is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
