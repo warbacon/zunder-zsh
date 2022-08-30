@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./lib/output.sh
+source ./lib/color.sh
 
 # FUNCTIONS
 
