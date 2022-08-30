@@ -136,21 +136,25 @@ load_files() {
 
 # START
 
-select_system
+main() {
+    select_system
 
-if ! type zsh &>/dev/null; then
-    install_zsh
-fi
+    if ! type zsh &>/dev/null; then
+        install_zsh
+    fi
 
-if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
-    zsh_default
-fi
+    if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
+        zsh_default
+    fi
 
-if ! type exa &>/dev/null; then
-    install_exa
-fi
+    if ! type exa &>/dev/null; then
+        install_exa
+    fi
 
-load_files
+    load_files
 
-echo "------------"
-printf "${SUCCESS}We are done.${NORMAL}\n"
+    echo "------------"
+    printf "${SUCCESS}We are done.${NORMAL}\n"
+}
+
+main "$@"
