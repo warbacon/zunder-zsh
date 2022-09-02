@@ -126,7 +126,11 @@ load_files() {
             cp --verbose "./config/zshrc" "$HOME/.zshrc"
             if [[ $distro = 2 ]]; then
                 sed -i 's/ --git//g' "$HOME/.zshrc"
+                if [[ $(lsb_release -si 2> /dev/null) = "Ubuntu" ]]; then
+                    cp --verbose "./config/zshenv" "$HOME/.zshenv"
+                fi
             fi
+            
         ;;
         *)
             echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
