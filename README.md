@@ -77,7 +77,7 @@ sudo apt-get install git
 **Fedora**
 
 ```sh
-sudo dnf install git util-linux-user
+sudo dnf install util-linux-user
 ```
 
 **Android** (using [Termux](https://termux.com/))

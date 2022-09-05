@@ -50,6 +50,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Enable history ------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
+HISTORY_IGNORE='(q|exit|clear|clr)'
 HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
@@ -73,7 +74,7 @@ bindkey '^[[Z' reverse-menu-complete
 # Aliases -------------------------------------------------------------------------------
 if hash exa 2> /dev/null; then
     alias ls="exa --icons --group-directories-first"
-    alias ll="ls -lh --git"
+    alias ll="ls -lh"
     alias la="ls -a"
     alias lla="ll -a"
 else
