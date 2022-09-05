@@ -4,7 +4,7 @@
 Zunder is a configuration utility that sets up Zsh the way it should work out of the box. 
 The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazingly fast.
 
-![example](images/example.avif)
+![example](./assets/example.avif)
 
 > Using the Catppuccin colorscheme in Kitty with JetBrainsMono Nerd Font
 
