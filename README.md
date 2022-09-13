@@ -6,7 +6,7 @@ The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazing
 
 ![example](./assets/example.avif)
 
-> Using the Catppuccin colorscheme in Kitty with JetBrainsMono Nerd Font
+> Using the Gruvbox Dark colorscheme in Kitty with JetBrainsMono Nerd Font
 
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 

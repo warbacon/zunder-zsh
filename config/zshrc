@@ -21,11 +21,6 @@ autoload -Uz _zinit
 # Fzf integration -----------------------------------------------------------------------
 if hash fzf 2> /dev/null; then
     zinit snippet OMZP::fzf
-
-    export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
-    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-    --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 fi
 
 # Plugins -------------------------------------------------------------------------------
@@ -73,7 +68,7 @@ bindkey '^[[Z' reverse-menu-complete
 
 # Aliases -------------------------------------------------------------------------------
 if hash exa 2> /dev/null; then
-    alias ls="exa --icons --group-directories-first"
+    alias ls="exa --icons --group-directories-first --git"
     alias ll="ls -lh"
     alias la="ls -a"
     alias lla="ll -a"
