@@ -14,7 +14,6 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-skip_global_compinit=1
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -26,6 +25,7 @@ fi
 # Plugins -------------------------------------------------------------------------------
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice wait lucid silent; zinit light dominik-schwabe/zsh-fnm
+zinit ice wait lucid silent; zinit light mfaerevaag/wd
 zinit wait lucid light-mode for \
     OMZP::sudo \
     hlissner/zsh-autopair

@@ -45,6 +45,7 @@ executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
 - [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses,
 quotes and more.
+- [wd](https://github.com/mfaerevaag/wd) - jump to custom directories without using cd.
 - [zsh-fnm](https://github.com/dominik-schwabe/zsh-fnm) - installs and loads Fast Node Manager (fnm).
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
 press the Esc key twice to put `sudo` at the beginning.
