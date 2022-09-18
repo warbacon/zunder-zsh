@@ -1,8 +1,8 @@
-# Zunder Zsh
+# Zunder-zsh
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
-Zunder is a configuration utility that sets up Zsh the way it should work out of the box. 
-The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazingly fast.
+Zunder is a configuration utility that configures Zsh the way the user expects it to work.
+The setup is built on top of Zinit and the Powerlevel10k prompt, so it's as fast as it can be.
 
 ![example](./assets/example.avif)
 
@@ -11,18 +11,17 @@ The setup is built on top of Zinit and the Powerlevel10k prompt, so it's blazing
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
 ## Features
-- Minimal and fast.
+- Clean and fast.
+- Autosuggestions and syntax highlighting. 
+- Full [Git](https://git-scm.com/) integration.
+- Some useful aliases.
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto)
 plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Automatic [fnm](https://github.com/Schniz/fnm) installation.
-- Full [Git](https://git-scm.com/) integration.
-- Fish-like autosuggestions and syntax highlighting. 
-- Bash-like key bindings.
-- Some useful aliases.
-- Much more and it's updating!
+- Much more and it's updating! See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### New aliases:
 | Alias | Command                           |
@@ -37,7 +36,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 Some of these aliases are adapted to the packages installed on your system.
 Check the .zshrc file in your home directory for more info.
 
-### Plugins installed:
+### Installed plugins:
 - [fast-syntax-hightlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - better
 and faster than zsh-syntax-highlighting.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggest previously

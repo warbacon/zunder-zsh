@@ -6,7 +6,7 @@ source ./lib/color.sh
 
 # Will ask you for your current operating system.
 select_system() {
-    echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder${NORMAL}${ITALIC} Zsh configuration utility.${NORMAL}"
+    echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder-zsh${NORMAL}${ITALIC} configuration utility.${NORMAL}"
     echo "------------------------------------------------"
     echo -e "1. Arch based (pacman)"
     echo -e "2. Debian/Ubuntu based (apt)"

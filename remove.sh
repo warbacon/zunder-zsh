@@ -8,7 +8,7 @@ removeJunk() {
     printf "${WARNING}Do you want to remove all the Zunder files? [y/N]: ${NORMAL}"
     read prompt
     if [[ $prompt = Y || $prompt = y  ]]; then
-        rm -rf "$HOME/.p10k.zsh" "$HOME/.local/share/zinit" "$HOME/.zshrc" "$HOME/.zcompinit" "$HOME/.cache/p10k-*" \
+        rm -rf "$HOME/.p10k.zsh" "$HOME/.local/share/zinit" "$HOME/.zshrc" "$HOME/.zcompinit" "$HOME/.cache/p10k-"* \
                "$HOME/.cache/zinit"
     fi
 }
