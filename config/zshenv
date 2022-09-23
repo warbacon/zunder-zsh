@@ -1,1 +1,3 @@
 skip_global_compinit=1
+ZDOTDIR="$HOME/.config/zunder-zsh"
+WD_CONFIG="$ZDOTDIR/.warprc"

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ./lib/color.sh
+source ./lib/constants.sh
 
 # FUNCTIONS
 
@@ -108,8 +109,7 @@ install_exa() {
 # Will back up your .zshrc and copy the configuration files to yout home directory.
 load_files() {
     echo "----------------------------------------------------------------------"
-    echo -e "Zunder will load a custom .zshrc to your current user home directory (${CYAN}$HOME${NORMAL}).\n"
-    echo -e "${WARNING}YOUR CURRENT .ZSHRC CONFIGURATION FILE WILL BE BACKED UP WITH THE NAME .ZSHRC.BAK${NORMAL}\n"
+    echo -e "Zunder will will store its configuration in ${CYAN}$ZDOTDIR${NORMAL}.\n"
     printf "${BOLD}Continue? [y/N]: ${NORMAL}"
     
     read -r prompt
@@ -117,20 +117,18 @@ load_files() {
     printf "\n"
     case $prompt in
         [yY])
-            if [[ -f "$HOME/.zshrc" && ! -f "$HOME/.zshrc.bak" ]]; then
-                mv --verbose "$HOME/.zshrc" "$HOME/.zshrc.bak"
-            else
-                printf "${WARNING}There is a file named .zshrc.bak, so it will not be replaced.${NORMAL}\n"
+            mkdir "$HOME/.config/zunder-zsh" 2> /dev/null
+            mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
+            cp --verbose "./config/zshenv" "$HOME/.zshenv" 
+            cp --verbose "./config/zshrc" "$ZDOTDIR/.zshrc" 
+            cp --verbose "./config/p10k.zsh" "$ZDOTDIR/.p10k.zsh" 
+            cp --verbose "./config/aliases.zsh" "$ZDOTDIR" 
+            cp --verbose "./config/plugins.zsh" "$ZDOTDIR" 
+            cp --verbose "./config/keybindings.zsh" "$ZDOTDIR" 
+            cp --verbose "./config/options.zsh" "$ZDOTDIR" 
+            if [[ distro = 2 ]]; then
+                sed -i 's/ --git//g' "$ZDOTDIR/.zshrc"
             fi
-            cp --verbose "./config/p10k.zsh" "$HOME/.p10k.zsh"
-            cp --verbose "./config/zshrc" "$HOME/.zshrc"
-            if [[ $distro = 2 ]]; then
-                sed -i 's/ --git//g' "$HOME/.zshrc"
-                if [[ $(lsb_release -si 2> /dev/null) = "Ubuntu" ]]; then
-                    cp --verbose "./config/zshenv" "$HOME/.zshenv"
-                fi
-            fi
-            
         ;;
         *)
             echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
