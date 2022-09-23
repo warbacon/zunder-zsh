@@ -1,10 +1,15 @@
-# Zunder-zsh
+<h1 align="center">Zunder-zsh</h1>
+
+<div align="center"> 
+
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
 Zunder is a configuration utility that configures Zsh the way the user expects it to work.
 The setup is built on top of Zinit and the Powerlevel10k prompt, so it's as fast as it can be.
 
 ![example](./assets/example.avif)
+
+</div>
 
 > Using the Gruvbox Dark colorscheme in Kitty with JetBrainsMono Nerd Font
 
