@@ -11,7 +11,7 @@ The setup is built on top of Zinit and the Powerlevel10k prompt, so it's as fast
 
 </div>
 
-> Using the Gruvbox Dark colorscheme in Kitty with JetBrainsMono Nerd Font
+> Using the Catppuccin colorscheme in Kitty with JetBrainsMono Nerd Font
 
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
@@ -29,17 +29,15 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Much more and it's updating! See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### New aliases:
-| Alias | Command                           |
-| ----- | --------------------------------- |
-| ll    | ls -lh --group-directories-first  |
-| la    | ls -A                             |
-| lla   | ll -A                             |
-| q     | exit                              |
-| clr   | clear                             |
-| ..    | cd ..                             |
+| Alias | Command                                          |
+| ----- | ------------------------------------------------ |
+| ll    | Long list directory contents                     |
+| la    | List directory contents with hidden files        |
+| lla   | Long list directory contents with hidden files   |
+| ..    | Change to the upper directory                    |
+| q     | exit                                             |
+| clr   | clear                                            |
 
-Some of these aliases are adapted to the packages installed on your system.
-Check the .zshrc file in your home directory for more info.
 
 ### Installed plugins:
 - [fast-syntax-hightlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - better
@@ -65,32 +63,16 @@ Might support more in the future, depending on requests.
 ## Getting started
 ### Dependencies:
 You **must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal** to see all the icons correctly. 
+Alternatively, just install [icons-in-terminal](https://github.com/sebastiencs/icons-in-terminal) to use your favourite font.
 On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
 
-**Arch based distributions**
+The following packages are needed to get everything working as intended:
+- zsh
+- git
+- unzip
+- util-linux-user (only on Fedora)
 
-```sh
-sudo pacman -S git unzip
-```
-
-**Debian/Ubuntu based distributions**
-
-```sh
-sudo apt-get install git
-```
-
-**Fedora**
-
-```sh
-sudo dnf install util-linux-user
-```
-
-**Android** (using [Termux](https://termux.com/))
-
-```sh
-pkg install git
-```
-
+**If your operating system is supported, the script will make sure you have everything correctly installed.**
 ### Usage:
 1. Clone the repository:
    
@@ -127,8 +109,6 @@ chsh -s $(which shell)
 - There is a bug in Arch Linux own of [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.
 It will not detect your man pages and will highlight them in red. ([#35](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35))
 
-
 ## Extra info
-Zunder is in active development and not that popular at the moment, so
-I'm alone maintaining this thing and it's possible that something unexpected
-happens. **I appreciate that bugs are reported and new ideas are suggested.** 
+Zunder is in very active development and it's constantly evolving, so you should check the project frequently to find out the latest news.
+**I appreciate that bugs are reported and new ideas are suggested.** 
