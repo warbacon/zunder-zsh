@@ -10,8 +10,8 @@ source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/keybindings.zsh"
 
 # FZF COLORCHEME (https://github.com/base16-project/base16-fzf) --------------------------
-if [[ -f "$ZDOTDIR/base16-fzf.config" ]]; then
-    source "$ZDOTDIR/base16-fzf.config"
+if [[ -f "$ZDOTDIR/fzf-theme.zsh" ]]; then
+    source "$ZDOTDIR/fzf-theme.zsh"
 fi
 
 # START POWERLEVEL10K --------------------------------------------------------------------
