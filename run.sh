@@ -5,6 +5,10 @@ source ./lib/constants.sh
 
 # FUNCTIONS
 
+command_exists() {
+  command -v "$@" >/dev/null 2>&1
+}
+
 # Will ask you for your current operating system.
 select_system() {
     echo -e "\n${ITALIC}Welcome to the ${ITALICYELLOW}Zunder-zsh${NORMAL}${ITALIC} configuration utility.${NORMAL}"
@@ -18,9 +22,33 @@ select_system() {
     read -r distro
 }
 
+# Checks if the user has installed all dependencies
+dependecy_check() {
+    echo "----------------------------------------------------------------"
+    echo "                        DEPENDENCY CHECK                        "
+    echo "----------------------------------------------------------------" 
+    if  ! command_exists zsh; then
+        install_zsh
+    fi
+    if  ! command_exists git; then
+        install_git
+    fi
+    if  ! command_exists unzip; then
+        install_unzip
+    fi
+    if  ! command_exists chsh; then
+        if [[ $distro = 3 ]]; then
+            install_linux_utils
+        else
+            echo "${WARNING}chsh is not available in your system, so you are not be able to set zsh as default shell.${NORMAL}"
+        fi
+    fi
+
+
+}
+
 # Will install Zsh if it's not.
 install_zsh() {
-    echo "----------------------------------------------------------------------"
     printf "${WARNING}Zsh is not installed, do you want to install it? [Y/n]: ${NORMAL}"
     
     read -r prompt
@@ -47,6 +75,89 @@ install_zsh() {
                     sudo pacman -S zsh
                 ;;
             esac
+        ;;
+    esac
+}
+
+# Will install Git if it's not.
+install_git() {
+    printf "${WARNING}Git is not installed, do you want to install it? [Y/n]: ${NORMAL}"
+    
+    read -r prompt
+    
+    echo ""
+    case $prompt in
+        [nN])
+            echo -e "${ERROR}Git is needed to run the script.${NORMAL}"
+            exit
+        ;;
+        *)
+            echo -e "Git will be installed.\n"
+            case $distro in
+                2)
+                    sudo apt-get install git
+                ;;
+                3)
+                    sudo dnf install git
+                ;;
+                4)
+                    pkg install git
+                ;;
+                *)
+                    sudo pacman -S git
+                ;;
+            esac
+        ;;
+    esac
+}
+
+# Will install Unzip if it's not.
+install_unzip() {
+    printf "${WARNING}Unzip is not installed, do you want to install it? [Y/n]: ${NORMAL}"
+    
+    read -r prompt
+    
+    echo ""
+    case $prompt in
+        [nN])
+            echo -e "${ERROR}Unzip is needed to run the script.${NORMAL}"
+            exit
+        ;;
+        *)
+            echo -e "Unzip will be installed.\n"
+            case $distro in
+                2)
+                    sudo apt-get install unzip
+                ;;
+                3)
+                    sudo dnf install unzip
+                ;;
+                4)
+                    pkg install unzip
+                ;;
+                *)
+                    sudo pacman -S unzip
+                ;;
+            esac
+        ;;
+    esac
+}
+
+# Will install Zsh if it's not.
+install_linux_utils() {
+    printf "${WARNING}Chsh command is not available and you need to install the package util-linux-user.\n Do you want to install it? [Y/n]: ${NORMAL}"
+    
+    read -r prompt
+    
+    echo ""
+    case $prompt in
+        [nN])
+            echo -e "${ERROR}Chsh is needed to run the script.${NORMAL}"
+            exit
+        ;;
+        *)
+            echo -e "Util-linux-user will be installed.\n"
+            sudo dnf install util-linux-user
         ;;
     esac
 }
@@ -127,7 +238,7 @@ load_files() {
             cp --verbose "./config/keybindings.zsh" "$ZDOTDIR" 
             cp --verbose "./config/options.zsh" "$ZDOTDIR" 
             if [[ distro = 2 ]]; then
-                sed -i 's/ --git//g' "$ZDOTDIR/.zshrc"
+                sed -i 's/ --git//g' "$ZDOTDIR/aliases.zsh"
             fi
         ;;
         *)
@@ -141,15 +252,15 @@ load_files() {
 main() {
     select_system
 
-    if ! type zsh &>/dev/null; then
-        install_zsh
+    if ! command_exists zsh || ! command_exists unzip || ! command_exists git || ! command_exists chsh; then
+        dependecy_check
     fi
 
     if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
         zsh_default
     fi
 
-    if ! type exa &>/dev/null; then
+    if ! command_exists exa; then
         install_exa
     fi
 
