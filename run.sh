@@ -5,6 +5,7 @@ source ./lib/constants.sh
 
 # FUNCTIONS
 
+# Checks if the given command exists in $PATH
 command_exists() {
   command -v "$@" >/dev/null 2>&1
 }
@@ -24,9 +25,9 @@ select_system() {
 
 # Checks if the user has installed all dependencies
 dependecy_check() {
-    echo "----------------------------------------------------------------"
-    echo "                        DEPENDENCY CHECK                        "
-    echo "----------------------------------------------------------------" 
+    echo "----------------------------------------------------------"
+    echo "                     DEPENDENCY CHECK                     "
+    echo "----------------------------------------------------------" 
     if  ! command_exists zsh; then
         install_zsh
     fi
