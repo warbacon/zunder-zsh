@@ -4,6 +4,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [[ -d "${XDG_DATA_HOME:-${HOME}/.local/share}/zinit" ]]; then
    source "${ZINIT_HOME}/zinit.zsh"
 else
+    echo "\033[1;33mInstalling plugins. This will only happen once.\033[0m\n"
     mkdir -p "$(dirname $ZINIT_HOME)"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
     source "${ZINIT_HOME}/zinit.zsh"
