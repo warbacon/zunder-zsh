@@ -25,10 +25,6 @@ zinit snippet OMZP::sudo
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-# fnm plugin
-zinit ice wait lucid has'unzip'
-zinit light dominik-schwabe/zsh-fnm
-
 # wd plugin and autopairs
 zinit wait lucid light-mode for \
     mfaerevaag/wd \

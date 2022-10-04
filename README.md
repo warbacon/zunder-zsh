@@ -25,7 +25,6 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
-- Automatic [fnm](https://github.com/Schniz/fnm) installation.
 - Much more and it's updating! See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### New aliases:
@@ -48,7 +47,6 @@ executed commands.
 - [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically close parentheses,
 quotes and more.
 - [wd](https://github.com/mfaerevaag/wd) - jump to custom directories without using cd.
-- [zsh-fnm](https://github.com/dominik-schwabe/zsh-fnm) - installs and loads Fast Node Manager (fnm).
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
 press the Esc key twice to put `sudo` at the beginning.
 

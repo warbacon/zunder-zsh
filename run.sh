@@ -267,6 +267,8 @@ main() {
 
     load_files
 
+    zsh -i -c exit
+
     echo "------------"
     printf "${SUCCESS}We are done.${NORMAL}\n"
 }
