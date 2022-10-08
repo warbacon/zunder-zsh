@@ -78,11 +78,11 @@ The following packages are needed to get everything working as intended:
    git clone https://github.com/Warbacon/zunder-zsh.git
    ```
 
-2. Enter the cloned repository and run the `run.sh` script.
+2. Enter the cloned repository and run the `install.sh` script.
    
    ```sh
    cd ./zunder-zsh
-   ./run.sh
+   ./install.sh
    ```
 
 And everything should be ready. 
@@ -90,10 +90,10 @@ Zinit will be installed along with all plugins when starting a new zsh instance.
 
 ## Troubleshooting
 Zunder is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
-Anyway, if you didn't like it or want to go back to your previous configuration, you can run the ``remove.sh`` script located in this same repository:
+Anyway, if you didn't like it or want to go back to your previous configuration, you can run the ``uninstall.sh`` script located in this same repository:
 
 ```bash
-./remove.sh
+./uninstall.sh
 ```
 
 Additionally, if you used previously another shell, you can revert it using the following command:
