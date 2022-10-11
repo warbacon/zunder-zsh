@@ -34,9 +34,6 @@ dependecy_check() {
     if  ! command_exists git; then
         install_git
     fi
-    if  ! command_exists unzip; then
-        install_unzip
-    fi
     if  ! command_exists chsh; then
         if [[ $distro = 3 ]]; then
             install_linux_utils
@@ -106,38 +103,6 @@ install_git() {
                 ;;
                 *)
                     sudo pacman -S git
-                ;;
-            esac
-        ;;
-    esac
-}
-
-# Will install Unzip if it's not.
-install_unzip() {
-    printf "${WARNING}Unzip is not installed, do you want to install it? [Y/n]: ${NORMAL}"
-    
-    read -r prompt
-    
-    echo ""
-    case $prompt in
-        [nN])
-            echo -e "${ERROR}Unzip is needed to run the script.${NORMAL}"
-            exit
-        ;;
-        *)
-            echo -e "Unzip will be installed.\n"
-            case $distro in
-                2)
-                    sudo apt-get install unzip
-                ;;
-                3)
-                    sudo dnf install unzip
-                ;;
-                4)
-                    pkg install unzip
-                ;;
-                *)
-                    sudo pacman -S unzip
                 ;;
             esac
         ;;

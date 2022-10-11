@@ -14,5 +14,8 @@ if [[ -f "$ZDOTDIR/fzf-theme.zsh" ]]; then
     source "$ZDOTDIR/fzf-theme.zsh"
 fi
 
+# ADD ~/.LOCAL/BIN TO PATH ---------------------------------------------------------------
+PATH="$PATH:$HOME/.local/bin/"
+
 # START POWERLEVEL10K --------------------------------------------------------------------
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh

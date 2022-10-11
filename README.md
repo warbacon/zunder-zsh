@@ -67,7 +67,6 @@ On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages
 The following packages are needed to get everything working as intended:
 - zsh
 - git
-- unzip
 - util-linux-user (only on Fedora)
 
 **If your operating system is supported, the script will make sure you have everything correctly installed.**
