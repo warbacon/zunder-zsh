@@ -1,4 +1,5 @@
 # ALIASES --------------------------------------------------------------------------------
+alias lg="lazygit"
 if hash exa 2> /dev/null; then
     alias ls="exa --icons --group-directories-first --git"
     alias ll="ls -lh"

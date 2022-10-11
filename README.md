@@ -28,14 +28,15 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 - Much more and it's updating! See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### New aliases:
-| Alias | Command                                          |
-| ----- | ------------------------------------------------ |
-| ll    | Long list directory contents                     |
-| la    | List directory contents with hidden files        |
-| lla   | Long list directory contents with hidden files   |
-| ..    | Change to the upper directory                    |
-| q     | exit                                             |
-| clr   | clear                                            |
+| Alias | Command                                              |
+| ----- | ---------------------------------------------------- |
+| ll    | Long list directory contents                         |
+| la    | List directory contents with hidden files            |
+| lla   | Long list directory contents with hidden files       |
+| ..    | Change to the upper directory                        |
+| lg    | lazygit (requires lazygit to be installed manually)  |
+| q     | exit                                                 |
+| clr   | clear                                                |
 
 
 ### Installed plugins:
