@@ -55,7 +55,7 @@ install_zsh() {
     case $prompt in
         [nN])
             echo -e "${ERROR}Zsh is needed to run the script.${NORMAL}"
-            exit
+            return 1
         ;;
         *)
             echo -e "Zsh will be installed.\n"
@@ -87,7 +87,7 @@ install_git() {
     case $prompt in
         [nN])
             echo -e "${ERROR}Git is needed to run the script.${NORMAL}"
-            exit
+            return 1
         ;;
         *)
             echo -e "Git will be installed.\n"
@@ -119,7 +119,7 @@ install_linux_utils() {
     case $prompt in
         [nN])
             echo -e "${ERROR}Chsh is needed to run the script.${NORMAL}"
-            exit
+            return 1
         ;;
         *)
             echo -e "Util-linux-user will be installed.\n"
