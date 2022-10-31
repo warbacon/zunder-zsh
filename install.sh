@@ -153,16 +153,25 @@ zsh_default() {
 
 # Will install Starship prompt or update it.
 function install_starship() {
+    if command_exists starship; then
+       starship=1 
+    fi
     echo "----------------------------------------------------------------------"
-    printf "${BOLD}Do you want to install the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]:${NORMAL} "
+    if [[ $starship = 1 ]]; then
+        printf "${BOLD}Do you want to update the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]:${NORMAL} "
+    else
+        printf "${BOLD}Do you want to install the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]:${NORMAL} "
+    fi
 
     read prompt
 
     echo ""
     case $prompt in
     [nN])
-        echo -e "${ERROR}Starship is needed.${NORMAL}"
-        exit
+        if [[ $starship != 1 ]]; then
+            echo -e "${ERROR}Starship is needed.${NORMAL}"
+            exit
+        fi
         ;;
     *)
         echo "Starhip will be instaled."
