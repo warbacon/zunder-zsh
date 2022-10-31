@@ -12,6 +12,10 @@ fi
 
 # PLUGINS --------------------------------------------------------------------------------
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1   # improves performance
+export STARSHIP_CONFIG=~/.config/zunder-zsh/starship.toml
+
+# evalcache plugin
+zinit light mroth/evalcache
 
 # fzf plugin
 zinit ice wait lucid has'fzf'
@@ -20,10 +24,6 @@ zinit snippet OMZP::fzf
 # sudo plugin
 zinit ice wait lucid has'sudo'
 zinit snippet OMZP::sudo
-
-# powerlevel10k
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
 
 # wd plugin and autopairs
 zinit wait lucid light-mode for \
