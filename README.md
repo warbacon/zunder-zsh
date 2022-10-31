@@ -5,13 +5,12 @@
 *"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
 
 Zunder is a configuration utility that configures Zsh the way the user expects it to work.
-The setup is built on top of Zinit and the Powerlevel10k prompt, so it's as fast as it can be.
 
-![example](./assets/example.avif)
+![example](./assets/preview.webp)
 
 </div>
 
-> Using the Catppuccin colorscheme in Kitty with JetBrainsMono Nerd Font
+> Using Tokyo Night Storm colorscheme in Alacritty with JetBrainsMono Nerd Font
 
 *"You have convinced me, [let's try it out](https://github.com/Warbacon/zunder-zsh#getting-started)!"*
 
@@ -22,7 +21,7 @@ The setup is built on top of Zinit and the Powerlevel10k prompt, so it's as fast
 - Some useful aliases.
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto)
 plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
-- Powerful and lag-free prompt thanks to [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
+- Beautiful and fast custom prompt built with [Starship](https://starship.rs/).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Much more and it's updating! See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
@@ -40,8 +39,8 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 
 
 ### Installed plugins:
-- [fast-syntax-hightlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - better
-and faster than zsh-syntax-highlighting.
+- [zsh-syntax-hightlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - syntax
+highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggest previously
 executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
@@ -102,10 +101,6 @@ chsh -s $(which shell)
 
  # where shell is the name of the shell that you want to revert to, usually bash.
 ```
-
-### Known bugs
-- There is a bug in Arch Linux own of [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) plugin.
-It will not detect your man pages and will highlight them in red. ([#35](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35))
 
 ## Extra info
 Zunder is in very active development and it's constantly evolving, so you should check the project frequently to find out the latest news.

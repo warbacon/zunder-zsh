@@ -151,6 +151,31 @@ zsh_default() {
     esac
 }
 
+# Will install Starship prompt or update it.
+function install_starship() {
+    echo "----------------------------------------------------------------------"
+    printf "${BOLD}Do you want to install the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]:${NORMAL} "
+
+    read prompt
+
+    echo ""
+    case $prompt in
+    [nN])
+        echo -e "${ERROR}Starship is needed.${NORMAL}"
+        exit
+        ;;
+    *)
+        echo "Starhip will be instaled."
+        if [[ $distro = 4 ]]; then
+            pkg install starship
+        else
+            sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+        fi
+        ;;
+    esac
+}
+
+# Will install Exa
 install_exa() {
     echo "----------------------------------------------------------------------"
     echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
@@ -194,7 +219,7 @@ load_files() {
     printf "\n"
     case $prompt in
         [yY])
-            mkdir "$HOME/.config/zunder-zsh" 2> /dev/null
+            mkdir -p "$HOME/.config/zunder-zsh" 2> /dev/null
             mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
             cp --verbose "./config/zshenv" "$HOME/.zshenv" 
             cp --verbose "./config/zshrc" "$ZDOTDIR/.zshrc" 
@@ -203,6 +228,7 @@ load_files() {
             cp --verbose "./config/plugins.zsh" "$ZDOTDIR" 
             cp --verbose "./config/keybindings.zsh" "$ZDOTDIR" 
             cp --verbose "./config/options.zsh" "$ZDOTDIR" 
+            cp --verbose "./config/starship.toml" "$ZDOTDIR" 
             if [[ distro = 2 ]]; then
                 sed -i 's/ --git//g' "$ZDOTDIR/aliases.zsh"
             fi
@@ -225,6 +251,8 @@ main() {
     if [[ "$SHELL" != "/bin/zsh" && "$SHELL" != "/usr/bin/zsh" && "$SHELL" != "/data/data/com.termux/files/usr/bin/zsh" ]]; then
         zsh_default
     fi
+
+    install_starship
 
     if ! command_exists exa; then
         install_exa
