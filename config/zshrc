@@ -12,4 +12,4 @@ fi
 # ADD ~/.LOCAL/BIN TO PATH ---------------------------------------------------------------
 PATH="$PATH:$HOME/.local/bin/"
 
-_evalcache starship init zsh
+eval $(starship init zsh)

@@ -14,9 +14,6 @@ fi
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1   # improves performance
 export STARSHIP_CONFIG=~/.config/zunder-zsh/starship.toml
 
-# evalcache plugin
-zinit light mroth/evalcache
-
 # fzf plugin
 zinit ice wait lucid has'fzf'
 zinit snippet OMZP::fzf
@@ -33,7 +30,7 @@ zinit wait lucid light-mode for \
 # syntax highlighting, autosuggestions and additional completions
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
-        zdharma-continuum/fast-syntax-highlighting \
+        zsh-users/zsh-syntax-highlighting \
     atload"_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
