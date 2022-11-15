@@ -14,9 +14,6 @@ fi
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1   # improves performance
 export STARSHIP_CONFIG=~/.config/zunder-zsh/starship.toml
 
-# Fixes man highlighting in Arch Linux
-function whatis() { if [[ -v THEFD ]]; then :; else command whatis "$@"; fi; }
-
 # OMZ key-bindings
 zinit snippet OMZ::lib/key-bindings.zsh
 

@@ -102,6 +102,15 @@ chsh -s $(which shell)
  # where shell is the name of the shell that you want to revert to, usually bash.
 ```
 
+### Man command highlighting as error in Arch Linux
+Just run these commands if you are using `man-db` (most likely):
+```bash
+sudo mandb
+sudo systemctl enable man-db.timer
+```
+
+More info [here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35#issuecomment-1315195049).
+
 ## Extra info
 Zunder is in very active development and it's constantly evolving, so you should check the project frequently to find out the latest news.
 **I appreciate that bugs are reported and new ideas are suggested.** 
