@@ -39,7 +39,7 @@ plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit
 
 
 ### Installed plugins:
-- [zsh-syntax-hightlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - syntax
+- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - syntax
 highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggest previously
 executed commands.

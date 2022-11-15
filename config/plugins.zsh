@@ -14,6 +14,9 @@ fi
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1   # improves performance
 export STARSHIP_CONFIG=~/.config/zunder-zsh/starship.toml
 
+# Fixes man highlighting in Arch Linux
+function whatis() { if [[ -v THEFD ]]; then :; else command whatis "$@"; fi; }
+
 # OMZ key-bindings
 zinit snippet OMZ::lib/key-bindings.zsh
 
@@ -33,8 +36,9 @@ zinit wait lucid light-mode for \
 # syntax highlighting, autosuggestions and additional completions
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
-        zsh-users/zsh-syntax-highlighting \
+        zdharma-continuum/fast-syntax-highlighting \
     atload"_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions
+
