@@ -2,6 +2,7 @@
 source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/key-bindings.zsh"
 
 # FZF COLORCHEME (https://github.com/base16-project/base16-fzf) --------------------------
 if [[ -f "$ZDOTDIR/fzf-theme.zsh" ]]; then
