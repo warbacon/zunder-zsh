@@ -235,7 +235,6 @@ load_files() {
             cp --verbose "./config/p10k.zsh" "$ZDOTDIR/.p10k.zsh" 
             cp --verbose "./config/aliases.zsh" "$ZDOTDIR" 
             cp --verbose "./config/plugins.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/keybindings.zsh" "$ZDOTDIR" 
             cp --verbose "./config/options.zsh" "$ZDOTDIR" 
             cp --verbose "./config/starship.toml" "$ZDOTDIR" 
             if [[ distro = 2 ]]; then

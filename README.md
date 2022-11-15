@@ -2,7 +2,7 @@
 
 <div align="center"> 
 
-*"It's fast, really, really fast! Just get rid of Oh My Zsh already..."*
+*"It's time to get rid of Oh My Zsh."*
 
 Zunder is a configuration utility that configures Zsh the way the user expects it to work.
 
@@ -21,7 +21,7 @@ Zunder is a configuration utility that configures Zsh the way the user expects i
 - Some useful aliases.
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) and [Prezto](https://github.com/sorin-ionescu/prezto)
 plugins and themes. Check out [Zinit](https://github.com/zdharma-continuum/zinit).
-- Beautiful and fast custom prompt built with [Starship](https://starship.rs/).
+- Beautiful custom prompt built with [Starship](https://starship.rs/).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Much more and it's updating! See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
@@ -61,7 +61,7 @@ Might support more in the future, depending on requests.
 ## Getting started
 ### Dependencies:
 You **must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal** to see all the icons correctly. 
-Alternatively, just install [icons-in-terminal](https://github.com/sebastiencs/icons-in-terminal) to use your favourite font.
+Alternatively, just install [icons-in-terminal](https://github.com/sebastiencs/icons-in-terminal) to use your favorite font.
 On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
 
 The following packages are needed to get everything working as intended:

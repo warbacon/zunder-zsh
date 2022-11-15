@@ -2,7 +2,6 @@
 source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/aliases.zsh"
-source "$ZDOTDIR/keybindings.zsh"
 
 # FZF COLORCHEME (https://github.com/base16-project/base16-fzf) --------------------------
 if [[ -f "$ZDOTDIR/fzf-theme.zsh" ]]; then
@@ -12,4 +11,5 @@ fi
 # ADD ~/.LOCAL/BIN TO PATH ---------------------------------------------------------------
 PATH="$PATH:$HOME/.local/bin/"
 
+# START STARSHIP PROMPT
 eval $(starship init zsh)
