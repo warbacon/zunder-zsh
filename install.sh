@@ -238,7 +238,7 @@ load_files() {
             cp --verbose "./config/options.zsh" "$ZDOTDIR" 
             cp --verbose "./config/key-bindings.zsh" "$ZDOTDIR" 
             cp --verbose "./config/starship.toml" "$ZDOTDIR" 
-            if [[ distro = 2 ]]; then
+            if [[ $distro = 2 ]]; then
                 sed -i 's/ --git//g' "$ZDOTDIR/aliases.zsh"
             fi
         ;;
