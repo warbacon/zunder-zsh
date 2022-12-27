@@ -9,8 +9,8 @@ removeJunk() {
     read prompt
     if [[ $prompt = Y || $prompt = y  ]]; then
         mv "$ZDOTDIR/.zsh_history" "$HOME"
-        rm -rf "$HOME/.zshenv" "$ZDOTDIR" "$HOME/.local/share/zinit" "$HOME/.cache/starship" \
-               "$HOME/.cache/zinit"
+        rm -rf "$HOME/.zshenv" "$ZDOTDIR" "$HOME/.cache/starship" "$HOME/.local/share/zsh/" \ 
+               "$HOME/.local/share/zsh-snap" "$HOME/.cache/zsh" "$HOME/zsh-snap"
     fi
 }
 

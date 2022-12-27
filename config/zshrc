@@ -8,9 +8,3 @@ source "$ZDOTDIR/key-bindings.zsh"
 if [[ -f "$ZDOTDIR/fzf-theme.zsh" ]]; then
     source "$ZDOTDIR/fzf-theme.zsh"
 fi
-
-# ADD ~/.LOCAL/BIN TO PATH ---------------------------------------------------------------
-PATH="$PATH:$HOME/.local/bin/"
-
-# START STARSHIP PROMPT
-eval $(starship init zsh)

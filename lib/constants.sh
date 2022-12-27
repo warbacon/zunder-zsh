@@ -1,1 +1,1 @@
-ZDOTDIR="$HOME/.config/zunder-zsh"
+ZDOTDIR="$HOME/.config/zsh"

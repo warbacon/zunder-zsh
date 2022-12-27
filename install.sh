@@ -41,8 +41,6 @@ dependecy_check() {
             echo "${WARNING}chsh is not available in your system, so you are not be able to set zsh as default shell.${NORMAL}"
         fi
     fi
-
-
 }
 
 # Will install Zsh if it's not.
@@ -83,7 +81,7 @@ install_git() {
     
     read -r prompt
     
-    echo ""
+    printf "\n"
     case $prompt in
         [nN])
             echo -e "${ERROR}Git is needed to run the script.${NORMAL}"
@@ -111,11 +109,12 @@ install_git() {
 
 # Will install Zsh if it's not.
 install_linux_utils() {
-    printf "${WARNING}Chsh command is not available and you need to install the package util-linux-user.\n Do you want to install it? [Y/n]: ${NORMAL}"
+    printf "${WARNING}Chsh command is not available and you need to install the package util-linux-user.\n"
+    printf "Do you want to install it? [Y/n]: ${NORMAL}"
     
     read -r prompt
     
-    echo ""
+    printf "\n"
     case $prompt in
         [nN])
             echo -e "${ERROR}Chsh is needed to run the script.${NORMAL}"
@@ -135,7 +134,7 @@ zsh_default() {
     
     read -r prompt
     
-    echo ""
+    printf "\n"
     case $prompt in
         [yY])
             if [[ $distro = 4 ]]; then
@@ -165,7 +164,7 @@ function install_starship() {
 
     read prompt
 
-    echo ""
+    printf "\n"
     case $prompt in
     [nN])
         if [[ $starship != 1 ]]; then
@@ -192,7 +191,7 @@ install_exa() {
     
     read -r prompt
     
-    echo ""
+    printf "\n"
     case $prompt in
         [nN])
             echo -e "${WARNING}Exa won't be installed.${NORMAL}"
@@ -228,11 +227,10 @@ load_files() {
     printf "\n"
     case $prompt in
         [yY])
-            mkdir -p "$HOME/.config/zunder-zsh" 2> /dev/null
+            mkdir -p "$ZDOTDIR" 2> /dev/null
             mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
             cp --verbose "./config/zshenv" "$HOME/.zshenv" 
             cp --verbose "./config/zshrc" "$ZDOTDIR/.zshrc" 
-            cp --verbose "./config/p10k.zsh" "$ZDOTDIR/.p10k.zsh" 
             cp --verbose "./config/aliases.zsh" "$ZDOTDIR" 
             cp --verbose "./config/plugins.zsh" "$ZDOTDIR" 
             cp --verbose "./config/options.zsh" "$ZDOTDIR" 
@@ -268,8 +266,6 @@ main() {
     fi
 
     load_files
-
-    zsh -i -c exit
 
     echo "------------"
     printf "${SUCCESS}We are done.${NORMAL}\n"
