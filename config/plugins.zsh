@@ -7,12 +7,10 @@ source $ZDOTDIR/zsh-snap/znap.zsh
 
 # PLUGINS --------------------------------------------------------------------------------
 command_exists() { command -v "$@" >/dev/null 2>&1 }
-export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 
+# Defer execution of a zsh command until zsh has nothing else to do and
+# is waiting for user input 
 znap source romkatv/zsh-defer
-# Starship prompt
-znap eval starship 'starship init zsh --print-full-init'
-znap prompt
 
 # OMZ plugins
 znap source ohmyzsh/ohmyzsh lib/key-bindings.zsh
@@ -27,8 +25,11 @@ fi
 znap source mfaerevaag/wd
 zsh-defer znap source hlissner/zsh-autopair
 
-# syntax highlighting, autosuggestions and additional completions
+# Syntax highlighting, autosuggestions and additional completions
 znap source zsh-users/zsh-completions
 zsh-defer znap source zdharma-continuum/fast-syntax-highlighting
 zsh-defer znap source zsh-users/zsh-autosuggestions
 
+# Starship prompt
+znap eval starship 'starship init zsh --print-full-init'
+znap prompt
