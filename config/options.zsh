@@ -11,10 +11,6 @@ setopt share_history          # share command history data
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
-zstyle ':completion:*:warnings' format ' %F{red}no matches found%f'
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 # OTHER ----------------------------------------------------------------------------------
 setopt autocd     # change working directory without using cd

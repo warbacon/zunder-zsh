@@ -1,41 +1,35 @@
-# ZINIT ----------------------------------------------------------------------------------
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# START ZNAP -----------------------------------------------------------------------------------
+[[ -f $ZDOTDIR/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git $ZDOTDIR/zsh-snap
 
-if [[ -d "${XDG_DATA_HOME:-${HOME}/.local/share}/zinit" ]]; then
-   source "${ZINIT_HOME}/zinit.zsh"
-else
-    echo "\033[1;33mInstalling plugins.\033[0m\n"
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-    source "${ZINIT_HOME}/zinit.zsh"
-fi
+source $ZDOTDIR/zsh-snap/znap.zsh
 
 # PLUGINS --------------------------------------------------------------------------------
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1   # improves performance
-export STARSHIP_CONFIG=~/.config/zunder-zsh/starship.toml
+command_exists() { command -v "$@" >/dev/null 2>&1 }
 
-# OMZ key-bindings
-zinit snippet OMZ::lib/key-bindings.zsh
+# Defer execution of a zsh command until zsh has nothing else to do and
+# is waiting for user input 
+znap source romkatv/zsh-defer
 
-# fzf plugin
-zinit ice has'fzf'
-zinit snippet OMZP::fzf
+# OMZ plugins
+znap source ohmyzsh/ohmyzsh lib/key-bindings.zsh
+if command_exists fzf; then
+    znap source ohmyzsh/ohmyzsh plugins/fzf
+fi
+if command_exists sudo; then
+    znap source ohmyzsh/ohmyzsh plugins/sudo
+fi
 
-# sudo plugin
-zinit ice has'sudo'
-zinit snippet OMZP::sudo
+# Other plugins
+znap source mfaerevaag/wd
+zsh-defer znap source hlissner/zsh-autopair
 
-# wd plugin and autopairs
-zinit wait lucid light-mode for \
-    mfaerevaag/wd \
-    hlissner/zsh-autopair
+# Syntax highlighting, autosuggestions and additional completions
+znap source zsh-users/zsh-completions
+zsh-defer znap source zdharma-continuum/fast-syntax-highlighting
+zsh-defer znap source zsh-users/zsh-autosuggestions
 
-# syntax highlighting, autosuggestions and additional completions
-zinit wait lucid light-mode for \
-    atinit"zicompinit; zicdreplay" \
-        zdharma-continuum/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions
-
+# Starship prompt
+znap eval starship 'starship init zsh --print-full-init'
+znap prompt
