@@ -1,7 +1,5 @@
-skip_global_compinit=1
 PATH="$PATH:$HOME/.local/bin/"
 ZDOTDIR="$HOME/.config/zsh"
 WD_CONFIG="$ZDOTDIR/.warprc"
-export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 fpath=(~/.config/zsh/wd $fpath)
 

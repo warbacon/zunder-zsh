@@ -30,6 +30,5 @@ znap source zsh-users/zsh-completions
 zsh-defer znap source zdharma-continuum/fast-syntax-highlighting
 zsh-defer znap source zsh-users/zsh-autosuggestions
 
-# Starship prompt
-znap eval starship 'starship init zsh --print-full-init'
-znap prompt
+# Powerlevel10k
+znap source romkatv/powerlevel10k
