@@ -3,12 +3,10 @@ joshskidmore/zsh-fzf-history-search         kind:defer
 zdharma-continuum/fast-syntax-highlighting  kind:defer
 zsh-users/zsh-autosuggestions               kind:defer
 
-mfaerevaag/wd
+mfaerevaag/wd                               kind:defer
 ohmyzsh/ohmyzsh  path:lib/key-bindings.zsh
 ohmyzsh/ohmyzsh  path:plugins/sudo
 
 zsh-users/zsh-completions
-
-belak/zsh-utils  path:completion
 
 romkatv/powerlevel10k  kind:fpath
