@@ -23,6 +23,8 @@ fi
 # Source your static plugins file.
 source $zsh_plugins
 
+autoload -Uz compinit && compinit
+
 # LOAD POWERLEVEL10K ---------------------------------------------------------------------
 autoload -Uz promptinit && promptinit && prompt powerlevel10k
 
