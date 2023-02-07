@@ -228,7 +228,7 @@ load_files() {
     case $prompt in
         [yY])
             mkdir "$HOME/.config" 2> /dev/null
-            cp -r ./config "$ZDOTDIR"
+            cp -Tr ./config "$ZDOTDIR"
             mv $ZDOTDIR/.zshenv $HOME
             mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
             if [[ $distro = 2 ]]; then
