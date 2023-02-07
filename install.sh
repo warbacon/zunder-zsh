@@ -136,16 +136,16 @@ zsh_default() {
     
     printf "\n"
     case $prompt in
-        [yY])
+        [Nn])
+            echo -e "${WARNING}Zsh won't be setted as the default shell.${NORMAL}"
+        ;;
+        *)
             if [[ $distro = 4 ]]; then
                 chsh -s zsh
             else
                 chsh -s "$(which zsh)"
             fi
             echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
-        ;;
-        *)
-            echo -e "${WARNING}Zsh won't be setted as the default shell.${NORMAL}"
         ;;
     esac
 }
@@ -227,15 +227,10 @@ load_files() {
     printf "\n"
     case $prompt in
         [yY])
-            mkdir -p "$ZDOTDIR" 2> /dev/null
+            mkdir "$HOME/.config" 2> /dev/null
+            cp -r ./config "$ZDOTDIR"
+            mv $ZDOTDIR/.zshenv $HOME
             mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
-            cp --verbose "./config/zshenv" "$HOME/.zshenv" 
-            cp --verbose "./config/zshrc" "$ZDOTDIR/.zshrc" 
-            cp --verbose "./config/aliases.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/plugins.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/options.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/key-bindings.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/starship.toml" "$ZDOTDIR" 
             if [[ $distro = 2 ]]; then
                 sed -i 's/ --git//g' "$ZDOTDIR/aliases.zsh"
             fi
@@ -259,7 +254,7 @@ main() {
         zsh_default
     fi
 
-    install_starship
+    # install_starship
 
     if ! command_exists exa; then
         install_exa
