@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # LOAD CONFIGURATIONS --------------------------------------------------------------------
-source "$ZDOTDIR/plugin-config.zsh"
+source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/key-bindings.zsh"
