@@ -120,7 +120,8 @@ zsh_default() {
             else
                 chsh -s "$(which zsh)"
             fi
-            echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
+            default=1
+            echo -e "${SUCCESS}Zsh was setted as the default shell.${NORMAL}"
         ;;
     esac
 }
@@ -167,8 +168,14 @@ main() {
 
     load_files
 
+    echo ""
+    zsh -i -c exit
+
     echo "------------"
     printf "${SUCCESS}We are done.${NORMAL}\n"
+    if [[ $default -eq 1 ]]; then
+      printf "${WARNING}You should reboot the system to see the changes applied correctly.${NORMAL}\n" 
+    fi
 }
 
 main "$@"

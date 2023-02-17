@@ -3,7 +3,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 ZINIT_PLUGINS="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/plugins"
 
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && (echo "el pepe"; git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME")
+[ ! -d $ZINIT_HOME/.git ] && (printf "\033[1;33mInstalling plugins...\033[0m\n"; \
+git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME")
 source "${ZINIT_HOME}/zinit.zsh"
 
 # PLUGINS --------------------------------------------------------------------------------
