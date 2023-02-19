@@ -1,35 +1,56 @@
-# START ZNAP -----------------------------------------------------------------------------------
-[[ -f $ZDOTDIR/zsh-snap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git $ZDOTDIR/zsh-snap
+# ZINIT ----------------------------------------------------------------------------------
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+ZINIT_PLUGINS="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/plugins"
 
-source $ZDOTDIR/zsh-snap/znap.zsh
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && (printf "\033[1;33mInstalling plugins...\033[0m\n"; \
+git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME")
+source "${ZINIT_HOME}/zinit.zsh"
+
+# PLUGIN CONFIGURATIONS ------------------------------------------------------------------
+ZSH_AUTOSUGGEST_MANUAL_REBIND=false
+WD_CONFIG="$ZDOTDIR/.warprc"
+ZSH_EVALCACHE_DIR="$ZDOTDIR/.zsh-evalcache"
 
 # PLUGINS --------------------------------------------------------------------------------
-command_exists() { command -v "$@" >/dev/null 2>&1 }
+zinit ice depth"1"
+zinit light romkatv/powerlevel10k
 
-# Defer execution of a zsh command until zsh has nothing else to do and
-# is waiting for user input 
-znap source romkatv/zsh-defer
+zi ice from"gh-r" as"program"
+zi light junegunn/fzf
 
-# OMZ plugins
-znap source ohmyzsh/ohmyzsh lib/key-bindings.zsh
-if command_exists fzf; then
-    znap source ohmyzsh/ohmyzsh plugins/fzf
+zi ice from"gh-r" as"program" pick"bin/exa"
+zi light ogham/exa
+zi ice as"completion" 
+zi snippet "$ZINIT_PLUGINS/ogham---exa/completions/exa.zsh"
+
+zi ice wait lucid
+zi light hlissner/zsh-autopair
+
+zi ice wait lucid \
+    atclone"[ ! -f $WD_CONFIG ] && touch $WD_CONFIG" 
+zi light mfaerevaag/wd
+
+zi snippet OMZP::command-not-found
+zi snippet OMZP::sudo
+zi snippet OMZL::key-bindings.zsh
+zi snippet "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
+
+zi wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    atload"_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .' \
+        zsh-users/zsh-completions
+
+# FNM INSTALLATION -----------------------------------------------------------------------
+zi ice from"gh-r" as"program"
+zi light "Schniz/fnm"
+
+if [[ ! -f "$ZINIT[COMPLETIONS_DIR]/_fnm" ]]; then
+    echo "$(fnm completions)" >> "$ZINIT[COMPLETIONS_DIR]/_fnm"
 fi
-if command_exists sudo; then
-    znap source ohmyzsh/ohmyzsh plugins/sudo
-fi
 
-# Other plugins
-znap source mfaerevaag/wd
-zsh-defer znap source hlissner/zsh-autopair
-
-# Syntax highlighting, autosuggestions and additional completions
-znap source zsh-users/zsh-completions
-zsh-defer znap source zdharma-continuum/fast-syntax-highlighting
-zsh-defer znap source zsh-users/zsh-autosuggestions
-
-# Starship prompt
-znap eval starship 'starship init zsh --print-full-init'
-znap prompt
+zi light "mroth/evalcache"
+_evalcache fnm env

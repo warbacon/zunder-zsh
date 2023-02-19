@@ -4,19 +4,19 @@ source ./lib/color.sh
 source ./lib/constants.sh
 
 # FUNCTIONS
-removeJunk() {
+remove_junk() {
     printf "${WARNING}Do you want to remove all the Zunder files? [y/N]: ${NORMAL}"
-    read prompt
+    read -r prompt
     if [[ $prompt = Y || $prompt = y  ]]; then
         mv "$ZDOTDIR/.zsh_history" "$HOME" 2> /dev/null
-        rm -rf "$HOME/.zshenv" "$ZDOTDIR" "$HOME/.cache/starship" "$HOME/.local/share/zsh" "$HOME/.local/share/zsh-snap" "$HOME/.cache/zsh" "$HOME/.cache/zsh-snap"
+        rm -rf "$ZDOTDIR" "$HOME/.zshenv" "$HOME/.cache/p10k"* "$HOME/.cache/zinit" \
+        "$HOME/.local/share/zinit"
     fi
 }
 
 # START
 main() {
-    removeJunk
-
+    remove_junk
     echo "------------"
     printf "${SUCCESS}All done.${NORMAL}\n"
 }

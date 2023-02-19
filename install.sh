@@ -34,13 +34,6 @@ dependecy_check() {
     if  ! command_exists git; then
         install_git
     fi
-    if  ! command_exists chsh; then
-        if [[ $distro = 3 ]]; then
-            install_linux_utils
-        else
-            echo "${WARNING}chsh is not available in your system, so you are not be able to set zsh as default shell.${NORMAL}"
-        fi
-    fi
 }
 
 # Will install Zsh if it's not.
@@ -107,26 +100,6 @@ install_git() {
     esac
 }
 
-# Will install Zsh if it's not.
-install_linux_utils() {
-    printf "${WARNING}Chsh command is not available and you need to install the package util-linux-user.\n"
-    printf "Do you want to install it? [Y/n]: ${NORMAL}"
-    
-    read -r prompt
-    
-    printf "\n"
-    case $prompt in
-        [nN])
-            echo -e "${ERROR}Chsh is needed to run the script.${NORMAL}"
-            exit
-        ;;
-        *)
-            echo -e "Util-linux-user will be installed.\n"
-            sudo dnf install util-linux-user
-        ;;
-    esac
-}
-
 # Will set as default Zsh if it's not.
 zsh_default() {
     echo "----------------------------------------------------------------------"
@@ -136,82 +109,19 @@ zsh_default() {
     
     printf "\n"
     case $prompt in
-        [yY])
-            if [[ $distro = 4 ]]; then
+        [Nn])
+            echo -e "${WARNING}Zsh won't be setted as the default shell.${NORMAL}"
+        ;;
+        *)
+            if [[ $distro = 3 ]]; then
+                sudo usermod -s "$(which zsh)" $USER
+            elif [[ $distro = 4 ]]; then
                 chsh -s zsh
             else
                 chsh -s "$(which zsh)"
             fi
-            echo -e "${SUCCESS}Zsh was setted as the default shell, a reboot is needed to see the changes.${NORMAL}"
-        ;;
-        *)
-            echo -e "${WARNING}Zsh won't be setted as the default shell.${NORMAL}"
-        ;;
-    esac
-}
-
-# Will install Starship prompt or update it.
-function install_starship() {
-    if command_exists starship; then
-       starship=1 
-    fi
-    echo "----------------------------------------------------------------------"
-    if [[ $starship = 1 ]]; then
-        printf "${BOLD}Do you want to update the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]:${NORMAL} "
-    else
-        printf "${BOLD}Do you want to install the ${BLUEBOLD}Starship prompt${NORMAL}${BOLD} (${CYANBOLD}https://starship.rs${NORMAL}${BOLD})? [Y/n]:${NORMAL} "
-    fi
-
-    read prompt
-
-    printf "\n"
-    case $prompt in
-    [nN])
-        if [[ $starship != 1 ]]; then
-            echo -e "${ERROR}Starship is needed.${NORMAL}"
-            exit
-        fi
-        ;;
-    *)
-        echo "Starhip will be instaled."
-        if [[ $distro = 4 ]]; then
-            pkg install starship
-        else
-            sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-        fi
-        ;;
-    esac
-}
-
-# Will install Exa
-install_exa() {
-    echo "----------------------------------------------------------------------"
-    echo -e "Exa is powerfull ls command replacement written in rust. It will show icons and colors for every file or directory.\n"
-    printf "${BOLD}Do you want to install ${BLUEBOLD}exa${NORMAL}${BOLD}? [Y/n]: ${NORMAL}"
-    
-    read -r prompt
-    
-    printf "\n"
-    case $prompt in
-        [nN])
-            echo -e "${WARNING}Exa won't be installed.${NORMAL}"
-        ;;
-        *)
-            echo -e "Exa will be installed.\n"
-            case $distro in
-                2)
-                    sudo apt install exa
-                ;;
-                3)
-                    sudo dnf install exa
-                ;;
-                4)
-                    pkg install exa
-                ;;
-                *)
-                    sudo pacman -S exa
-                ;;
-            esac
+            default=1
+            echo -e "${SUCCESS}Zsh was setted as the default shell.${NORMAL}"
         ;;
     esac
 }
@@ -228,17 +138,14 @@ load_files() {
     case $prompt in
         [yY])
             mkdir -p "$ZDOTDIR" 2> /dev/null
+            cp --verbose ./config/.p10k.zsh "$ZDOTDIR"
+            cp --verbose ./config/aliases.zsh "$ZDOTDIR"
+            cp --verbose ./config/options.zsh "$ZDOTDIR"
+            cp --verbose ./config/key-bindings.zsh "$ZDOTDIR"
+            cp --verbose ./config/plugins.zsh "$ZDOTDIR"
+            cp --verbose ./config/.zshrc "$ZDOTDIR"
+            cp --verbose ./config/.zshenv "$HOME"
             mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
-            cp --verbose "./config/zshenv" "$HOME/.zshenv" 
-            cp --verbose "./config/zshrc" "$ZDOTDIR/.zshrc" 
-            cp --verbose "./config/aliases.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/plugins.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/options.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/key-bindings.zsh" "$ZDOTDIR" 
-            cp --verbose "./config/starship.toml" "$ZDOTDIR" 
-            if [[ $distro = 2 ]]; then
-                sed -i 's/ --git//g' "$ZDOTDIR/aliases.zsh"
-            fi
         ;;
         *)
             echo -e "${WARNING}Canceled. This won't apply your changes at all, try running the script again.${NORMAL}"
@@ -251,7 +158,7 @@ load_files() {
 main() {
     select_system
 
-    if ! command_exists zsh || ! command_exists unzip || ! command_exists git || ! command_exists chsh; then
+    if ! command_exists zsh || ! command_exists git; then
         dependecy_check
     fi
 
@@ -259,16 +166,16 @@ main() {
         zsh_default
     fi
 
-    install_starship
-
-    if ! command_exists exa; then
-        install_exa
-    fi
-
     load_files
+
+    echo ""
+    zsh -i -c exit
 
     echo "------------"
     printf "${SUCCESS}We are done.${NORMAL}\n"
+    if [[ $default -eq 1 ]]; then
+      printf "${WARNING}You should reboot the system to see the changes applied correctly.${NORMAL}\n" 
+    fi
 }
 
 main "$@"
