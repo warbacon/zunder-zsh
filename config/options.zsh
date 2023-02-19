@@ -23,9 +23,10 @@ zstyle ':completion:*' rehash true
 
 # OTHER ----------------------------------------------------------------------------------
 function set_win_title(){
-    echo -ne "\033]0;${PWD/$HOME/~} \007"
+    echo -ne "\033]0;"$USER@$HOSTNAME:" ${PWD/$HOME/~}\007"
 }
 precmd_functions+=(set_win_title)
+zle_highlight+=(paste:none)
 
 setopt autocd                 # Change working directory without using cd
 

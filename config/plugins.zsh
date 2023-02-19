@@ -7,6 +7,11 @@ ZINIT_PLUGINS="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/plugins"
 git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME")
 source "${ZINIT_HOME}/zinit.zsh"
 
+# PLUGIN CONFIGURATIONS ------------------------------------------------------------------
+ZSH_AUTOSUGGEST_MANUAL_REBIND=false
+WD_CONFIG="$ZDOTDIR/.warprc"
+ZSH_EVALCACHE_DIR="$ZDOTDIR/.zsh-evalcache"
+
 # PLUGINS --------------------------------------------------------------------------------
 zinit ice depth"1"
 zinit light romkatv/powerlevel10k
@@ -19,11 +24,9 @@ zi light ogham/exa
 zi ice as"completion" 
 zi snippet "$ZINIT_PLUGINS/ogham---exa/completions/exa.zsh"
 
-
 zi ice wait lucid
 zi light hlissner/zsh-autopair
 
-WD_CONFIG="$ZDOTDIR/.warprc"
 zi ice wait lucid \
     atclone"[ ! -f $WD_CONFIG ] && touch $WD_CONFIG" 
 zi light mfaerevaag/wd
