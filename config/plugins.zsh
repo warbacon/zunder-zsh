@@ -9,6 +9,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # PLUGIN CONFIGURATIONS ------------------------------------------------------------------
 ZSH_AUTOSUGGEST_MANUAL_REBIND=false
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 WD_CONFIG="$ZDOTDIR/.warprc"
 
 # PLUGINS --------------------------------------------------------------------------------
