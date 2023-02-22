@@ -27,7 +27,7 @@ zi snippet "$ZINIT_PLUGINS/ogham---exa/completions/exa.zsh"
 zi ice from"gh-r" as"program"
 zi light "Schniz/fnm"
 zinit light NICHOLAS85/z-a-eval
-zi ice eval"fnm env" atclone"fnm completions >> $ZINIT[COMPLETIONS_DIR]/_fnm"
+zi ice eval"fnm env" atclone"fnm completions > $ZINIT[COMPLETIONS_DIR]/_fnm"
 zi light "zdharma-continuum/null"
 
 zi ice wait lucid
