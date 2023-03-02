@@ -40,10 +40,10 @@ zi snippet "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bind
 
 [ ! -d "$FNM_DIR" ] && \
     curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+export PATH="$PATH:$FNM_DIR"
 [ ! -f "$FNM_DIR/_fnm" ] && fnm completions > "$FNM_DIR/_fnm"
 zi ice as"completion"
 zi snippet "$FNM_DIR/_fnm"
-export PATH="$PATH:$FNM_DIR"
 
 zi ice atload"_evalcache fnm env --use-on-cd"
 zi light "mroth/evalcache"
