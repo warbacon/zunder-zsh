@@ -24,7 +24,7 @@ print_info() {
 }
 
 print_line() {
-    printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+    printf '%*s\n' "$(stty size | cut -d' ' -f2)" '' | tr ' ' '-'
 }
 
 install_program() {
