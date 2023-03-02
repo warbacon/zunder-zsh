@@ -1,6 +1,5 @@
 # ZINIT ----------------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-ZINIT_PLUGINS="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/plugins"
 
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -10,6 +9,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=false
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 WD_CONFIG="$ZDOTDIR/.warprc"
+ZSH_EVALCACHE_DIR="$ZINIT[HOME_DIR]/zsh-evalcache"
+FNM_DIR="$HOME/.local/share/fnm"
 
 # PLUGINS --------------------------------------------------------------------------------
 zinit ice depth"1"
@@ -21,13 +22,7 @@ zi light junegunn/fzf
 zi ice from"gh-r" as"program" pick"bin/exa"
 zi light ogham/exa
 zi ice as"completion" 
-zi snippet "$ZINIT_PLUGINS/ogham---exa/completions/exa.zsh"
-
-zi ice from"gh-r" as"program"
-zi light "Schniz/fnm"
-zinit light NICHOLAS85/z-a-eval
-zi ice eval"fnm env" atclone"fnm completions > $ZINIT[COMPLETIONS_DIR]/_fnm"
-zi light "zdharma-continuum/null"
+zi snippet "$ZINIT[PLUGINS_DIR]/ogham---exa/completions/exa.zsh"
 
 zi ice wait lucid
 zi light hlissner/zsh-autopair
@@ -40,6 +35,14 @@ zi snippet OMZP::command-not-found
 zi snippet OMZP::sudo
 zi snippet OMZL::key-bindings.zsh
 zi snippet "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
+
+zi light "mroth/evalcache"
+if [[ ! -d "$FNM_DIR" ]]; then
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+fi
+[ ! -f "$ZINIT[COMPLETIONS_DIR]/_fnm" ] && fnm completions > "$ZINIT[COMPLETIONS_DIR]/_fnm"
+export PATH="$PATH:$FNM_DIR"
+_evalcache fnm env --use-on-cd
 
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
