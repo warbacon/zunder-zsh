@@ -170,7 +170,7 @@ install_icons() {
     print_info "Installing icons..."
     mkdir -p "$HOME/.local/share/fonts"
     cd "$HOME/.local/share/fonts" && \
-        curl -fLo "Symbols Nerd Font.otf" \
+        curl -fLo "Symbols Nerd Font.ttf" \
         https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-1000-em%20Nerd%20Font%20Complete.ttf
     cd - || print_error "Can't return."
 }
