@@ -166,6 +166,15 @@ load_files() {
     unset prompt
 }
 
+install_icons() {
+    print_info "Installing icons..."
+    mkdir -p "$HOME/.local/share/fonts"
+    cd "$HOME/.local/share/fonts" && \
+        curl -fLo "Symbols Nerd Font.otf" \
+        https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-1000-em%20Nerd%20Font%20Complete.ttf
+    cd - || print_error "Can't return."
+}
+
 main() {
     select_system
 
@@ -183,6 +192,10 @@ main() {
     if [[ ! -d "$HOME/.local/share/zinit" ]]; then
         print_info "Installing zunder-zsh..."
         zsh -i -c exit
+    fi
+
+    if [[ ! -f "$HOME/.local/share/fonts/Symbols Nerd Font.otf" && $distro -ne 4 ]]; then
+        install_icons
     fi
 
     print_line
