@@ -30,19 +30,23 @@ zi light hlissner/zsh-autopair
 zi ice wait lucid \
     atclone"[ ! -f $WD_CONFIG ] && touch $WD_CONFIG" 
 zi light mfaerevaag/wd
+zi ice as"completion"
+zi snippet "$ZINIT[PLUGINS_DIR]/mfaerevaag---wd/_wd.sh"
 
 zi snippet OMZP::command-not-found
 zi snippet OMZP::sudo
 zi snippet OMZL::key-bindings.zsh
 zi snippet "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
 
-zi light "mroth/evalcache"
-if [[ ! -d "$FNM_DIR" ]]; then
+[ ! -d "$FNM_DIR" ] && \
     curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-fi
-[ ! -f "$ZINIT[COMPLETIONS_DIR]/_fnm" ] && fnm completions > "$ZINIT[COMPLETIONS_DIR]/_fnm"
+[ ! -f "$FNM_DIR/_fnm" ] && fnm completions > "$FNM_DIR/_fnm"
+zi ice as"completion"
+zi snippet "$FNM_DIR/_fnm"
 export PATH="$PATH:$FNM_DIR"
-_evalcache fnm env --use-on-cd
+
+zi ice atload"_evalcache fnm env --use-on-cd"
+zi light "mroth/evalcache"
 
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
