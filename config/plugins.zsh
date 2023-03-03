@@ -8,15 +8,14 @@ source "${ZINIT_HOME}/zinit.zsh"
 # PLUGIN CONFIGURATIONS ------------------------------------------------------------------
 ZSH_AUTOSUGGEST_MANUAL_REBIND=false
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-WD_CONFIG="$ZDOTDIR/.warprc"
 ZSH_EVALCACHE_DIR="$ZINIT[HOME_DIR]/zsh-evalcache"
 FNM_DIR="$HOME/.local/share/fnm"
 export FZF_ALT_C_COMMAND="fd -H --exclude=.git --type=directory"
 export FZF_CTRL_T_COMMAND="fd -H --exclude=.git"
 
 # PLUGINS --------------------------------------------------------------------------------
-zinit ice depth"1"
-zinit light "romkatv/powerlevel10k"
+zi ice depth"1"
+zi light "romkatv/powerlevel10k"
 
 zi ice from"gh-r" as"program"
 zi light "junegunn/fzf"

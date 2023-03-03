@@ -11,9 +11,9 @@ source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/key-bindings.zsh"
 
-# FZF COLORCHEME (https://github.com/base16-project/base16-fzf) --------------------------
-if [[ -f "$ZDOTDIR/fzf-theme.zsh" ]]; then
-    source "$ZDOTDIR/fzf-theme.zsh"
+# LOAD CUSTOM USER CONFIGURATION ---------------------------------------------------------
+if [[ -f "$ZDOTDIR/user-config.zsh" ]]; then
+    source "$ZDOTDIR/user-config.zsh"
 fi
 
 # LOAD POWERLEVEL10K PROMPT --------------------------------------------------------------
