@@ -9,9 +9,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=false
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_EVALCACHE_DIR="$ZINIT[HOME_DIR]/zsh-evalcache"
-FNM_DIR="$HOME/.local/share/fnm"
-export FZF_ALT_C_COMMAND="fd -H --exclude=.git --type=directory"
-export FZF_CTRL_T_COMMAND="fd -H --exclude=.git"
+FZF_ALT_C_COMMAND="fd -H --exclude=.git --type=directory"
+FZF_CTRL_T_COMMAND="fd -H --exclude=.git"
 
 # PLUGINS --------------------------------------------------------------------------------
 zi ice depth"1"
@@ -20,7 +19,7 @@ zi light "romkatv/powerlevel10k"
 zi ice from"gh-r" as"program"
 zi light "junegunn/fzf"
 
-zi ice from"gh-r" as"program" 
+zi ice from"gh-r" as"program" pick'fd*/fd'
 zi light "sharkdp/fd"
 
 zi ice from"gh-r" as"program" pick"bin/exa"
@@ -35,16 +34,6 @@ zi snippet OMZP::command-not-found
 zi snippet OMZP::sudo
 zi snippet OMZL::key-bindings.zsh
 zi snippet "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
-
-[ ! -d "$FNM_DIR" ] && \
-    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-export PATH="$PATH:$FNM_DIR"
-[ ! -f "$FNM_DIR/_fnm" ] && fnm completions > "$FNM_DIR/_fnm"
-zi ice as"completion"
-zi snippet "$FNM_DIR/_fnm"
-
-zi ice atload"_evalcache fnm env --use-on-cd"
-zi light "mroth/evalcache"
 
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
