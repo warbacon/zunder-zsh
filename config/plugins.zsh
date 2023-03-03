@@ -19,13 +19,13 @@ zi light "romkatv/powerlevel10k"
 zi ice from"gh-r" as"program"
 zi light "junegunn/fzf"
 
-zi ice from"gh-r" as"program" pick'fd*/fd'
+zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -m) = "x86_64" ]]'
 zi light "sharkdp/fd"
 
-zi ice from"gh-r" as"program" pick"bin/exa"
+zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]'
 zi light "ogham/exa"
-zi ice as"completion" 
-zi snippet "$ZINIT[PLUGINS_DIR]/ogham---exa/completions/exa.zsh"
+zi ice as"completion" has"exa"
+zi snippet "https://raw.githubusercontent.com/ogham/exa/master/completions/zsh/_exa"
 
 zi ice wait lucid
 zi light "hlissner/zsh-autopair"
