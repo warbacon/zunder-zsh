@@ -107,6 +107,14 @@ dependecy_check() {
     if ! command_exists git; then
         install_program git
     fi
+
+    if [ $distro -eq 3 ] && ! command_exists sqlite3; then
+        install_program sqlite
+    fi
+
+    if [ $distro -eq 4 ] && ! command_exists fd; then
+        install_program fd
+    fi
 }
 
 set_default() {
@@ -180,9 +188,11 @@ install_icons() {
 main() {
     select_system
 
-    if ! command_exists zsh || ! command_exists git; then
-        dependecy_check
-    fi
+if ! command_exists zsh || ! command_exists git || \
+   ([ $distro -eq 3 ] && ! command_exists sqlite3) || \
+   ([ $distro -eq 4 ] && ! command_exists fd); then
+    dependecy_check
+fi
 
     default_applied=false
     if [[ $(basename "$SHELL") != "zsh" ]]; then
