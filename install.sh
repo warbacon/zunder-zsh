@@ -156,6 +156,8 @@ load_files() {
             cp --verbose ./config/.zshrc "$ZDOTDIR"
             cp --verbose ./config/.zshenv "$HOME"
             mv --verbose "$HOME/.zsh_history" "$ZDOTDIR" 2> /dev/null
+            [ ! -f "$ZDOTDIR/user-config.zsh" ] && \
+                echo "# Write your configurations here" > "$ZDOTDIR/user-config.zsh"
             ;;
         *)
             print_error "Canceled. This won't apply your changes at all," \
@@ -194,7 +196,7 @@ main() {
         zsh -i -c exit
     fi
 
-    if [[ ! -f "$HOME/.local/share/fonts/Symbols Nerd Font.otf" && $distro -ne 4 ]]; then
+    if [[ ! -f "$HOME/.local/share/fonts/Symbols Nerd Font.ttf" && $distro -ne 4 ]]; then
         install_icons
     fi
 
