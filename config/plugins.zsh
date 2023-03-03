@@ -11,27 +11,26 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 WD_CONFIG="$ZDOTDIR/.warprc"
 ZSH_EVALCACHE_DIR="$ZINIT[HOME_DIR]/zsh-evalcache"
 FNM_DIR="$HOME/.local/share/fnm"
+export FZF_ALT_C_COMMAND="fd -H --exclude=.git --type=directory"
+export FZF_CTRL_T_COMMAND="fd -H --exclude=.git"
 
 # PLUGINS --------------------------------------------------------------------------------
 zinit ice depth"1"
-zinit light romkatv/powerlevel10k
+zinit light "romkatv/powerlevel10k"
 
 zi ice from"gh-r" as"program"
-zi light junegunn/fzf
+zi light "junegunn/fzf"
+
+zi ice from"gh-r" as"program" 
+zi light "sharkdp/fd"
 
 zi ice from"gh-r" as"program" pick"bin/exa"
-zi light ogham/exa
+zi light "ogham/exa"
 zi ice as"completion" 
 zi snippet "$ZINIT[PLUGINS_DIR]/ogham---exa/completions/exa.zsh"
 
 zi ice wait lucid
-zi light hlissner/zsh-autopair
-
-zi ice wait lucid \
-    atclone"[ ! -f $WD_CONFIG ] && touch $WD_CONFIG" 
-zi light mfaerevaag/wd
-zi ice as"completion"
-zi snippet "$ZINIT[PLUGINS_DIR]/mfaerevaag---wd/_wd.sh"
+zi light "hlissner/zsh-autopair"
 
 zi snippet OMZP::command-not-found
 zi snippet OMZP::sudo
