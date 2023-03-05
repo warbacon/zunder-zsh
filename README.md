@@ -26,7 +26,6 @@ See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins
 | la    | List directory contents with hidden files            |
 | lla   | Long list directory contents with hidden files       |
 | ..    | Change to the upper directory                        |
-| lg    | lazygit (requires lazygit to be installed manually)  |
 | q     | exit                                                 |
 | clr   | clear                                                |
 
