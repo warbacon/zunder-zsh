@@ -5,13 +5,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# PLUGIN CONFIGURATIONS ------------------------------------------------------------------
-ZSH_AUTOSUGGEST_MANUAL_REBIND=false
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_EVALCACHE_DIR="$ZINIT[HOME_DIR]/zsh-evalcache"
-FZF_ALT_C_COMMAND="fd -H --exclude=.git --type=directory"
-FZF_CTRL_T_COMMAND="fd -H --exclude=.git"
-
 # PLUGINS --------------------------------------------------------------------------------
 zi ice depth"1"
 zi light "romkatv/powerlevel10k"
@@ -19,10 +12,12 @@ zi light "romkatv/powerlevel10k"
 zi ice from"gh-r" as"program"
 zi light "junegunn/fzf"
 
-zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -m) = "x86_64" ]]'
+zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -m) = "x86_64" ]]' \
+    atload"FZF_ALT_C_COMMAND=\"fd -H --exclude=.git --type=directory\";
+    FZF_CTRL_T_COMMAND=\"fd -H --exclude=.git\""
 zi light "sharkdp/fd"
 
-zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]'
+zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]' has"unzip"
 zi light "ogham/exa"
 zi ice as"completion" has"exa"
 zi snippet "https://raw.githubusercontent.com/ogham/exa/master/completions/zsh/_exa"
@@ -38,7 +33,9 @@ zi snippet "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bind
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
+    atload"ZSH_AUTOSUGGEST_MANUAL_REBIND=false;
+           ZSH_AUTOSUGGEST_STRATEGY=(history completion);
+           _zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions
