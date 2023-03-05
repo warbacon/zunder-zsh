@@ -60,6 +60,8 @@ On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages
 Only the following packages are needed to get everything working as intended:
 - zsh
 - git
+- curl
+- unzip
 
 **If your operating system is supported, the script will make sure you have everything correctly installed.**
 
@@ -103,7 +105,7 @@ and you can see more in [here](https://github.com/tinted-theming/base16-fzf/tree
 Sourcing one of them should do the work:
 
 ```zsh
-source your-theme.config
+source "$ZDOTDIR/your-theme.config"
 ```
 
 ### Changing LS_COLORS
@@ -132,6 +134,7 @@ You can see more information [here](https://github.com/Schniz/fnm).
 
 You can install and load it at maximum speed using this code:
 ```zsh
+# FNM
 FNM_DIR="$HOME/.local/share/fnm"
 export PATH="$PATH:$FNM_DIR"
 
@@ -145,8 +148,10 @@ zi ice as"completion"
 zi snippet "$FNM_DIR/_fnm"
 
 # Load fnm
-zi ice atload"_evalcache fnm env --use-on-cd"
+zi ice atload"ZSH_EVALCACHE_DIR=\"$ZINIT[HOME_DIR]/zsh-evalcache\" \
+             _evalcache fnm env --use-on-cd"
 zi light "mroth/evalcache"
+
 ```
 
 ## 🔧 Troubleshooting
