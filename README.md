@@ -1,10 +1,8 @@
 # ⚡ Zunder-zsh
 
-**Zunder-zsh** is a configuration script to make zsh work as it should. 
+**Zunder-zsh** is a zsh configuration designed to make your terminal experience amazing.
 
 ![example](./assets/preview.gif)
-
-> Using Catppuccin Mocha colorscheme with JetBrainsMono Nerd Font
 
 ## 🪧 Features
 - Clean and fast.
@@ -20,15 +18,14 @@ Check out [zinit](https://github.com/zdharma-continuum/zinit).
 See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### New aliases
-| Alias | Command                                              |
-| ----- | ---------------------------------------------------- |
-| ll    | Long list directory contents                         |
-| la    | List directory contents with hidden files            |
-| lla   | Long list directory contents with hidden files       |
-| ..    | Change to the upper directory                        |
-| q     | exit                                                 |
-| clr   | clear                                                |
-
+| Alias | Command                                         |
+| ----- | ----------------------------------------------- |
+| ..    | Change to the upper directory                   |
+| q     | exit                                            |
+| clr   | clear                                           |
+| ll    | Long list directory contents                    |
+| la    | List directory contents with hidden files       |
+| lla   | Long list directory contents with hidden files  |
 
 ### Installed plugins
 - [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - syntax
@@ -42,7 +39,6 @@ quotes and more.
 press the Esc key twice to put `sudo` at the beginning.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found) plugin from Oh My Zsh -
 suggests installing the required program automatically if it does not find the entered command.
-
 
 ### Supported operating systems
 - Arch Linux and derivatives (Manjaro, Endeavour OS...).
@@ -102,8 +98,9 @@ export FZF_DEFAULT_OPTS=" \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 ```
 
-All the Catppuccin presets are in [catppuccin/fzf](https://github.com/catppuccin/fzf)
-and you can see more in [here](https://github.com/tinted-theming/base16-fzf/tree/main/bash).
+All the Catppuccin presets are in [catppuccin/fzf](https://github.com/catppuccin/fzf).
+
+You can see more in [tinted-theming/base16-fzf](https://github.com/tinted-theming/base16-fzf/tree/main/bash).
 Sourcing one of them should do the work:
 
 ```zsh

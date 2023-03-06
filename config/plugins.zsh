@@ -14,7 +14,7 @@ zi light "junegunn/fzf"
 
 zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -m) = "x86_64" ]]' \
     atload"FZF_ALT_C_COMMAND=\"fd -H --exclude=.git --type=directory\";
-    FZF_CTRL_T_COMMAND=\"fd -H --exclude=.git\""
+           FZF_CTRL_T_COMMAND=\"fd -H --exclude=.git\""
 zi light "sharkdp/fd"
 
 zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]' has"unzip"
