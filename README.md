@@ -2,7 +2,7 @@
 
 **Zunder-zsh** is a configuration script to make zsh work as it should. 
 
-![example](./assets/preview.webp)
+![example](./assets/preview.gif)
 
 > Using Catppuccin Mocha colorscheme with JetBrainsMono Nerd Font
 
@@ -54,8 +54,10 @@ Might support more in the future, depending on requests.
 
 ## 🚀 Getting started
 ### Dependencies
-You **must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) and set it as default font in your terminal** to see all the icons correctly. 
-On **Android**, you can install [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
+Although icons will be installed automatically, is **recommended to install 
+must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) 
+and set it as default font in your terminal**. On **Android**, you can install 
+[Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
 
 Only the following packages are needed to get everything working as intended:
 - zsh
