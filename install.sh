@@ -103,22 +103,26 @@ dependecy_check() {
 
     if ! command_exists zsh; then
         install_program zsh
-    fi
-    if ! command_exists git; then
+    elif ! command_exists unzip; then
+        install_program unzip
+    elif ! command_exists curl; then
+        install_program curl
+    elif ! command_exists git; then
         install_program git
-    fi
-
-    if [ $distro -eq 3 ] && ! command_exists sqlite3; then
+    elif [ $distro -eq 3 ] && ! command_exists sqlite3; then
         install_program sqlite
-    fi
-
-    if [ $distro -eq 4 ]; then
+    elif [ $distro -eq 4 ]; then
         if ! command_exists fd; then
             install_program fd
         fi
         if ! command_exists exa; then
             install_program exa
         fi
+        if ! command_exists file; then
+            install_program file
+        fi
+    else
+        print_success "All dependencies are satisfied."
     fi
 }
 
@@ -193,11 +197,7 @@ install_icons() {
 main() {
     select_system
 
-if ! command_exists zsh || ! command_exists git || \
-   ([ $distro -eq 3 ] && ! command_exists sqlite3) || \
-   ([ $distro -eq 4 ] && ! command_exists fd || ! command_exists exa); then
     dependecy_check
-fi
 
     default_applied=false
     if [[ $(basename "$SHELL") != "zsh" ]]; then
