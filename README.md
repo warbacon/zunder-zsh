@@ -147,10 +147,9 @@ zi ice as"completion"
 zi snippet "$FNM_DIR/_fnm"
 
 # Load fnm
-zi ice atload"ZSH_EVALCACHE_DIR=\"$ZINIT[HOME_DIR]/zsh-evalcache\" \
-             _evalcache fnm env --use-on-cd"
+zi ice atload"ZSH_EVALCACHE_DIR=\"$ZINIT[HOME_DIR]/zsh-evalcache\";
+    _evalcache fnm env --use-on-cd"
 zi light "mroth/evalcache"
-
 ```
 
 ## 🔧 Troubleshooting
