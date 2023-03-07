@@ -1,4 +1,9 @@
+# Wizard options: nerdfont-complete + powerline, large icons, unicode, lean_8colors,
+# 2 lines, disconnected, no frame, sparse, few icons, concise, instant_prompt=verbose.
 # Type `p10k configure` to generate another config.
+#
+# Config for Powerlevel10k with 8-color lean prompt style. Type `p10k configure` to generate
+# your own config based on it.
 #
 # Tip: Looking for a nice color? Here's a one-liner to print colormap.
 #
@@ -41,15 +46,15 @@
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
-    # direnv                  # direnv status (https://direnv.net/)
-    # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-    # anaconda                # conda environment (https://conda.io/)
-    # pyenv                   # python environment (https://github.com/pyenv/pyenv)
-    # goenv                   # go environment (https://github.com/syndbg/goenv)
-    # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
-    # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    direnv                  # direnv status (https://direnv.net/)
+    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    anaconda                # conda environment (https://conda.io/)
+    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    goenv                   # go environment (https://github.com/syndbg/goenv)
+    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
     # rust_version          # rustc version (https://www.rust-lang.org)
@@ -58,42 +63,42 @@
     # laravel_version       # laravel php framework version (https://laravel.com/)
     # java_version          # java version (https://www.java.com/)
     # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
-    # rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
-    # rvm                     # ruby version from rvm (https://rvm.io)
-    # fvm                     # flutter version management (https://github.com/leoafarias/fvm)
-    # luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
-    # jenv                    # java version from jenv (https://github.com/jenv/jenv)
-    # plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
-    # perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
-    # phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
-    # scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
-    # haskell_stack           # haskell version from stack (https://haskellstack.org/)
-    # kubecontext             # current kubernetes context (https://kubernetes.io/)
-    # terraform               # terraform workspace (https://www.terraform.io)
+    rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
+    rvm                     # ruby version from rvm (https://rvm.io)
+    fvm                     # flutter version management (https://github.com/leoafarias/fvm)
+    luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+    jenv                    # java version from jenv (https://github.com/jenv/jenv)
+    plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
+    perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
+    phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
+    scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
+    haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    kubecontext             # current kubernetes context (https://kubernetes.io/)
+    terraform               # terraform workspace (https://www.terraform.io)
     # terraform_version     # terraform version (https://www.terraform.io)
-    # aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-    # aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-    # azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-    # gcloud                  # google cloud cli account and project (https://cloud.google.com/)
-    # google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
-    # toolbox                 # toolbox name (https://github.com/containers/toolbox)
-    # context                 # user@hostname
-    # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-    # ranger                  # ranger shell (https://github.com/ranger/ranger)
-    # nnn                     # nnn shell (https://github.com/jarun/nnn)
-    # lf                      # lf shell (https://github.com/gokcehan/lf)
-    # xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
-    # vim_shell               # vim shell indicator (:sh)
-    # midnight_commander      # midnight commander shell (https://midnight-commander.org/)
-    # nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    toolbox                 # toolbox name (https://github.com/containers/toolbox)
+    context                 # user@hostname
+    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    ranger                  # ranger shell (https://github.com/ranger/ranger)
+    nnn                     # nnn shell (https://github.com/jarun/nnn)
+    lf                      # lf shell (https://github.com/gokcehan/lf)
+    xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
+    vim_shell               # vim shell indicator (:sh)
+    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
+    nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
     # disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
-    # todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
-    # timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    # taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # cpu_arch              # CPU architecture
     # time                  # current time
     # =========================[ Line #2 ]=========================
@@ -190,7 +195,7 @@
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
   # Prompt symbol in command vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION=''
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
   # Prompt symbol in visual vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='V'
   # Prompt symbol in overwrite vi mode.
@@ -203,17 +208,17 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=6
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=4
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=6
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=4
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=6
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=4
   # Set to true to display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -341,7 +346,7 @@
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\UE0A0 '
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -368,7 +373,7 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'   # default foreground
-      local      clean='%5F'  # pink foreground
+      local      clean='%2F'  # green foreground
       local   modified='%3F'  # yellow foreground
       local  untracked='%4F'  # blue foreground
       local conflicted='%1F'  # red foreground
@@ -478,7 +483,7 @@
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
   # Icon color.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=2
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=
   # Custom icon.
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=
@@ -515,7 +520,7 @@
 
   # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
   # it will signify error by turning red.
-  typeset -g POWERLEVEL9K_STATUS_ERROR=true
+  typeset -g POWERLEVEL9K_STATUS_ERROR=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=1
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
 
@@ -542,7 +547,7 @@
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
   # Custom icon.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
   # typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX='%ftook '
 
@@ -1186,7 +1191,7 @@
   #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
   # Show kubecontext only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show kubecontext.
-  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold|kubent'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold|kubent|kubecolor'
 
   # Kubernetes context classes for the purpose of using different colors, icons and expansions with
   # different contexts.
