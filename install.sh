@@ -1,31 +1,8 @@
 #!/bin/bash
 
 source ./lib/color.sh
+source ./lib/functions.sh
 source ./lib/constants.sh
-
-command_exists() {
-    command -v "$@" >/dev/null 2>&1
-}
-
-print_error() {
-    printf "\n%b%s%b\n" "$RED$BOLD" "$*" "$NORMAL"
-}
-
-print_warning() {
-    printf "\n%b%s%b\n" "$YELLOW$BOLD" "$*" "$NORMAL"
-}
-
-print_success() {
-    printf "\n%b%s%b\n" "$GREEN$ITALIC" "$*" "$NORMAL"
-}
-
-print_info() {
-    printf "\n%b%s %b%s%b\n" "$BLUE$BOLD" "::" "$NORMAL$BOLD" "$*" "$NORMAL"
-}
-
-print_line() {
-    printf '%*s\n' "$(stty size | cut -d' ' -f2)" '' | tr ' ' '-'
-}
 
 install_program() {
     print_warning "$1 is not installed and is required."
@@ -54,7 +31,6 @@ install_program() {
             esac
             ;;
     esac
-    unset prompt
 }
 
 select_system() {
@@ -101,28 +77,28 @@ dependecy_check() {
     echo "DEPENDENCY CHECK"
     print_line
 
-    if ! command_exists zsh; then
-        install_program zsh
-    elif ! command_exists unzip; then
-        install_program unzip
-    elif ! command_exists curl; then
-        install_program curl
-    elif ! command_exists git; then
-        install_program git
-    elif [ $distro -eq 3 ] && ! command_exists sqlite3; then
-        install_program sqlite
-    elif [ $distro -eq 4 ]; then
-        if ! command_exists fd; then
-            install_program fd
-        fi
-        if ! command_exists exa; then
-            install_program exa
-        fi
-        if ! command_exists file; then
-            install_program file
-        fi
+    declare -a dependencies
+
+    ! command_exists zsh && dependencies+=(zsh)
+    ! command_exists unzip && dependencies+=(unzip)
+    ! command_exists curl && dependencies+=(curl)
+    ! command_exists git && dependencies+=(git)
+
+    [ $distro -eq 3 ] && ! command_exists sqlite3 && dependencies+=(sqlite)
+
+    if [ $distro -eq 4 ]; then
+        ! command_exists fd && dependencies+=(fd)
+        ! command_exists exa && dependencies+=(exa)
+        ! command_exists file && dependencies+=(file)
     fi
-    print_success "All dependencies are satisfied."
+
+    if [ ${#dependencies[@]} -eq 0 ]; then
+        print_success "All dependencies are satisfied."
+    else
+        for dependency in "${dependencies[@]}"; do
+            install_program "$dependency"
+        done
+    fi
 }
 
 set_default() {
@@ -181,7 +157,6 @@ load_files() {
             exit 1
             ;;
     esac
-    unset prompt
 }
 
 install_icons() {
@@ -189,7 +164,7 @@ install_icons() {
     mkdir -p "$HOME/.local/share/fonts"
     cd "$HOME/.local/share/fonts" && \
         curl -fLo "Symbols Nerd Font.ttf" \
-        https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-1000-em%20Nerd%20Font%20Complete.ttf
+            "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-1000-em%20Nerd%20Font%20Complete.ttf"
     cd - || print_error "Can't return."
 }
 
