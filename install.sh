@@ -121,9 +121,8 @@ dependecy_check() {
         if ! command_exists file; then
             install_program file
         fi
-    else
-        print_success "All dependencies are satisfied."
     fi
+    print_success "All dependencies are satisfied."
 }
 
 set_default() {
