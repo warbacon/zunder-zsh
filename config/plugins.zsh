@@ -31,7 +31,7 @@ zi wait lucid light-mode for \
 zi snippet OMZL::key-bindings.zsh
 
 zi wait lucid light-mode for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+    atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
     atload"ZSH_AUTOSUGGEST_MANUAL_REBIND=false;
     ZSH_AUTOSUGGEST_STRATEGY=(history completion);
