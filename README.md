@@ -51,7 +51,7 @@ Might support more in the future, depending on requests.
 ## 🚀 Getting started
 ### Dependencies
 Although icons will be installed automatically, is **recommended to install 
-must install a [Nerd Font](https://www.nerdfonts.com/font-downloads) 
+a [Nerd Font](https://www.nerdfonts.com/font-downloads) 
 and set it as default font in your terminal**. On **Android**, you can install 
 [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
 
