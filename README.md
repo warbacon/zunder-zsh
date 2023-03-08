@@ -86,10 +86,10 @@ to make sure that is not overwritten if you update zunder-zsh.
 Here are some additional settings you can add:
 
 ### Customize fzf theme
-Maybe bothers you that the colorscheme of `fzf` is diferent from the theme
+Maybe bothers you that the colorscheme of `fzf` is different from the theme
 you set in your terminal. The `fzf` theme can be changed, so you might want to do that.
 
-Here is a example changing the colorscheme to Catppuccin Mocha:
+Here is an example changing the colorscheme to Catppuccin Mocha:
 
 ```zsh
 export FZF_DEFAULT_OPTS=" \
@@ -125,7 +125,7 @@ set one in your `user-config.zsh` using:
 export LS_COLORS=$(vivid generate your-theme)
 ```
 
-Replacing `your-theme` with your prefered theme.
+Replacing `your-theme` with your preferred theme.
 
 ### Installing fnm
 `fnm` is a node version manager written in Rust and built with speed in mind.
