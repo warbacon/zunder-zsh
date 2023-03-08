@@ -70,7 +70,7 @@ Only the following packages are needed to get everything working as intended:
    git clone https://github.com/Warbacon/zunder-zsh.git
    ```
 
-2. Enter the cloned repository and run the `install.sh` script.
+2. Enter the cloned repository and run the `install.sh` script:
    
    ```sh
    cd ./zunder-zsh
