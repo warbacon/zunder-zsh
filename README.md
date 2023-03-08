@@ -165,7 +165,7 @@ Additionally, if you used previously another shell, you can revert it using the 
 ```bash
 sudo usermod -s $(which bash) $USER
 ```
-You can change bash for the shell of your choice
+You can change bash for the shell of your choice.
 
 ### Man command highlighting as error in Arch Linux
 Just run these commands if you are using `man-db` (most likely):
