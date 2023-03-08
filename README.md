@@ -109,7 +109,7 @@ source "$ZDOTDIR/your-theme.config"
 
 ### Changing LS_COLORS
 The variable called `LS_COLORS` controls the colors the output of some programs will have.
-The easiest method to set a custom colors is installing [vivid](https://github.com/sharkdp/vivid).
+The easiest method to set a custom colors is by installing [vivid](https://github.com/sharkdp/vivid).
 
 You can install it in any system using by putting this code in your `user-config.zsh` file:
 
