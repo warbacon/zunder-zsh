@@ -35,8 +35,6 @@ executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
 - [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically closes parentheses,
 quotes and more.
-- [zsh-auto-notify](https://github.com/MichaelAquilina/zsh-auto-notify) - notifies you
-when a long command ends.
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
 press the Esc key twice to put `sudo` at the beginning.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found) plugin from Oh My Zsh -
