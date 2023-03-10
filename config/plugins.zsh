@@ -6,28 +6,20 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # PLUGINS --------------------------------------------------------------------------------
-zi ice depth"1"
-zi light "romkatv/powerlevel10k"
-
 zi ice from"gh-r" as"program"
 zi light "junegunn/fzf"
 
-zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -m) = "x86_64" ]]' \
+zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -o) != "Android" ]]' \
     atload"FZF_ALT_C_COMMAND=\"fd -H --exclude=.git --type=directory\";
     FZF_CTRL_T_COMMAND=\"fd -H --exclude=.git\""
 zi light "sharkdp/fd"
 
-zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]' has"unzip" \
+zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -o) != "Android" ]]' has"unzip" \
     atclone"cp completions/exa.zsh _exa" atpull'%atclone'
 zi light "ogham/exa"
 
-zi wait lucid light-mode for \
-    "hlissner/zsh-autopair" \
-    "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh" \
-    OMZP::command-not-found \
-    OMZP::sudo
-
-zi snippet OMZL::key-bindings.zsh
+zi ice depth"1"
+zi light "romkatv/powerlevel10k"
 
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
@@ -38,4 +30,13 @@ zi wait lucid light-mode for \
         zsh-users/zsh-autosuggestions \
     as"completion" \
         zsh-users/zsh-completions
+
+zi wait lucid light-mode for \
+    "hlissner/zsh-autopair" \
+    "MichaelAquilina/zsh-auto-notify" \
+    "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh" \
+    OMZP::command-not-found \
+    OMZP::sudo
+
+zi snippet OMZL::key-bindings.zsh
 
