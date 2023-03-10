@@ -33,7 +33,6 @@ zi wait lucid light-mode for \
 
 zi wait lucid light-mode for \
     "hlissner/zsh-autopair" \
-    "MichaelAquilina/zsh-auto-notify" \
     "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh" \
     OMZP::command-not-found \
     OMZP::sudo
