@@ -17,10 +17,9 @@ zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -m) = "x86_64" ]]' \
     FZF_CTRL_T_COMMAND=\"fd -H --exclude=.git\""
 zi light "sharkdp/fd"
 
-zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]' has"unzip"
+zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -m) = "x86_64" ]]' has"unzip" \
+    atclone"cp completions/exa.zsh _exa" atpull'%atclone'
 zi light "ogham/exa"
-zi ice as"completion" has"exa"
-zi snippet "https://raw.githubusercontent.com/ogham/exa/master/completions/zsh/_exa"
 
 zi wait lucid light-mode for \
     "hlissner/zsh-autopair" \
@@ -39,3 +38,4 @@ zi wait lucid light-mode for \
         zsh-users/zsh-autosuggestions \
     as"completion" \
         zsh-users/zsh-completions
+
