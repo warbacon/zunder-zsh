@@ -133,10 +133,9 @@ You can see more information [here](https://github.com/Schniz/fnm).
 
 You can install and load it at maximum speed using this code:
 ```zsh
-zi ice wait lucid from"gh-r" as"command" \
-    atclone"./fnm completions --shell zsh > _fnm; ./fnm env --use-on-cd > init.zsh" \
-    atpull'%atclone' src"init.zsh" \
-    atinit"export PATH=\"$PATH:$HOME/.local/share/fnm\""
+zi ice from"gh-r" as"command" \
+    atclone"./fnm env --use-on-cd > init.zsh; ./fnm completions --shell zsh > _fnm" \
+    atpull'%atclone' src"init.zsh"
 zi light "Schniz/fnm"
 ```
 
