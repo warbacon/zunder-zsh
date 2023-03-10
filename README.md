@@ -133,23 +133,11 @@ You can see more information [here](https://github.com/Schniz/fnm).
 
 You can install and load it at maximum speed using this code:
 ```zsh
-# FNM
-FNM_DIR="$HOME/.local/share/fnm"
-export PATH="$PATH:$FNM_DIR"
-
-# Install fnm
-[ ! -d "$FNM_DIR" ] && \
-    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-
-# Install completions for fnm
-[ ! -f "$FNM_DIR/_fnm" ] && fnm completions > "$FNM_DIR/_fnm"
-zi ice as"completion"
-zi snippet "$FNM_DIR/_fnm"
-
-# Load fnm
-zi ice atload"ZSH_EVALCACHE_DIR=\"$ZDOTDIR/.zsh-evalcache\";
-    _evalcache fnm env --use-on-cd"
-zi light "mroth/evalcache"
+zi ice wait lucid from"gh-r" as"command" \
+    atclone"./fnm completions --shell zsh > _fnm; ./fnm env --use-on-cd > init.zsh" \
+    atpull'%atclone' src"init.zsh" \
+    atinit"export PATH=\"$PATH:$HOME/.local/share/fnm\""
+zi light "Schniz/fnm"
 ```
 
 ## 🔧 Troubleshooting
