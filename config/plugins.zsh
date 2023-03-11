@@ -18,10 +18,13 @@ zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -o) != "Android" ]]' h
     atclone"cp completions/exa.zsh _exa" atpull'%atclone'
 zi light "ogham/exa"
 
-zi ice depth"1"
-zi light "romkatv/powerlevel10k"
+zi snippet OMZL::key-bindings.zsh
 
 zi wait lucid light-mode for \
+    OMZP::command-not-found \
+    OMZP::sudo \
+    "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh" \
+    "hlissner/zsh-autopair" \
     atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
     atload"ZSH_AUTOSUGGEST_MANUAL_REBIND=false;
@@ -31,11 +34,6 @@ zi wait lucid light-mode for \
     as"completion" \
         zsh-users/zsh-completions
 
-zi wait lucid light-mode for \
-    "hlissner/zsh-autopair" \
-    "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh" \
-    OMZP::command-not-found \
-    OMZP::sudo
-
-zi snippet OMZL::key-bindings.zsh
+zi ice depth"1"
+zi light "romkatv/powerlevel10k"
 
