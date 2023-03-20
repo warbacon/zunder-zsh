@@ -1,10 +1,11 @@
 # ALIASES --------------------------------------------------------------------------------
 command_exists() { command -v "$@" >/dev/null 2>&1 }
 if command_exists exa; then
-    alias ls="exa --icons --group-directories-first"
-    alias ll="ls -lh --git"
-    alias la="ls -a"
-    alias lla="ll -a"
+    alias exa="exa --icons --group-directories-first"
+    alias ls="exa"
+    alias la="exa -a"
+    alias ll="exa --git -lh"
+    alias lla="exa --git -lha"
 else
     alias ls="ls --color --group-directories-first"
     alias ll="ls -lh"
@@ -13,4 +14,4 @@ else
 fi
 alias q="exit"
 alias clr="clear"
-alias ..="cd .."
+..() { cd .. }
