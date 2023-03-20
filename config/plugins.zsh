@@ -25,15 +25,14 @@ zi light ogham/exa
 zi snippet OMZL::key-bindings.zsh
 
 zi wait lucid light-mode for \
+    https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
     OMZP::command-not-found \
     OMZP::sudo \
-    https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
-    as"completion" \
-        zsh-users/zsh-completions \
     hlissner/zsh-autopair \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
-    atload"ZSH_AUTOSUGGEST_MANUAL_REBIND=true;
-        _zsh_autosuggest_start" \
+    as"completion" \
+        zsh-users/zsh-completions \
+    atload"ZSH_AUTOSUGGEST_MANUAL_REBIND=true; _zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions
 
