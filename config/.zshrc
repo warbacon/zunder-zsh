@@ -1,20 +1,18 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#======================================================
+#                       _                       _     
+#   _____   _ _ __   __| | ___ _ __     _______| |__  
+#  |_  / | | | '_ \ / _` |/ _ \ '__|___|_  / __| '_ \ 
+#   / /| |_| | | | | (_| |  __/ | |_____/ /\__ \ | | |
+#  /___|\__,_|_| |_|\__,_|\___|_|      /___|___/_| |_|
+#                                                     
+#======================================================
 
-# LOAD CONFIGURATIONS --------------------------------------------------------------------
+# LOAD CONFIGURATIONS ----------------------------------------------------------
 source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/key-bindings.zsh"
 
-# LOAD CUSTOM USER CONFIGURATION ---------------------------------------------------------
-if [[ -f "$ZDOTDIR/user-config.zsh" ]]; then
-    source "$ZDOTDIR/user-config.zsh"
-fi
+# LOAD CUSTOM USER CONFIGURATION -----------------------------------------------
+[ -f "$ZDOTDIR/user-config.zsh" ] && source "$ZDOTDIR/user-config.zsh"
 
-# LOAD POWERLEVEL10K PROMPT --------------------------------------------------------------
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

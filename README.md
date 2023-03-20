@@ -7,8 +7,7 @@
 ## 🪧 Features
 - Clean and lightning-fast.
 - Autosuggestions and syntax highlighting. 
-- Beautiful and lag-free custom prompt thanks to
-[Powerlevel10k](https://github.com/romkatv/powerlevel10k).
+- Fast and customizable prompt thanks to [Starship](https://starship.rs).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Full [Git](https://git-scm.com/) integration.
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.

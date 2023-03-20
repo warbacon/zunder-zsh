@@ -140,7 +140,7 @@ load_files() {
         [yY])
             printf "\n"
             mkdir --verbose -p "$ZDOTDIR" 2> /dev/null
-            cp --verbose ./config/.p10k.zsh "$ZDOTDIR"
+            cp --verbose ./config/starship.toml "$ZDOTDIR"
             cp --verbose ./config/aliases.zsh "$ZDOTDIR"
             cp --verbose ./config/options.zsh "$ZDOTDIR"
             cp --verbose ./config/key-bindings.zsh "$ZDOTDIR"

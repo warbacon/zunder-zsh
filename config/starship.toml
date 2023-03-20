@@ -1,0 +1,20 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$cmd_duration\
+$line_break\
+$jobs\
+$character"""
+
+[directory]
+read_only = " "
+truncation_length = 8
+
+[git_branch]
+format = "on [$symbol$branch(:$remote_branch)]($style) "
