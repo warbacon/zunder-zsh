@@ -18,3 +18,9 @@ truncation_length = 8
 
 [git_branch]
 format = "on [$symbol$branch(:$remote_branch)]($style) "
+
+[character]
+format = "$symbol"
+success_symbol = "[](yellow) "
+error_symbol = "[](red) "
+
