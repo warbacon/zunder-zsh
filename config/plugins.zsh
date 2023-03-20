@@ -19,7 +19,7 @@ zi ice from"gh-r" as"program" pick"fd*/fd" if'[[ $(uname -o) != "Android" ]]' \
 zi light sharkdp/fd
 
 zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -o) != "Android" ]]' has"unzip" \
-    atclone"cp completions/exa.zsh _exa" at./scripts/auto-install.shpull'%atclone'
+    atclone"cp completions/exa.zsh _exa" pull'%atclone'
 zi light ogham/exa
 
 zi snippet OMZL::key-bindings.zsh
