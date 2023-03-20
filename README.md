@@ -133,9 +133,12 @@ You can see more information [here](https://github.com/Schniz/fnm).
 You can install and load it at maximum speed using this code:
 ```zsh
 zi ice wait lucid from"gh-r" as"command" \
-    atclone"./fnm env --use-on-cd > init.zsh; ./fnm completions --shell zsh > _fnm" \
-    atpull'%atclone' src"init.zsh"
+    atclone"./fnm completions --shell zsh > _fnm" atpull'%atclone'
 zi light "Schniz/fnm"
+
+zi ice atload"ZSH_EVALCACHE_DIR=\"$ZDOTDIR/.zsh-evalcache\";
+    _evalcache fnm env --use-on-cd"
+zi light mroth/evalcache
 ```
 
 ## 🔧 Troubleshooting
