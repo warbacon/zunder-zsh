@@ -15,7 +15,6 @@ setopt menu_complete
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' rehash true
 
 # OTHER ----------------------------------------------------------------------------------
