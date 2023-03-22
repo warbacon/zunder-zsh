@@ -6,8 +6,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # PLUGINS ----------------------------------------------------------------------
 zinit ice as"program" from"gh-r" \
-    atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
-    atpull"%atclone" src"init.zsh" nocompile'!' compile"init.zsh"
+          atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh" nocompile'!'
 zinit light starship/starship
 
 zi ice from"gh-r" as"program"

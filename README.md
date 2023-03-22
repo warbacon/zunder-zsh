@@ -113,18 +113,13 @@ The easiest method to set a custom colors is by installing [vivid](https://githu
 You can install it in any system using by putting this code in your `user-config.zsh` file:
 
 ```zsh
-zi ice from"gh-r" as"program" pick'vivid*/vivid'
+zi ice from"gh-r" as"program" pick'vivid*/vivid' \
+    atload'export LS_COLORS="$(vivid generate catppuccin-mocha)" &&
+    zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"'
 zi light "sharkdp/vivid"
 ```
-
-To see all available themes, you can use the `vivid themes` command and then
-set one in your `user-config.zsh` using:
-
-```zsh
-export LS_COLORS=$(vivid generate your-theme)
-```
-
-Replacing `your-theme` with your preferred theme.
+Replacing `your-theme` with your preferred theme. This will also enable
+LS_COLORS on completions.
 
 ### Installing fnm
 `fnm` is a node version manager written in Rust and built with speed in mind.
@@ -132,13 +127,10 @@ You can see more information [here](https://github.com/Schniz/fnm).
 
 You can install and load it at maximum speed using this code:
 ```zsh
-zi ice wait lucid from"gh-r" as"command" \
-    atclone"./fnm completions --shell zsh > _fnm" atpull'%atclone'
+zi ice wait lucid from"gh-r" as"command" has"unzip" \
+    atclone"./fnm completions --shell zsh > _fnm && echo $PWD" \
+    atpull'%atclone' atinit"./fnm env --use-on-cd > init.zsh" src"init.zsh" nocompile'!'
 zi light "Schniz/fnm"
-
-zi ice atload"ZSH_EVALCACHE_DIR=\"$ZDOTDIR/.zsh-evalcache\";
-    _evalcache fnm env --use-on-cd"
-zi light mroth/evalcache
 ```
 
 ## 🔧 Troubleshooting
