@@ -1,13 +1,13 @@
-# ZINIT ----------------------------------------------------------------------------------
+# ZINIT ------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# PLUGINS --------------------------------------------------------------------------------
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
+# PLUGINS ----------------------------------------------------------------------
+zinit ice as"program" from"gh-r" \
+    atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh" nocompile'!' compile"init.zsh"
 zinit light starship/starship
 
 zi ice from"gh-r" as"program"
@@ -22,17 +22,18 @@ zi ice from"gh-r" as"program" pick"bin/exa" if'[[ $(uname -o) != "Android" ]]' h
     atclone"cp completions/exa.zsh _exa" pull'%atclone'
 zi light ogham/exa
 
-zi snippet OMZL::key-bindings.zsh
+zi light-mode for \
+    OMZL::key-bindings.zsh \
+    https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
 
-zi wait lucid light-mode for \
-    https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
-    OMZP::command-not-found \
-    OMZP::sudo \
-    hlissner/zsh-autopair \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+zinit wait lucid light-mode for \
+        OMZP::command-not-found \
+        OMZP::sudo \
+        hlissner/zsh-autopair \
+    atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
-    as"completion" \
-        zsh-users/zsh-completions \
     atload"ZSH_AUTOSUGGEST_MANUAL_REBIND=true; _zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions
+        zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .' \
+        zsh-users/zsh-completions
 
