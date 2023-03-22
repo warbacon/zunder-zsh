@@ -1,6 +1,6 @@
 # HISTORY ----------------------------------------------------------------------
 HISTFILE="$ZDOTDIR/.zsh_history"
-HISTORY_IGNORE='(q|exit|clear|clr)'
+HISTORY_IGNORE="(q|exit)"
 HISTSIZE=50000
 SAVEHIST=10000
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
@@ -13,6 +13,7 @@ setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing non-existent history.
+setopt HIST_IGNORE_SPACE         # Do not store commands prefixed with a space
 
 # COMPLETION STYLE -------------------------------------------------------------
 setopt GLOBDOTS 
@@ -26,10 +27,12 @@ zstyle ':completion:*' rehash true
 setopt AUTOCD
 
 # Change window title
-function set_win_title(){
-    echo -ne "\033]0;"$USER@${HOST%%.*}:" ${PWD/$HOME/~}\007"
-}
-precmd_functions+=(set_win_title)
+if [[ $TERM != "xterm-kitty"  ]]; then
+    function set_win_title(){
+        echo -ne "\033]0;"$USER@${HOST%%.*}:" ${PWD/$HOME/~}\007"
+    }
+    precmd_functions+=(set_win_title)
+fi
 
 # Disable background color on paste
 zle_highlight+=(paste:none)
