@@ -17,7 +17,7 @@ read_only = " "
 truncation_length = 8
 
 [character]
-format = "$symbol"
-success_symbol = "[](yellow) "
-error_symbol = "[](red) "
+format = "$symbol "
+success_symbol = "[](yellow)"
+error_symbol = "[](red)"
 
