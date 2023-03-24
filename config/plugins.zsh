@@ -7,11 +7,14 @@ source "${ZINIT_HOME}/zinit.zsh"
 # PLUGINS ----------------------------------------------------------------------
 if [[ "$(uname -o)" != "Android" ]]; then
     zinit ice as"program" from"gh-r" \
-              atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
-              atpull"%atclone" src"init.zsh" nocompile'!'
+        atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
+        atpull"%atclone" src"init.zsh" nocompile'!'
     zinit light starship/starship
-else
-    eval "$(starship init zsh)"
+else if command_exists starship
+    [ ! -f "$HOME/.cache/starship/init.zsh" ] \
+    && mkdir -p "$HOME/.cache/starship" \
+    && starship init zsh > "$HOME/.cache/starship/init.zsh"
+    source "$HOME/.cache/starship/init.zsh"
 fi
 
 zi ice from"gh-r" as"program"
