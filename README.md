@@ -113,7 +113,7 @@ The easiest method to set a custom colors is by installing [vivid](https://githu
 You can install it in any system using by putting this code in your `user-config.zsh` file:
 
 ```zsh
-zi ice from"gh-r" as"program" pick'vivid*/vivid' \
+zi ice wait lucid from"gh-r" as"program" pick'vivid*/vivid' \
     atload'export LS_COLORS="$(vivid generate catppuccin-mocha)" &&
     zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"'
 zi light "sharkdp/vivid"
