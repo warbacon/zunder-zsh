@@ -46,7 +46,7 @@ dependecy_check() {
     fi
 
     if (( distro == 4 )); then
-        dependencies+=("starship" "fd" "exa" "file")
+        dependencies+=("starship" "exa" "file")
     fi
 
     not_installed=0
