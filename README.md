@@ -49,7 +49,7 @@ Might support more in the future, depending on requests.
 
 ## 🚀 Getting started
 ### Dependencies
-Although icons will be installed automatically, is **recommended to install 
+Although icons will be installed automatically, it's **recommended to install 
 a [Nerd Font](https://www.nerdfonts.com/font-downloads) 
 and set it as default font in your terminal**. On **Android**, you can install 
 [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
@@ -80,13 +80,13 @@ And everything should be ready.
 
 ## 🖌️ Customizing zunder-zsh
 You can add custom configurations to zunder-zsh in `~/.config/zsh/user-config.zsh`
-to make sure that is not overwritten if you update zunder-zsh.
+to make sure that it's not overwritten if you update zunder-zsh.
 
 Here are some additional settings you can add:
 
 ### Customize fzf theme
 Maybe bothers you that the colorscheme of `fzf` is different from the theme
-you set in your terminal. The `fzf` theme can be changed, so you might want to do that.
+you set in your terminal. The `fzf` theme can be changed so you might want to do that.
 
 Here is an example changing the colorscheme to Catppuccin Mocha:
 
