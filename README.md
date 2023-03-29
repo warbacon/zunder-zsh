@@ -7,8 +7,7 @@
 ## 🪧 Features
 - Clean and lightning-fast.
 - Autosuggestions and syntax highlighting. 
-- Beautiful and lag-free custom prompt thanks to
-[Powerlevel10k](https://github.com/romkatv/powerlevel10k).
+- Fast and customizable prompt thanks to [Starship](https://starship.rs).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Full [Git](https://git-scm.com/) integration.
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
@@ -50,7 +49,7 @@ Might support more in the future, depending on requests.
 
 ## 🚀 Getting started
 ### Dependencies
-Although icons will be installed automatically, is **recommended to install 
+Although icons will be installed automatically, it's **recommended to install 
 a [Nerd Font](https://www.nerdfonts.com/font-downloads) 
 and set it as default font in your terminal**. On **Android**, you can install 
 [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
@@ -81,13 +80,13 @@ And everything should be ready.
 
 ## 🖌️ Customizing zunder-zsh
 You can add custom configurations to zunder-zsh in `~/.config/zsh/user-config.zsh`
-to make sure that is not overwritten if you update zunder-zsh.
+to make sure that it's not overwritten if you update zunder-zsh.
 
 Here are some additional settings you can add:
 
 ### Customize fzf theme
 Maybe bothers you that the colorscheme of `fzf` is different from the theme
-you set in your terminal. The `fzf` theme can be changed, so you might want to do that.
+you set in your terminal. The `fzf` theme can be changed so you might want to do that.
 
 Here is an example changing the colorscheme to Catppuccin Mocha:
 
@@ -114,18 +113,14 @@ The easiest method to set a custom colors is by installing [vivid](https://githu
 You can install it in any system using by putting this code in your `user-config.zsh` file:
 
 ```zsh
-zi ice from"gh-r" as"program" pick'vivid*/vivid'
+zi ice wait lucid from"gh-r" as"program" pick'vivid*/vivid' \
+    atload'export LS_COLORS="$(vivid generate catppuccin-mocha)" &&
+    zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"'
 zi light "sharkdp/vivid"
 ```
 
-To see all available themes, you can use the `vivid themes` command and then
-set one in your `user-config.zsh` using:
-
-```zsh
-export LS_COLORS=$(vivid generate your-theme)
-```
-
-Replacing `your-theme` with your preferred theme.
+Replacing `your-theme` with your preferred theme. This will also enable
+LS_COLORS on completions.
 
 ### Installing fnm
 `fnm` is a node version manager written in Rust and built with speed in mind.
@@ -133,9 +128,10 @@ You can see more information [here](https://github.com/Schniz/fnm).
 
 You can install and load it at maximum speed using this code:
 ```zsh
-zi ice wait lucid from"gh-r" as"command" \
-    atclone"./fnm env --use-on-cd > init.zsh; ./fnm completions --shell zsh > _fnm" \
-    atpull'%atclone' src"init.zsh"
+
+zi ice wait lucid from"gh-r" as"command" has"unzip" \
+    atclone"./fnm completions --shell zsh > _fnm" \
+    atpull'%atclone' atinit"./fnm env --use-on-cd > init.zsh" src"init.zsh" nocompile'!'
 zi light "Schniz/fnm"
 ```
 
