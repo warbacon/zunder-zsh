@@ -14,3 +14,4 @@ fi
 alias q="exit"
 alias clr="clear"
 ..() { cd .. }
+

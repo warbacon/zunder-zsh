@@ -23,6 +23,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' rehash true
 
 # OTHER ------------------------------------------------------------------------
+#
 # Change working directory without using cd
 setopt AUTOCD
 
@@ -40,3 +41,4 @@ zle_highlight+=(paste:none)
 # Bash word style
 autoload -U select-word-style
 select-word-style bash
+
