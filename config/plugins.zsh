@@ -5,7 +5,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # PLUGINS ----------------------------------------------------------------------
-OS="$(unamesasd -o)" &> /dev/null
+OS="$(uname -o)" &> /dev/null
 if [[ $OS != "Android" ]]; then
     zinit ice as"program" from"gh-r" \
         atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
