@@ -43,6 +43,7 @@ suggests installing the required program automatically if it does not find the e
 - Arch Linux and derivatives (Manjaro, Endeavour OS...).
 - Debian/Ubuntu and derivatives (Pop OS, Kubuntu, Linux Mint...).
 - Fedora and derivatives (Ultramarine Linux, Nobara...).
+- Void Linux.
 - Mac OS.
 - Android (using [Termux](https://termux.com/)).
 

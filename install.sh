@@ -13,15 +13,16 @@ select_system() {
     echo "1. Arch based (pacman)."
     echo "2. Debian/Ubuntu based (apt)."
     echo "3. Fedora based (dnf)."
-    echo "4. Mac OS."
-    echo "5. Android (termux)."
-    printf "\nSelect your current operating system [1-5]: "
+    echo "4. Void Linux."
+    echo "5. Mac OS."
+    echo "6. Android."
+    printf "\nSelect your current operating system [1-6]: "
 
     read -r distro
 
-    while [[ "$distro" -lt 1 || "$distro" -gt 5 || ! "$distro" =~ ^[0-9]+$ ]]; do
+    while [[ "$distro" -lt 1 || "$distro" -gt 6 || ! "$distro" =~ ^[0-9]+$ ]]; do
         print_error "Value entered is invalid."
-        printf "\nSelect your current operating system [1-5]: "
+        printf "\nSelect your current operating system [1-6]: "
         read -r distro
     done
 
@@ -29,8 +30,9 @@ select_system() {
         1) distro_name="Arch based";;
         2) distro_name="Debian/Ubuntu based";;
         3) distro_name="Fedora based";;
-        4) distro_name="Mac OS";;
-        5) distro_name="Android";;
+        4) distro_name="Void Linux";;
+        5) distro_name="Mac OS";;
+        6) distro_name="Android";;
         *) distro_name="an unknown distro";;
     esac
     print_info "You entered $distro_name."
@@ -47,7 +49,7 @@ dependecy_check() {
         dependencies+=("sqlite3")
     fi
 
-    if (( distro == 5 )); then
+    if (( distro == 6 )); then
         dependencies+=("starship" "exa" "file")
     fi
 
@@ -87,8 +89,9 @@ install_program() {
         1) sudo pacman -S "$1" ;;
         2) sudo apt install "$1" ;;
         3) sudo dnf install "$1" ;;
-        4) brew install "$1" ;;
-        5) pkg install "$1" ;;
+        4) sudo xbps-install "$1" ;;
+        5) brew install "$1" ;;
+        6) pkg install "$1" ;;
         *) print_error "An error has occurred." ;;
     esac
 }
@@ -106,7 +109,7 @@ set_default() {
             print_warning "Zsh won't be setted as the default shell."
             ;;
         *)
-            if (( distro != 5 )); then
+            if (( distro != 6 )); then
                 sudo usermod -s "$(which zsh)" "$USER" && default_applied=true
             else
                 chsh -s zsh && default_applied=true
@@ -189,7 +192,7 @@ main() {
         zsh -i -c exit
     fi
 
-    if [[ ! -f "$HOME/.local/share/fonts/Symbols Nerd Font.ttf" && $distro -ne 4 && $distro -ne 5  ]]; then
+    if [[ ! -f "$HOME/.local/share/fonts/Symbols Nerd Font.ttf" && $distro -lt 5  ]]; then
         install_icons
     fi
 
