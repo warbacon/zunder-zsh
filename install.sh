@@ -10,11 +10,11 @@ select_system() {
     printf "\n%bWelcome to the %bzunder-zsh%b installation script.%b\n" \
            "$ITALIC" "$YELLOW" "$NORMAL$ITALIC" "$NORMAL"
     print_line
-    echo "1. Arch based (pacman)"
-    echo "2. Debian/Ubuntu based (apt)"
-    echo "3. Fedora based (dnf)"
-    echo "4. Mac OS"
-    echo "5. Android (termux)"
+    echo "1. Arch based (pacman)."
+    echo "2. Debian/Ubuntu based (apt)."
+    echo "3. Fedora based (dnf)."
+    echo "4. Mac OS."
+    echo "5. Android (termux)."
     printf "\nSelect your current operating system [1-5]: "
 
     read -r distro
