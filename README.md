@@ -19,7 +19,6 @@ See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins
 ### New aliases
 | Alias | Command                                         |
 | ----- | ----------------------------------------------- |
-| ..    | Change to the upper directory                   |
 | q     | exit                                            |
 | clr   | clear                                           |
 | ll    | Long list directory contents                    |
