@@ -20,12 +20,12 @@ setopt GLOBDOTS
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' ignored-patterns '_*'
 zstyle ':completion:*' rehash true
 
 # OTHER ------------------------------------------------------------------------
-#
-# Change working directory without using cd
-setopt AUTOCD
+
+setopt AUTOCD    # Change working directory without using cd
 
 # Change window title
 if [[ $TERM != "xterm-kitty"  ]]; then
