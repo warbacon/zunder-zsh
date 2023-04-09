@@ -5,18 +5,20 @@
 ![example](./assets/preview.gif)
 
 ## 🪧 Features
+
 - Clean and lightning-fast.
-- Autosuggestions and syntax highlighting. 
+- Autosuggestions and syntax highlighting.
 - Fast and customizable prompt thanks to [Starship](https://starship.rs).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Full [Git](https://git-scm.com/) integration.
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) plugins.
 Check out [zinit](https://github.com/zdharma-continuum/zinit).
-- Much more and it's updating! 
+- Much more and it's updating!
 See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### New aliases
+
 | Alias | Command                                         |
 | ----- | ----------------------------------------------- |
 | q     | exit                                            |
@@ -26,6 +28,7 @@ See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins
 | lla   | Long list directory contents with hidden files  |
 
 ### Installed plugins
+
 - [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - syntax
 highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggests previously
@@ -39,6 +42,7 @@ press the Esc key twice to put `sudo` at the beginning.
 suggests installing the required program automatically if it does not find the entered command.
 
 ### Supported operating systems
+
 - Arch Linux and derivatives (Manjaro, Endeavour OS...).
 - Debian/Ubuntu and derivatives (Pop OS, Kubuntu, Linux Mint...).
 - Fedora and derivatives (Ultramarine Linux, Nobara...).
@@ -49,13 +53,16 @@ suggests installing the required program automatically if it does not find the e
 Might support more in the future, depending on requests.
 
 ## 🚀 Getting started
+
 ### Dependencies
-Although icons will be installed automatically, it's **recommended to install 
-a [Nerd Font](https://www.nerdfonts.com/font-downloads) 
-and set it as default font in your terminal**. On **Android**, you can install 
+
+Although icons will be installed automatically, it's **recommended to install
+a [Nerd Font](https://www.nerdfonts.com/font-downloads)
+and set it as default font in your terminal**. On **Android**, you can install
 [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) and use for example Fira Code.
 
 Only the following packages are needed to get everything working as intended:
+
 - zsh
 - git
 - curl
@@ -64,28 +71,31 @@ Only the following packages are needed to get everything working as intended:
 **If your operating system is supported, the script will make sure you have everything correctly installed.**
 
 ### Installation
+
 1. Clone the repository:
-   
-   ```sh
-   git clone https://github.com/Warbacon/zunder-zsh.git
-   ```
+
+    ```sh
+    git clone https://github.com/Warbacon/zunder-zsh.git
+    ```
 
 2. Enter the cloned repository and run the `install.sh` script:
-   
-   ```sh
-   cd ./zunder-zsh
-   ./install.sh
-   ```
+
+    ```sh
+    cd ./zunder-zsh
+    ./install.sh
+    ```
 
 And everything should be ready.
 
 ## 🖌️ Customizing zunder-zsh
+
 You can add custom configurations to zunder-zsh in `~/.config/zsh/user-config.zsh`
 to make sure that it's not overwritten if you update zunder-zsh.
 
 Here are some additional settings you can add:
 
 ### Customize fzf theme
+
 Maybe bothers you that the colorscheme of `fzf` is different from the theme
 you set in your terminal. The `fzf` theme can be changed so you might want to do that.
 
@@ -108,6 +118,7 @@ source "$ZDOTDIR/your-theme.config"
 ```
 
 ### Changing LS_COLORS
+
 The variable called `LS_COLORS` controls the colors the output of some programs will have.
 The easiest method to set a custom colors is by installing [vivid](https://github.com/sharkdp/vivid).
 
@@ -124,10 +135,12 @@ Replacing `your-theme` with your preferred theme. This will also enable
 LS_COLORS on completions.
 
 ### Installing fnm
+
 `fnm` is a node version manager written in Rust and built with speed in mind.
 You can see more information [here](https://github.com/Schniz/fnm).
 
 You can install and load it at maximum speed using this code:
+
 ```zsh
 
 zi ice wait lucid from"gh-r" as"command" has"unzip" \
@@ -137,7 +150,8 @@ zi light "Schniz/fnm"
 ```
 
 ## 🔧 Troubleshooting
-Zunder-zsh is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**. 
+
+Zunder-zsh is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**.
 Anyway, if you didn't like it or want to go back to your previous configuration, you can run the ``uninstall.sh`` script located in this same repository:
 
 ```bash
@@ -149,9 +163,11 @@ Additionally, if you used previously another shell, you can revert it using the 
 ```bash
 sudo usermod -s $(which bash) $USER
 ```
+
 You can change bash for the shell of your choice.
 
 ### Man command highlighting as error in Arch Linux
+
 Just run these commands if you are using `man-db` (most likely):
 
 ```bash
@@ -162,6 +178,7 @@ sudo systemctl enable man-db.timer
 More info [here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35#issuecomment-1315195049).
 
 ## 📃 Extra info
+
 Zunder is in very active development and it's constantly evolving,
 so you should check the project frequently to find out the latest news.
-**I appreciate that bugs are reported and new ideas are suggested.** 
+**I appreciate that bugs are reported and new ideas are suggested.**
