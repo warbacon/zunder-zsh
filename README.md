@@ -34,10 +34,6 @@ highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggests previously
 executed commands.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
-- [zsh-autopair](https://github.com/hlissner/zsh-autopair) - automatically closes parentheses,
-quotes and more.
-- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
-press the Esc key twice to put `sudo` at the beginning.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found) plugin from Oh My Zsh -
 suggests installing the required program automatically if it does not find the entered command.
 

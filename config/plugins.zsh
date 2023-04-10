@@ -4,16 +4,17 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # ZINIT ------------------------------------------------------------------------
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
+[ ! -d $ZINIT_HOME/.git ] \
+    && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" \
+    && zcompile "$ZINIT_HOME/zinit.zsh"
+source "$ZINIT_HOME/zinit.zsh"
 
 # PLUGINS ----------------------------------------------------------------------
-if [[ $OS != "Android" ]]; then
-    zi ice as"program" from"gh-r" \
-        atclone"./starship init zsh --print-full-init > init.zsh;
-                ./starship completions zsh > _starship" \
-        atpull"%atclone" src"init.zsh" nocompile'!'
-    zi light starship/starship
+if [ $OS != "Android" ]; then
+zi ice as"command" from"gh-r" \
+    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh"
+zi light starship/starship
 elif command_exists starship; then
     [ ! -f "$HOME/.cache/starship/init.zsh" ] \
         && mkdir -p "$HOME/.cache/starship" \
@@ -21,13 +22,16 @@ elif command_exists starship; then
     source "$HOME/.cache/starship/init.zsh"
 fi
 
-zi ice from"gh-r" as"program" if'! command_exists fzf'
-zi light junegunn/fzf
+if ! command_exists fzf; then
+    zi ice from"gh-r" as"program"
+    zi light junegunn/fzf
+fi
 
-zi ice from"gh-r" as"program" pick"bin/exa" \
-    if'[[ $OS != "Android" ]]' has"unzip" \
-    atclone"cp completions/exa.zsh _exa" pull'%atclone'
-zi light ogham/exa
+if command_exists unzip && [[ "$OS" != "Android" ]]; then
+    zi ice from"gh-r" as"program" pick"bin/exa" \
+        atclone"cp completions/exa.zsh _exa" pull'%atclone'
+    zi light ogham/exa
+fi
 
 zi light-mode for \
     OMZL::key-bindings.zsh \
@@ -35,18 +39,21 @@ zi light-mode for \
 
 zi wait lucid light-mode for \
         OMZP::command-not-found \
-        OMZP::sudo \
-        hlissner/zsh-autopair \
-    atinit"zicompinit; zicdreplay" \
-        zdharma-continuum/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions
+        zsh-users/zsh-completions \
+    atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
+    atpull'%atclone' compile'.*fast*~*.zwc' \
+        zdharma-continuum/fast-syntax-highlighting \
+    atload'ZSH_AUTOSUGGEST_MANUAL_REBIND=true; _zsh_autosuggest_start' nocd \
+        zsh-users/zsh-autosuggestions
+
+zi ice wait lucid as'null' nocd \
+    atload'zicompinit; zicdreplay;
+    _zsh_highlight_bind_widgets;
+    _zsh_autosuggest_bind_widgets'
+zi light zdharma-continuum/null
 
 # CONFIGURATION ----------------------------------------------------------------
-ZSH_AUTOSUGGEST_MANUAL_REBIND=true
-
 FZF_ALT_C_COMMAND="find * -type d -not -path '*/\.git/*'"
 FZF_CTRL_T_COMMAND="find * -not -path '*/\.git/*'"
 
