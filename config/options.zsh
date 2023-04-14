@@ -14,6 +14,7 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing non-existent history.
 setopt HIST_IGNORE_SPACE         # Do not store commands prefixed with a space
+setopt NO_LIST_BEEP              # Do not beep on ambiguous completions.
 
 # COMPLETION STYLE -------------------------------------------------------------
 setopt GLOBDOTS 
