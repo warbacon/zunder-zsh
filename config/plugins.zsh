@@ -1,5 +1,5 @@
 # CONSTANTS --------------------------------------------------------------------
-OS="$(uname -o)" &> /dev/null
+OS="$(uname -o || uname)" &> /dev/null
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # ZINIT ------------------------------------------------------------------------
@@ -54,6 +54,6 @@ zi ice wait lucid as'null' nocd \
 zi light zdharma-continuum/null
 
 # CONFIGURATION ----------------------------------------------------------------
-FZF_ALT_C_COMMAND="find * -type d -not -path '*/\.git/*'"
-FZF_CTRL_T_COMMAND="find * -not -path '*/\.git/*'"
+FZF_ALT_C_COMMAND="find * -type d 2> /dev/null"
+FZF_CTRL_T_COMMAND="find * 2> /dev/null" 
 
