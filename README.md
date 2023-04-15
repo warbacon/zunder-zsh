@@ -21,8 +21,6 @@ See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins
 
 | Alias | Command                                         |
 | ----- | ----------------------------------------------- |
-| q     | exit                                            |
-| clr   | clear                                           |
 | ll    | Long list directory contents                    |
 | la    | List directory contents with hidden files       |
 | lla   | Long list directory contents with hidden files  |

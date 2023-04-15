@@ -11,6 +11,4 @@ else
     alias la="ls -A"
     alias lla="ll -A"
 fi
-alias q="exit"
-alias clr="clear"
 
