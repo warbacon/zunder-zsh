@@ -8,13 +8,14 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
     && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" \
     && zcompile "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
+zicompinit
 
 # PLUGINS ----------------------------------------------------------------------
 if [ $OS != "Android" ]; then
-zi ice as"command" from"gh-r" \
-    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-    atpull"%atclone" src"init.zsh"
-zi light starship/starship
+    zi ice as"command" from"gh-r" \
+        atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+        atpull"%atclone" src"init.zsh"
+    zi light starship/starship
 elif command_exists starship; then
     [ ! -f "$HOME/.cache/starship/init.zsh" ] \
         && mkdir -p "$HOME/.cache/starship" \
@@ -42,16 +43,10 @@ zi wait lucid light-mode for \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions \
     atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
-    atpull'%atclone' compile'.*fast*~*.zwc' \
+    atpull'%atclone' compile'.*fast*~*.zwc' nocd \
         zdharma-continuum/fast-syntax-highlighting \
     atload'ZSH_AUTOSUGGEST_MANUAL_REBIND=true; _zsh_autosuggest_start' nocd \
         zsh-users/zsh-autosuggestions
-
-zi ice wait lucid as'null' nocd \
-    atload'zicompinit; zicdreplay;
-    _zsh_highlight_bind_widgets;
-    _zsh_autosuggest_bind_widgets'
-zi light zdharma-continuum/null
 
 # CONFIGURATION ----------------------------------------------------------------
 FZF_ALT_C_COMMAND="find * -type d 2> /dev/null"

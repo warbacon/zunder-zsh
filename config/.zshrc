@@ -21,3 +21,5 @@ source "$ZDOTDIR/key-bindings.zsh"
 # LOAD CUSTOM USER CONFIGURATION -----------------------------------------------
 [ -f "$ZDOTDIR/user-config.zsh" ] && source "$ZDOTDIR/user-config.zsh"
 
+zicdreplay
+
