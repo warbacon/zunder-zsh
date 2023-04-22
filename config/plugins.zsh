@@ -8,7 +8,9 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
     && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" \
     && zcompile "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
-zicompinit
+
+autoload -Uz compinit && compinit
+[[ "$ZDOTDIR/.zcompdump.zwc" -nt "$ZDOTDIR/.zcompdump" ]] || zcompile -R "$ZDOTDIR/.zcompdump"
 
 # PLUGINS ----------------------------------------------------------------------
 if [ $OS != "Android" ]; then
@@ -36,19 +38,20 @@ fi
 
 zi light-mode for \
     OMZL::key-bindings.zsh \
-    https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
+    OMZP::command-not-found \
+    https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
+    blockf atpull'zinit creinstall -q .' \
+        zsh-users/zsh-completions
 
 zi wait lucid light-mode for \
-        OMZP::command-not-found \
-    blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions \
     atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
     atpull'%atclone' compile'.*fast*~*.zwc' nocd \
         zdharma-continuum/fast-syntax-highlighting \
-    atload'ZSH_AUTOSUGGEST_MANUAL_REBIND=true; _zsh_autosuggest_start' nocd \
+    atload'_zsh_autosuggest_start' nocd \
         zsh-users/zsh-autosuggestions
 
 # CONFIGURATION ----------------------------------------------------------------
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 FZF_ALT_C_COMMAND="find * -type d 2> /dev/null"
 FZF_CTRL_T_COMMAND="find * 2> /dev/null" 
 
