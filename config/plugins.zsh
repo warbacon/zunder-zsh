@@ -3,39 +3,47 @@ OS="$(uname -o || uname)" &> /dev/null
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # ZINIT ------------------------------------------------------------------------
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] \
-    && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" \
-    && zcompile "$ZINIT_HOME/zinit.zsh"
+[[ ! -d $ZINIT_HOME ]] && mkdir -p "$(dirname $ZINIT_HOME)"
+[[ ! -d $ZINIT_HOME/.git ]] \
+    && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+
+[[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ]] || zcompile -R "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
 
 autoload -Uz compinit && compinit
 [[ "$ZDOTDIR/.zcompdump.zwc" -nt "$ZDOTDIR/.zcompdump" ]] || zcompile -R "$ZDOTDIR/.zcompdump"
 
 # PLUGINS ----------------------------------------------------------------------
-if [ $OS != "Android" ]; then
+
+# starship
+if [[ $OS != "Android" ]]; then
     zi ice as"command" from"gh-r" \
-        atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-        atpull"%atclone" src"init.zsh"
+        atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
+        atpull"%atclone" src"init.zsh" compile"init.zsh" nocompile"!"
     zi light starship/starship
 elif command_exists starship; then
-    [ ! -f "$HOME/.cache/starship/init.zsh" ] \
+    [[ ! -f "$HOME/.cache/starship/init.zsh" ]] \
         && mkdir -p "$HOME/.cache/starship" \
-        && starship init zsh > "$HOME/.cache/starship/init.zsh"
+        && starship init zsh --print-full-init > "$HOME/.cache/starship/init.zsh"
+    [[ "$HOME/.cache/starship/init.zsh.zwc" -nt "$HOME/.cache/starship/init.zsh" ]] \
+        || zcompile -R "$HOME/.cache/starship/init.zsh"
     source "$HOME/.cache/starship/init.zsh"
 fi
 
+# fzf
 if ! command_exists fzf; then
     zi ice from"gh-r" as"program"
     zi light junegunn/fzf
 fi
 
+# exa
 if command_exists unzip && [[ "$OS" != "Android" ]]; then
     zi ice from"gh-r" as"program" pick"bin/exa" \
         atclone"cp completions/exa.zsh _exa" pull'%atclone'
     zi light ogham/exa
 fi
 
+# plugins
 zi light-mode for \
     OMZL::key-bindings.zsh \
     OMZP::command-not-found \
