@@ -1,6 +1,6 @@
 # HISTORY ----------------------------------------------------------------------
 HISTFILE="$ZDOTDIR/.zsh_history"
-HISTORY_IGNORE="(q|exit)"
+HISTORY_IGNORE="exit"
 HISTSIZE=50000
 SAVEHIST=10000
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
@@ -26,7 +26,8 @@ zstyle ':completion:*' rehash true
 
 # OTHER ------------------------------------------------------------------------
 
-setopt AUTOCD    # Change working directory without using cd
+# Change working directory without using cd
+setopt AUTOCD
 
 # Change window title
 if [[ $TERM != "xterm-kitty"  ]]; then
