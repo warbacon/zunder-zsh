@@ -128,21 +128,6 @@ zi light "sharkdp/vivid"
 Replacing `your-theme` with your preferred theme. This will also enable
 LS_COLORS on completions.
 
-### Installing fnm
-
-`fnm` is a node version manager written in Rust and built with speed in mind.
-You can see more information [here](https://github.com/Schniz/fnm).
-
-You can install and load it at maximum speed using this code:
-
-```zsh
-
-zi ice wait lucid from"gh-r" as"command" has"unzip" \
-    atclone"./fnm completions --shell zsh > _fnm" \
-    atpull'%atclone' atinit"./fnm env --use-on-cd > init.zsh" src"init.zsh" nocompile'!'
-zi light "Schniz/fnm"
-```
-
 ## 🔧 Troubleshooting
 
 Zunder-zsh is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**.
