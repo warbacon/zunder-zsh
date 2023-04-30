@@ -8,7 +8,7 @@
 
 - Clean and lightning-fast.
 - Autosuggestions and syntax highlighting.
-- Fast and customizable prompt thanks to [Starship](https://starship.rs).
+- Simple and fast prompt based on [gitstatus](https://github.com/romkatv/gitstatus).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Full [Git](https://git-scm.com/) integration.
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
