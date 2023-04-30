@@ -15,21 +15,6 @@ autoload -Uz compinit && compinit
 
 # PLUGINS ----------------------------------------------------------------------
 
-# starship
-if [[ $OS != "Android" ]]; then
-    zi ice as"command" from"gh-r" \
-        atclone"./starship init zsh --print-full-init > init.zsh; ./starship completions zsh > _starship" \
-        atpull"%atclone" src"init.zsh" compile"init.zsh" nocompile"!"
-    zi light starship/starship
-elif command_exists starship; then
-    [[ ! -f "$HOME/.cache/starship/init.zsh" ]] \
-        && mkdir -p "$HOME/.cache/starship" \
-        && starship init zsh --print-full-init > "$HOME/.cache/starship/init.zsh"
-    [[ "$HOME/.cache/starship/init.zsh.zwc" -nt "$HOME/.cache/starship/init.zsh" ]] \
-        || zcompile -R "$HOME/.cache/starship/init.zsh"
-    source "$HOME/.cache/starship/init.zsh"
-fi
-
 # fzf
 if ! command_exists fzf; then
     zi ice from"gh-r" as"program"
@@ -57,6 +42,10 @@ zi wait lucid light-mode for \
         zdharma-continuum/fast-syntax-highlighting \
     atload'_zsh_autosuggest_start' nocd \
         zsh-users/zsh-autosuggestions
+
+# prompt
+zi ice compile"./gitstatus/gitstatus.plugin.zsh"
+zi light "Warbacon/zunder-prompt"
 
 # CONFIGURATION ----------------------------------------------------------------
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
