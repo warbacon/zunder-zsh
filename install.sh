@@ -166,11 +166,10 @@ install_icons() {
     # Download font file if it does not exist
     cd "$HOME/.local/share/fonts" || return 1
     curl -fLo "Symbols Nerd Font.ttf" \
-        "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-1000-em%20Nerd%20Font%20Complete.ttf" \
-        || return 1
+        "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" \
+        || print_error "An error has occurred" && cd - && return 1
 
     print_success "Icons installed successfully."
-    cd - || print_error "Can't return."
 }
 
 main() {
