@@ -34,7 +34,9 @@ zi light-mode for \
     OMZP::command-not-found \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
     blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions
+        zsh-users/zsh-completions \
+    as"completion" has"docker" \
+        https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 zi wait lucid light-mode for \
     atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
