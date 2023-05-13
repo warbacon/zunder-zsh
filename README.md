@@ -8,16 +8,17 @@
 
 - Clean and lightning-fast.
 - Autosuggestions and syntax highlighting.
-- Simple and fast prompt based on [gitstatus](https://github.com/romkatv/gitstatus).
+- Beautiful and lightweight prompt based on [gitstatus](https://github.com/romkatv/gitstatus).
+Check out [zunder-prompt](https://github.com/Warbacon/zunder-prompt).
 - Replaces the `ls` command with [exa](https://github.com/ogham/exa).
 - Full [Git](https://git-scm.com/) integration.
 - [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
-- Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) plugins.
-Check out [zinit](https://github.com/zdharma-continuum/zinit).
+- Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) plugins
+thanks to [zinit](https://github.com/zdharma-continuum/zinit).
 - Much more and it's updating!
 See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
-### New aliases
+### Essential aliases
 
 | Alias | Command                                         |
 | ----- | ----------------------------------------------- |
@@ -27,13 +28,16 @@ See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins
 
 ### Installed plugins
 
-- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) - syntax
-highlighting for zsh.
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggests previously
-executed commands.
-- [zsh-completions](https://github.com/zsh-users/zsh-completions) - smarter command completions.
-- [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found) plugin from Oh My Zsh -
-suggests installing the required program automatically if it does not find the entered command.
+- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
+Feature rich and fast syntax highlighting for zsh.
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
+Fish-like fast/unobtrusive autosuggestions for zsh.
+- [zsh-completions](https://github.com/zsh-users/zsh-completions) -
+Additional completion definitions for zsh.
+- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
+Easily prefix your current or previous commands with sudo by pressing ALT+S.
+- [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)
+plugin from Oh My Zsh - Provide suggested packages to be installed if a command cannot be found.
 
 ### Supported operating systems
 
@@ -119,14 +123,14 @@ The easiest method to set a custom colors is by installing [vivid](https://githu
 You can install it in any system using by putting this code in your `user-config.zsh` file:
 
 ```zsh
-zi ice wait lucid from"gh-r" as"program" pick'vivid*/vivid' \
-    atload'export LS_COLORS="$(vivid generate catppuccin-mocha)" &&
+zi ice from"gh-r" as"program" pick'vivid*/vivid' \
+    atload'export LS_COLORS="$(vivid generate your-theme)" &&
     zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"'
 zi light "sharkdp/vivid"
 ```
 
-Replacing `your-theme` with your preferred theme. This will also enable
-LS_COLORS on completions.
+Replacing `your-theme` with your preferred theme if available.
+This will also enable LS_COLORS on completions.
 
 ## 🔧 Troubleshooting
 

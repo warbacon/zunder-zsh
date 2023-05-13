@@ -32,6 +32,7 @@ fi
 zi light-mode for \
     OMZL::key-bindings.zsh \
     OMZP::command-not-found \
+    OMZP::sudo \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions \
