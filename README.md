@@ -92,6 +92,17 @@ to make sure that it's not overwritten if you update zunder-zsh.
 
 Here are some additional settings you can add:
 
+### Change the symbol and its color in the prompt's character
+
+Zunder-zsh uses [zunder-prompt](https://github.com/Warbacon/zunder-prompt) as
+its prompt. To customize its symbol and color, you can modify
+the following environment variables:
+
+```bash
+ZUNDER_CHAR_SYMBOL="❯"       # default value: ""
+ZUNDER_CHAR_COLOR="green"    # default value: "yellow"
+```
+
 ### Customize fzf theme
 
 Maybe bothers you that the colorscheme of `fzf` is different from the theme
