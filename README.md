@@ -99,9 +99,12 @@ its prompt. To customize its symbol and color, you can modify
 the following environment variables:
 
 ```bash
-ZUNDER_CHAR_SYMBOL="❯"       # default value: ""
-ZUNDER_CHAR_COLOR="green"    # default value: "yellow"
+ZUNDER_PROMPT_CHAR="❯"             # default value: ""
+ZUNDER_PROMPT_CHAR_COLOR="green"   # default value: 3 ("yellow")
 ```
+
+`ZUNDER_PROMPT_CHAR_COLOR` does accept any color between 0 and 255
+or a color name.
 
 ### Customize fzf theme
 
