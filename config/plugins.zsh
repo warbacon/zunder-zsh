@@ -1,8 +1,5 @@
-# CONSTANTS --------------------------------------------------------------------
-OS="$(uname -o || uname)" &> /dev/null
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
 # ZINIT ------------------------------------------------------------------------
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [[ ! -d $ZINIT_HOME ]] && mkdir -p "$(dirname $ZINIT_HOME)"
 [[ ! -d $ZINIT_HOME/.git ]] \
     && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -10,44 +7,37 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ]] || zcompile -R "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
 
-autoload -Uz compinit && compinit
-[[ "$ZDOTDIR/.zcompdump.zwc" -nt "$ZDOTDIR/.zcompdump" ]] || zcompile -R "$ZDOTDIR/.zcompdump"
-
 # PLUGINS ----------------------------------------------------------------------
+OS="$(uname -o || uname)" &> /dev/null   # Detect if Android is used
 
 # fzf
-if ! command_exists fzf; then
-    zi ice from"gh-r" as"program"
-    zi light junegunn/fzf
-fi
+zi ice from"gh-r" as"program" if'! command_exists fzf'
+zi light junegunn/fzf
 
 # exa
-if command_exists unzip && [[ "$OS" != "Android" ]]; then
-    zi ice from"gh-r" as"program" pick"bin/exa" \
-        atclone"cp completions/exa.zsh _exa" pull'%atclone'
-    zi light ogham/exa
-fi
+zi ice from"gh-r" as"program" pick"bin/exa" \
+    has"unzip" if'[[ "$OS" != "Android" ]]' \
+    atclone"cp completions/exa.zsh _exa" pull'%atclone'
+zi light ogham/exa
 
-# plugins
-zi light-mode for \
+# zsh plugins
+zi light-mode nocd for \
     OMZL::key-bindings.zsh \
     OMZP::command-not-found \
     OMZP::sudo \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
-    blockf atpull'zinit creinstall -q .' \
+    blockf \
         zsh-users/zsh-completions \
     as"completion" has"docker" \
         https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-zi wait lucid light-mode for \
-    atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
-    atpull'%atclone' compile'.*fast*~*.zwc' nocd \
-        zdharma-continuum/fast-syntax-highlighting \
-    atload'_zsh_autosuggest_start' nocd \
+zi wait lucid light-mode nocd  for \
+    zdharma-continuum/fast-syntax-highlighting \
+    atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions
 
-# prompt
-zi ice compile"./gitstatus/gitstatus.plugin.zsh"
+# zunder-prompt
+zi ice compile'./gitstatus/(install|*.zsh)'
 zi light "Warbacon/zunder-prompt"
 
 # CONFIGURATION ----------------------------------------------------------------

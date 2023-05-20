@@ -20,8 +20,7 @@ setopt NO_LIST_BEEP              # Do not beep on ambiguous completions.
 setopt GLOBDOTS 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' ignored-patterns '_*'
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' rehash true
 
 # OTHER ------------------------------------------------------------------------
@@ -30,6 +29,7 @@ zstyle ':completion:*' rehash true
 setopt AUTOCD
 
 # Change window title
+# It doesn't change it in kitty terminal because it has its own way of doing it
 if [[ $TERM != "xterm-kitty"  ]]; then
     function set_win_title(){
         echo -ne "\033]0;"$USER@${HOST%%.*}:" ${PWD/$HOME/~}\007"
@@ -41,6 +41,5 @@ fi
 zle_highlight+=(paste:none)
 
 # Bash word style
-autoload -U select-word-style
-select-word-style bash
+autoload -Uz select-word-style && select-word-style bash
 
