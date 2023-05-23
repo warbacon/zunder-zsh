@@ -1,6 +1,6 @@
 # ALIASES ----------------------------------------------------------------------
 alias grep="grep --color=auto"
-if command_exists exa; then
+if command_exists exa && [[ -n $DISPLAY ]]; then
     alias exa="exa --icons --group-directories-first"
     alias ls="exa"
     alias la="exa -a"

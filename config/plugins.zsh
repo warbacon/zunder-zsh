@@ -33,7 +33,7 @@ zi light-mode nocd for \
 
 zi wait lucid light-mode nocd  for \
     zdharma-continuum/fast-syntax-highlighting \
-    atload'_zsh_autosuggest_start' \
+    atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY ]]' \
         zsh-users/zsh-autosuggestions
 
 # zunder-prompt
