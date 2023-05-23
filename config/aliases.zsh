@@ -1,7 +1,11 @@
 # ALIASES ----------------------------------------------------------------------
 alias grep="grep --color=auto"
-if command_exists exa && [[ -n $DISPLAY ]]; then
-    alias exa="exa --icons --group-directories-first"
+if command_exists exa; then
+    if [[ -n $DISPLAY ]]; then
+        alias exa="exa --icons --group-directories-first"
+    else
+        alias exa="exa --group-directories-first"
+    fi
     alias ls="exa"
     alias la="exa -a"
     alias ll="exa --git -lh"
