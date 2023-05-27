@@ -16,14 +16,12 @@ select_system() {
     echo "4. Void Linux."
     echo "5. Mac OS."
     echo "6. Android."
-    printf "\nSelect your current operating system [1-6]: "
+    read -rp $'\nSelect your current operating system [1-6]: ' distro
 
-    read -r distro
 
-    while [[ "$distro" -lt 1 || "$distro" -gt 6 || ! "$distro" =~ ^[0-9]+$ ]]; do
+    while ! [[ "$distro" =~ ^[1-6]$ ]]; do
         print_error "Value entered is invalid."
-        printf "\nSelect your current operating system [1-6]: "
-        read -r distro
+        read -rp $'\nSelect your current operating system [1-6]: ' distro
     done
 
     case $distro in
@@ -74,9 +72,8 @@ install_program() {
     local prompt
 
     print_warning "$1 is not installed and is required."
-    printf "\nContinue? [Y/n]: "
+    echo -rp $'\nContinue? [Y/n]: ' prompt
 
-    read -r prompt
     prompt=${prompt:-Y}
 
     if [[ "$prompt" =~ [Nn] ]]; then
@@ -100,9 +97,7 @@ set_default() {
     local prompt
 
     print_line
-    printf "Zsh is not your current defaut shell, do you want to set it? [Y/n]: "
-
-    read -r prompt
+    read -rp "Zsh is not your current default shell, do you want to set it? [Y/n]: " prompt
 
     case $prompt in
         [Nn])
@@ -130,9 +125,7 @@ load_files() {
     print_line
     printf "Zunder-zsh will store its configuration in %b%s%b.\n" \
            "$CYAN" "$ZDOTDIR" "$NORMAL"
-    printf "Continue? [y/N]: "
-
-    read -r prompt
+    read -rp "Continue? [y/N]: " prompt
 
     case $prompt in
         [yY])
