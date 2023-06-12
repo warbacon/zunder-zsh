@@ -72,7 +72,7 @@ install_program() {
     local prompt
 
     print_warning "$1 is not installed and is required."
-    echo -rp $'\nContinue? [Y/n]: ' prompt
+    read -rp $'\nContinue? [Y/n]: ' prompt
 
     prompt=${prompt:-Y}
 
