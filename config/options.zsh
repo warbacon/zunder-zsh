@@ -25,9 +25,7 @@ zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' rehash true
 
 # OTHER ------------------------------------------------------------------------
-
-# Change working directory without using cd
-setopt AUTOCD
+setopt AUTOCD     # Change working directory without using cd
 
 # Change window title
 # It doesn't change it in kitty terminal because it has its own way of doing it
@@ -38,9 +36,7 @@ if [[ $TERM != "xterm-kitty"  ]]; then
     precmd_functions+=(set_win_title)
 fi
 
-# Disable background color on paste
-zle_highlight+=(paste:none)
+zle_highlight+=(paste:none)  # Disable background color on paste
 
-# Bash word style
-autoload -Uz select-word-style && select-word-style bash
+autoload -Uz select-word-style && select-word-style bash   # Bash word style
 
