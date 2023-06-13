@@ -72,7 +72,7 @@ install_program() {
     local prompt
 
     print_warning "$1 is not installed and is required."
-    echo -rp $'\nContinue? [Y/n]: ' prompt
+    read -rp $'\nContinue? [Y/n]: ' prompt
 
     prompt=${prompt:-Y}
 
@@ -131,6 +131,7 @@ load_files() {
         [yY])
             printf "\n"
             mkdir -vp "$ZDOTDIR" 2> /dev/null
+            cp -v ./config/ls-colors.zsh "$ZDOTDIR"
             cp -v ./config/aliases.zsh "$ZDOTDIR"
             cp -v ./config/options.zsh "$ZDOTDIR"
             cp -v ./config/key-bindings.zsh "$ZDOTDIR"
