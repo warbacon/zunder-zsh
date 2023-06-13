@@ -37,7 +37,7 @@ zi light-mode nocd for \
 
 zi wait lucid light-mode nocd  for \
     zdharma-continuum/fast-syntax-highlighting \
-    atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY ]]' \
+    atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY || $OS == "Android" ]]' \
         zsh-users/zsh-autosuggestions
 
 # zunder-prompt
@@ -48,4 +48,10 @@ zi light "Warbacon/zunder-prompt"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 FZF_ALT_C_COMMAND="find * -type d 2> /dev/null"
 FZF_CTRL_T_COMMAND="find * 2> /dev/null" 
+if [[ -n $DISPLAY || $OS == "Android" ]]; then
+    ZUNDER_PROMPT_CHAR=""
+    ZUNDER_PROMPT_CHAR_COLOR=3
+else
+    ZUNDER_PROMPT_CHAR=">"
+fi
 
