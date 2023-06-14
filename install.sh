@@ -16,12 +16,12 @@ select_system() {
     echo "4. Void Linux."
     echo "5. Mac OS."
     echo "6. Android."
-    read -rp $'\nSelect your current operating system [1-6]: ' distro
+    echo "7. Other."
+    read -rp $'\nSelect your current operating system [1-7]: ' distro
 
-
-    while ! [[ "$distro" =~ ^[1-6]$ ]]; do
+    while ! [[ "$distro" =~ ^[1-7]$ ]]; do
         print_error "Value entered is invalid."
-        read -rp $'\nSelect your current operating system [1-6]: ' distro
+        read -rp $'\nSelect your current operating system [1-7]: ' distro
     done
 
     case $distro in
@@ -31,6 +31,7 @@ select_system() {
         4) distro_name="Void Linux";;
         5) distro_name="Mac OS";;
         6) distro_name="Android";;
+        7) distro_name="Other";;
         *) distro_name="an unknown distro";;
     esac
     print_info "You entered $distro_name."
@@ -54,7 +55,11 @@ dependecy_check() {
     not_installed=0
     for dependency in "${dependencies[@]}"; do
         if ! command_exists "$dependency"; then
-            if [ "$dependency" == "sqlite3" ]; then
+            if (( distro == 7 )); then
+                print_warning "$dependency is not installed and is required." \
+                              "Please install it manually and try again."
+                exit 1
+            elif [[ "$dependency" == "sqlite3" ]]; then
                 install_program sqlite
             else
                 install_program "$dependency"
@@ -72,7 +77,7 @@ install_program() {
     local prompt
 
     print_warning "$1 is not installed and is required."
-    read -rp $'\nContinue? [Y/n]: ' prompt
+    read -rp $'\nInstall it? [Y/n]: ' prompt
 
     prompt=${prompt:-Y}
 
@@ -173,13 +178,13 @@ main() {
 
     dependecy_check
 
-    if [ "$(basename "$SHELL")" != "zsh" ]; then
+    if [[ "$(basename "$SHELL")" != "zsh" && $distro -ne 7 ]]; then
         set_default
     fi
 
     load_files
 
-    if [ ! -d "$HOME/.local/share/zinit" ]; then
+    if [[ ! -d "$HOME/.local/share/zinit" ]]; then
         print_info "Installing zunder-zsh..."
         zsh -i -c exit
     fi
