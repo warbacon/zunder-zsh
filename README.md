@@ -129,23 +129,6 @@ Sourcing one of them should do the work:
 source "$ZDOTDIR/your-theme.config"
 ```
 
-### Changing LS_COLORS
-
-The variable called `LS_COLORS` controls the colors the output of some programs will have.
-The easiest method to set a custom colors is by installing [vivid](https://github.com/sharkdp/vivid).
-
-You can install it in any system using by putting this code in your `user-config.zsh` file:
-
-```zsh
-zi ice from"gh-r" as"program" pick'vivid*/vivid' \
-    atload'export LS_COLORS="$(vivid generate your-theme)" &&
-    zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"'
-zi light "sharkdp/vivid"
-```
-
-Replacing `your-theme` with your preferred theme if available.
-This will also enable LS_COLORS on completions.
-
 ## 🔧 Troubleshooting
 
 Zunder-zsh is under constant development, so errors may occur. I suggest you open an issue and **I'll help you as fast as I can**.
