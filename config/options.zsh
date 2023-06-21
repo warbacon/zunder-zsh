@@ -14,22 +14,21 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing non-existent history.
 setopt HIST_IGNORE_SPACE         # Do not store commands prefixed with a space
-setopt NO_LIST_BEEP              # Do not beep on ambiguous completions.
 
 # COMPLETION STYLE -------------------------------------------------------------
 setopt GLOBDOTS 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' rehash true
 
 # OTHER ------------------------------------------------------------------------
 setopt AUTOCD     # Change working directory without using cd
 
 # Change window title
-# It doesn't change it in kitty terminal because it has its own way of doing it
-if [[ $TERM != "xterm-kitty"  ]]; then
+# It doesn't change it when shell_integration is enabled in kitty terminal
+# because it has its own way of doing it
+if [[ -z $KITTY_SHELL_INTEGRATION ]]; then
     function set_win_title(){
         echo -ne "\033]0;"$USER@${HOST%%.*}:" ${PWD/$HOME/~}\007"
     }
@@ -38,5 +37,5 @@ fi
 
 zle_highlight+=(paste:none)  # Disable background color on paste
 
-autoload -Uz select-word-style && select-word-style bash   # Bash word style
+autoload -Uz select-word-style && select-word-style bash  # Bash word style
 
