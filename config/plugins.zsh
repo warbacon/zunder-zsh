@@ -28,6 +28,7 @@ zi light-mode nocd for \
     OMZL::key-bindings.zsh \
     OMZP::command-not-found \
     OMZP::sudo \
+    Warbacon/zsh-lscolors \
     has"fzf" \
         https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
     blockf \

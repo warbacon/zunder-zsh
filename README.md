@@ -34,6 +34,9 @@ Feature rich and fast syntax highlighting for zsh.
 Fish-like fast/unobtrusive autosuggestions for zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) -
 Additional completion definitions for zsh.
+- [zsh-lscolors](https://github.com/Warbacon/zsh-lscolors) -
+My own plugin to set the ls_colors variable to those of the terminal
+and display them in the completions.
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
 Easily prefix your current or previous commands with sudo by pressing ALT+S.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)

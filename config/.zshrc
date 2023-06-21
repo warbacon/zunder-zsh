@@ -12,7 +12,6 @@ function command_exists() {
 }
 
 # LOAD CONFIGURATIONS ----------------------------------------------------------
-source "$ZDOTDIR/ls-colors.zsh"
 source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/aliases.zsh"

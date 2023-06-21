@@ -136,7 +136,6 @@ load_files() {
         [yY])
             printf "\n"
             mkdir -vp "$ZDOTDIR" 2> /dev/null
-            cp -v ./config/ls-colors.zsh "$ZDOTDIR"
             cp -v ./config/aliases.zsh "$ZDOTDIR"
             cp -v ./config/options.zsh "$ZDOTDIR"
             cp -v ./config/key-bindings.zsh "$ZDOTDIR"
