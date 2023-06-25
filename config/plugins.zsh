@@ -24,7 +24,7 @@ zi ice from"gh-r" as"program" pick"bin/exa" \
 zi light ogham/exa
 
 # zsh plugins
-zi light-mode nocd for \
+zi light-mode depth"1" nocd for \
     OMZL::key-bindings.zsh \
     OMZP::command-not-found \
     OMZP::sudo \
@@ -36,13 +36,14 @@ zi light-mode nocd for \
     as"completion" has"docker" \
         https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-zi wait lucid light-mode nocd  for \
+zi wait lucid light-mode depth"1" nocd  for \
     zdharma-continuum/fast-syntax-highlighting \
     atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY || $OS == "Android" ]]' \
         zsh-users/zsh-autosuggestions
 
 # zunder-prompt
-zi ice compile'./gitstatus/(install|*.zsh)'
+zi ice depth"1" cloneopts"--recursive --shallow-submodules" \
+    compile'./gitstatus/(install|*.zsh)'
 zi light "Warbacon/zunder-prompt"
 
 # CONFIGURATION ----------------------------------------------------------------
