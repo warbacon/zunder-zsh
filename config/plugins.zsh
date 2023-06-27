@@ -9,9 +9,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "$ZINIT_HOME/zinit.zsh"
 
 # PLUGINS ----------------------------------------------------------------------
-# This determines the OS name. It's used to determine if the user is on Android.
-OS="$(uname -o || uname)" &> /dev/null
-
 # Installs fzf from github releases if it's not installed.
 zi ice from"gh-r" as"program" if'! command_exists fzf'
 zi light junegunn/fzf
@@ -19,13 +16,12 @@ zi light junegunn/fzf
 # Installs exa from github releases, unless the OS is Android as it doesn't work there.
 # Android users should install exa from their package manager.
 zi ice from"gh-r" as"program" pick"bin/exa" \
-    has"unzip" if'[[ "$OS" != "Android" ]]' \
+    has"unzip" if'[[ -z $TERMUX_VERSION ]]' \
     atclone"cp completions/exa.zsh _exa" pull'%atclone'
 zi light ogham/exa
 
 # zsh plugins
 zi light-mode depth"1" nocd for \
-    OMZL::key-bindings.zsh \
     OMZP::command-not-found \
     OMZP::sudo \
     Warbacon/zsh-lscolors \
@@ -38,7 +34,7 @@ zi light-mode depth"1" nocd for \
 
 zi wait lucid light-mode depth"1" nocd  for \
     zdharma-continuum/fast-syntax-highlighting \
-    atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY || $OS == "Android" ]]' \
+    atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY || -n $TERMUX_VERSION ]]' \
         zsh-users/zsh-autosuggestions
 
 # zunder-prompt
@@ -50,7 +46,7 @@ zi light "Warbacon/zunder-prompt"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 FZF_ALT_C_COMMAND="find * -type d 2> /dev/null"
 FZF_CTRL_T_COMMAND="find * 2> /dev/null" 
-if [[ -n $DISPLAY || $OS == "Android" ]]; then
+if [[ -n $DISPLAY || -n $TERMUX_VERSION ]]; then
     ZUNDER_PROMPT_CHAR=""
     ZUNDER_PROMPT_CHAR_COLOR=3
 else
