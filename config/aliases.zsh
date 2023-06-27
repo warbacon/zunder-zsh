@@ -2,10 +2,11 @@
 alias grep="grep --color=auto"
 if command_exists exa; then
     if [[ -n $DISPLAY || -n $TERMUX_VERSION ]]; then
-        alias ls="exa --icons --group-directories-first"
+        alias exa="exa --icons --group-directories-first"
     else
-        alias ls="exa --group-directories-first"
+        alias exa="exa --group-directories-first"
     fi
+    alias ls="exa"
     alias ll="exa --git -lh"
     alias la="exa -a"
     alias lla="exa --git -lah"
