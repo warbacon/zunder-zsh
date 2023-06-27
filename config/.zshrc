@@ -7,9 +7,8 @@
 #                                                              
 #===============================================================================
 
-function command_exists() {
-    command -v "$@" >/dev/null 2>&1 
-}
+# USEFUL FUNCTION
+command_exists() { command -v "$@" >/dev/null 2>&1 }
 
 # LOAD CONFIGURATIONS ----------------------------------------------------------
 source "$ZDOTDIR/plugins.zsh"
@@ -21,10 +20,8 @@ source "$ZDOTDIR/key-bindings.zsh"
 [[ -f "$ZDOTDIR/user-config.zsh" ]] && source "$ZDOTDIR/user-config.zsh"
 
 # LOAD COMPINIT ----------------------------------------------------------------
-autoload -Uz compinit && compinit
-
 [[ "$ZDOTDIR/.zcompdump.zwc" -nt "$ZDOTDIR/.zcompdump" ]] \
     || zcompile "$ZDOTDIR/.zcompdump"
 
-zinit cdreplay -q
+autoload -Uz compinit && compinit
 
