@@ -34,7 +34,8 @@ zi light-mode depth"1" nocd for \
 
 zi wait lucid light-mode depth"1" nocd  for \
     zdharma-continuum/fast-syntax-highlighting \
-    atload'_zsh_autosuggest_start' if'[[ -n $DISPLAY || -n $TERMUX_VERSION ]]' \
+    if'[[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]' \
+    atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions
 
 # zunder-prompt
@@ -46,7 +47,7 @@ zi light "Warbacon/zunder-prompt"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 FZF_ALT_C_COMMAND="find * -type d 2> /dev/null"
 FZF_CTRL_T_COMMAND="find * 2> /dev/null" 
-if [[ -n $DISPLAY || -n $TERMUX_VERSION ]]; then
+if [[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]; then
     ZUNDER_PROMPT_CHAR=""
     ZUNDER_PROMPT_CHAR_COLOR=3
 else
