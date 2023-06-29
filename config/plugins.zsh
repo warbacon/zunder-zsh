@@ -16,8 +16,6 @@ FZF_CTRL_T_COMMAND="find * 2> /dev/null"
 if [[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]; then
     ZUNDER_PROMPT_CHAR=""
     ZUNDER_PROMPT_CHAR_COLOR=3
-else
-    ZUNDER_PROMPT_CHAR=">"
 fi
 
 # PLUGINS ----------------------------------------------------------------------
