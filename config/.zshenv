@@ -1,4 +1,7 @@
 skip_global_compinit=1
-PATH="$HOME/.local/bin:$PATH"
 ZDOTDIR="$HOME/.config/zsh"
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
 
