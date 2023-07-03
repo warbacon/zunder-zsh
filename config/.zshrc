@@ -7,9 +7,6 @@
 #                                                              
 #===============================================================================
 
-# USEFUL FUNCTION --------------------------------------------------------------
-command_exists() { command -v "$@" >/dev/null 2>&1 }
-
 # LOAD CONFIGURATIONS ----------------------------------------------------------
 source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/options.zsh"

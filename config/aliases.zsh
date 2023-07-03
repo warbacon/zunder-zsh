@@ -1,6 +1,6 @@
 # ALIASES ----------------------------------------------------------------------
 alias grep="grep --color=auto"
-if command_exists exa; then
+if [[ -n $commands[exa] ]]; then
     if [[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]; then
         alias exa="exa --icons --group-directories-first"
     else
