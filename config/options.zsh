@@ -20,7 +20,7 @@ setopt AUTOCD     # Change working directory without using cd
 # because it has its own way of doing it
 if [[ -z $KITTY_SHELL_INTEGRATION ]]; then
     function set_win_title(){
-        echo -ne "\033]0;"$USER@${HOST%%.*}:" ${PWD/$HOME/~}\007"
+        printf "\033]0;%s@%s:%s\007" "${USER}" "${HOST%%.*}" "${PWD/#$HOME/~}"
     }
     precmd_functions+=(set_win_title)
 fi
