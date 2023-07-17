@@ -18,7 +18,7 @@ setopt AUTOCD     # Change working directory without using cd
 # Change window title
 # It doesn't change it when shell_integration is enabled in kitty terminal
 # because it has its own way of doing it
-if [[ -z $KITTY_SHELL_INTEGRATION ]]; then
+if [[ -z $KITTY_SHELL_INTEGRATION && $TERM != "linux" ]]; then
     function set_win_title(){
         printf "\033]0;%s@%s:%s\007" "${USER}" "${HOST%%.*}" "${PWD/#$HOME/~}"
     }

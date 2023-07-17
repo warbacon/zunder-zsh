@@ -10,7 +10,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "$ZINIT_HOME/zinit.zsh"
 
 # CONFIGURATION ----------------------------------------------------------------
-if [[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]; then
+if [[ $TERM != "linux" ]]; then
     ZUNDER_PROMPT_CHAR=""
     ZUNDER_PROMPT_CHAR_COLOR=3
 fi
@@ -49,7 +49,7 @@ as"completion" has"docker" \
 
 zinit wait lucid light-mode depth"1" for \
     zdharma-continuum/fast-syntax-highlighting \
-if'[[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]' \
+if'[[ $TERM != "linux" ]]' \
 atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 

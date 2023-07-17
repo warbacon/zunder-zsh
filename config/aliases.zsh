@@ -1,7 +1,7 @@
 # ALIASES ----------------------------------------------------------------------
 alias grep="grep --color=auto"
 if [[ -n $commands[exa] ]]; then
-    if [[ -n $DISPLAY || -n $TERMUX_VERSION || "$(uname)" == "Darwin" ]]; then
+    if [[ $TERM != "linux" ]]; then
         alias exa="exa --icons --group-directories-first"
     else
         alias exa="exa --group-directories-first"
