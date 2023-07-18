@@ -33,7 +33,7 @@ compile'./gitstatus/(install|*.zsh)' for \
     Warbacon/zunder-prompt
 
 # zsh plugins
-zinit light-mode depth"1" for \
+zinit light-mode depth"1" nocd for \
     OMZP::command-not-found \
     OMZP::sudo \
 has"fzf" \
@@ -47,7 +47,7 @@ as"completion" \
 as"completion" has"docker" \
     https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-zinit wait lucid light-mode depth"1" for \
+zinit wait lucid light-mode nocd depth"1" for \
     zdharma-continuum/fast-syntax-highlighting \
 if'[[ $TERM != "linux" ]]' \
 atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" \
