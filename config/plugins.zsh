@@ -23,7 +23,7 @@ zinit from"gh-r" as"program" if'[[ -z $commands[fzf] ]]' for \
 # Installs exa from github releases, unless the OS is Android as it doesn't work there.
 # Android users should install exa from their package manager.
 zinit from"gh-r" as"program" pick"bin/exa" \
-has"unzip" if'[[ -z $TERMUX_VERSION ]]' \
+has"unzip" if'[[ -z $TERMUX_VERSION && -z $commands[exa] ]]' \
 cp"completions/exa.zsh -> _exa" for \
     ogham/exa
 
