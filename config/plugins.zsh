@@ -28,8 +28,7 @@ cp"completions/exa.zsh -> _exa" for \
     ogham/exa
 
 # zunder-prompt
-zinit cloneopts"--recursive --shallow-submodules" \
-compile'./gitstatus/(install|*.zsh)' for \
+zinit compile'./gitstatus/(install|*.zsh)' for \
     Warbacon/zunder-prompt
 
 # zsh plugins
