@@ -160,13 +160,12 @@ install_icons() {
     # Create directory if it does not exist
     mkdir -p "$HOME/.local/share/fonts"
 
-    # Download font file if it does not exist
-    cd "$HOME/.local/share/fonts" || return 1
-    curl -fLo "Symbols Nerd Font.ttf" \
+    # Download font file
+    curl -fLo "$HOME/.local/share/fonts/Symbols Nerd Font.ttf" \
         "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" \
-        || print_error "An error has occurred" && cd - && return 1
+        || return 1
 
-    print_success "Icons installed successfully."
+    print_success "Icons installed successfully in $HOME/.local/share/fonts/Symbols Nerd Font.tff."
 }
 
 main() {
@@ -177,7 +176,7 @@ main() {
 
     dependecy_check
 
-    if [[ "$(basename "$SHELL")" != "zsh" && $distro -ne 7 ]]; then
+    if [[ "$(basename "$SHELL")" != "zsh" && $distro -ne 5 && $distro -ne 7 ]]; then
         set_default
     fi
 
@@ -188,14 +187,14 @@ main() {
         zsh -i -c exit
     fi
 
-    if [[ ! -f "$HOME/.local/share/fonts/Symbols Nerd Font.ttf" && $distro -lt 5  ]]; then
-        install_icons
+    if [[ "$distro" -lt 5  ]]; then
+        fc-list | grep -q "Symbols Nerd Font" || install_icons
     fi
 
     print_line
     print_success "All done."
 
-    if $default_applied; then
+    if [[ -n "$default_applied" ]]; then
         print_warning "It may be necessary to reboot the system to see" \
                       "zsh as the default shell."
     fi
