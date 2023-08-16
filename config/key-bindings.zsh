@@ -2,19 +2,6 @@
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Builtins
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
 
-# Make sure that the terminal is in application mode when zle is active, since
-# only then values from $terminfo are valid
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-  function zle-line-init() {
-    echoti smkx
-  }
-  function zle-line-finish() {
-    echoti rmkx
-  }
-  zle -N zle-line-init
-  zle -N zle-line-finish
-fi
-
 # Use emacs key bindings
 bindkey -e
 
@@ -70,10 +57,6 @@ if [[ -n "${terminfo[kcbt]}" ]]; then
   bindkey -M vicmd "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-# [Backspace] - delete backward
-bindkey -M emacs '^?' backward-delete-char
-bindkey -M viins '^?' backward-delete-char
-bindkey -M vicmd '^?' backward-delete-char
 # [Delete] - delete forward
 if [[ -n "${terminfo[kdch1]}" ]]; then
   bindkey -M emacs "${terminfo[kdch1]}" delete-char
@@ -83,54 +66,35 @@ else
   bindkey -M emacs "^[[3~" delete-char
   bindkey -M viins "^[[3~" delete-char
   bindkey -M vicmd "^[[3~" delete-char
-
-  bindkey -M emacs "^[3;5~" delete-char
-  bindkey -M viins "^[3;5~" delete-char
-  bindkey -M vicmd "^[3;5~" delete-char
 fi
 
 # [Ctrl-Delete] - delete whole forward-word
 bindkey -M emacs '^[[3;5~' kill-word
 bindkey -M viins '^[[3;5~' kill-word
 bindkey -M vicmd '^[[3;5~' kill-word
+# [Ctrl-Backspace] - delete whole backward-word
+if [[ "$TERM" != "linux" ]]; then
+    bindkey -M emacs '^H' backward-kill-word
+    bindkey -M viins '^H' backward-kill-word
+    bindkey -M vicmd '^H' backward-kill-word
+else
+    bindkey -M emacs '^_' backward-kill-word
+    bindkey -M viins '^_' backward-kill-word
+    bindkey -M vicmd '^_' backward-kill-word
+fi
 
 # [Ctrl-RightArrow] - move forward one word
-if [[ $TERM != "linux" ]]; then
-    bindkey -M emacs '^[[1;5C' forward-word
-    bindkey -M viins '^[[1;5C' forward-word
-    bindkey -M vicmd '^[[1;5C' forward-word
-else
-    bindkey -M emacs '^[[C' forward-word
-    bindkey -M viins '^[[C' forward-word
-    bindkey -M vicmd '^[[C' forward-word
-fi
-# [Alt-RightArrow] - move forward one word
-bindkey -M emacs "^[[1;3C" forward-word
-bindkey -M viins "^[[1;3C" forward-word
-bindkey -M vicmd "^[[1;3C" forward-word
+bindkey -M emacs '^[[1;5C' forward-word
+bindkey -M viins '^[[1;5C' forward-word
+bindkey -M vicmd '^[[1;5C' forward-word
 # [Ctrl-LeftArrow] - move backward one word
-if [[ $TERM != "linux" ]]; then
-    bindkey -M emacs '^[[1;5D' backward-word
-    bindkey -M viins '^[[1;5D' backward-word
-    bindkey -M vicmd '^[[1;5D' backward-word
-else
-    bindkey -M emacs '^[[D' backward-word
-    bindkey -M viins '^[[D' backward-word
-    bindkey -M vicmd '^[[D' backward-word
-fi
-# [Alt-LeftArrow] - move backward one word
-bindkey -M emacs "^[[1;3D" backward-word
-bindkey -M viins "^[[1;3D" backward-word
-bindkey -M vicmd "^[[1;3D" backward-word
+bindkey -M emacs '^[[1;5D' backward-word
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M vicmd '^[[1;5D' backward-word
 
 # [Alt+s] - insert sudo at the beginning of the line (with sudo plugin)
 if [[ -n $widgets[sudo-command-line] ]]; then
     bindkey -r emacs "\e\e"
     bindkey -M emacs "^[s" sudo-command-line
 fi
-
-# Edit the current command line in $EDITOR
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
 
