@@ -76,8 +76,8 @@ install_icons() {
 
   # Download font file
   curl -fLo "$HOME/.local/share/fonts/Symbols Nerd Font.ttf" \
-    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" ||
-    return 1
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" \
+    || return 1
 }
 
 install_package() {
@@ -86,18 +86,18 @@ install_package() {
   read -r response
   if [ "$response" != "n" ] && [ "$response" != "N" ]; then
     case $os_type in
-    "arch") sudo pacman -S --noconfirm "$@" ;;
-    "debian") sudo apt install -y "$@" ;;
-    "fedora") sudo dnf install "$@" ;;
-    "darwin") brew install "$@" ;;
-    "android") pkg install "$@" ;;
-    4) sudo xbps-install "$@" ;;
-    *)
-      echo
-      fmt_error "Zunder-zsh doesn't support automatic package installations" \
-        "in your current operating system."
-      echo "Please do it manually."
-      ;;
+      "arch") sudo pacman -S --noconfirm "$@" ;;
+      "debian") sudo apt install -y "$@" ;;
+      "fedora") sudo dnf install "$@" ;;
+      "darwin") brew install "$@" ;;
+      "android") pkg install "$@" ;;
+      4) sudo xbps-install "$@" ;;
+      *)
+        echo
+        fmt_error "Zunder-zsh doesn't support automatic package installations" \
+          "in your current operating system."
+        echo "Please do it manually."
+        ;;
     esac || fmt_error "Installation failed." && exit 1
   fi
   print_line
@@ -112,38 +112,37 @@ check_os_type() {
   else
     [ "$(uname)" = "darwin" ] && os_type="darwin"
     case "$PREFIX" in
-    *com.termux*) os_type="android" ;;
+      *com.termux*) os_type="android" ;;
     esac
 
   fi
-
   case $os_type in
-  "arch")
-    fmt_info "You are using an arch-like distro."
-    ;;
-  "debian")
-    fmt_info "You are using a debian-like distro."
-    ;;
-  "fedora")
-    fmt_info "You are using a fedora-like distro."
-    ;;
-  "darwin")
-    fmt_info "You are using MacOS."
-    ;;
-  "android")
-    fmt_info "You are using termux on Android."
-    ;;
-  *)
-    fmt_warning "The type of your operating system could not be detected."
-    echo "The functionality of the installer will be limited."
-    echo
-    fmt_prompt "Continue? [Y/n] "
-    read -r response
-    if [ "$response" = "n" ] || [ "$response" = "N" ]; then
-      exit 1
-    fi
-    os_type="unknown"
-    ;;
+    "arch")
+      fmt_info "You are using an arch-like distro."
+      ;;
+    "debian")
+      fmt_info "You are using a debian-like distro."
+      ;;
+    "fedora")
+      fmt_info "You are using a fedora-like distro."
+      ;;
+    "darwin")
+      fmt_info "You are using MacOS."
+      ;;
+    "android")
+      fmt_info "You are using termux on Android."
+      ;;
+    *)
+      fmt_warning "The type of your operating system could not be detected."
+      echo "The functionality of the installer will be limited."
+      echo
+      fmt_prompt "Continue? [Y/n] "
+      read -r response
+      if [ "$response" = "n" ] || [ "$response" = "N" ]; then
+        exit 1
+      fi
+      os_type="unknown"
+      ;;
   esac
 }
 
@@ -160,8 +159,8 @@ main() {
       if [ "$response" != "n" ] && [ "$response" != "N" ]; then
         print_line
         fmt_info "Installing brew..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" ||
-          fmt_error "Installation failed."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+          || fmt_error "Installation failed."
         print_line
       fi
     fi
