@@ -110,7 +110,7 @@ check_os_type() {
       os_type=$(grep "^ID_LIKE=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
     fi
   else
-    [ "$(uname)" = "darwin" ] && os_type="darwin"
+    [ "$(uname)" = "Darwin" ] && os_type="darwin"
     case "$PREFIX" in
       *com.termux*) os_type="android" ;;
     esac
