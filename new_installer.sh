@@ -1,7 +1,7 @@
 #!/bin/sh
 
 FMT_RED=$(printf "\033[31m")
-# FMT_GREEN=$(printf "\033[32m")
+FMT_GREEN=$(printf "\033[32m")
 FMT_YELLOW=$(printf "\033[33m")
 FMT_BLUE=$(printf "\033[34m")
 FMT_CYAN=$(printf "\033[36m")
@@ -22,6 +22,10 @@ fmt_warning() {
   printf "%s%s%s\n" "${FMT_BOLD}${FMT_YELLOW}" "$*" "$FMT_RESET"
 }
 
+fmt_success() {
+  printf "%s%s%s\n" "$FMT_GREEN" "$*" "$FMT_RESET"
+}
+
 fmt_info() {
   printf "%s:: %s%s%s\n" "${FMT_BOLD}${FMT_CYAN}" "${FMT_RESET}${FMT_BOLD}" "$*" "$FMT_RESET"
 }
@@ -32,14 +36,6 @@ fmt_prompt() {
 
 print_line() {
   printf "%*s\n" "$(stty size | cut -d ' ' -f2)" '' | tr ' ' '-'
-}
-
-can_brew() {
-  if command_exists brew; then
-    return 0
-  else
-    return 1
-  fi
 }
 
 user_can_sudo() {
@@ -81,7 +77,6 @@ install_icons() {
 }
 
 install_package() {
-  print_line
   fmt_prompt "Do you want to install $*? [Y/n] "
   read -r response
   if [ "$response" != "n" ] && [ "$response" != "N" ]; then
@@ -91,23 +86,28 @@ install_package() {
       "fedora") sudo dnf install "$@" ;;
       "darwin") brew install "$@" ;;
       "android") pkg install "$@" ;;
-      4) sudo xbps-install "$@" ;;
+      "void") sudo xbps-install "$@" ;;
       *)
         echo
         fmt_error "Zunder-zsh doesn't support automatic package installations" \
           "in your current operating system."
         echo "Please do it manually."
+        exit 1
         ;;
-    esac || fmt_error "Installation failed." && exit 1
+    esac || {
+      fmt_error "Installation failed."
+      exit 1
+    }
+  else
+    return 1
   fi
-  print_line
 }
 
 check_os_type() {
   if [ -f /etc/os-release ]; then
-    os_type=$(grep "^ID=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
-    if [ "$os_type" != "arch" ] && [ "$os_type" != "debian" ] && [ "$os_type" != "fedora" ]; then
-      os_type=$(grep "^ID_LIKE=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
+    os_type=$(grep "^ID_LIKE=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
+    if [ -z "$os_type" ]; then
+      os_type=$(grep "^ID=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
     fi
   else
     [ "$(uname)" = "Darwin" ] && os_type="darwin"
@@ -132,6 +132,9 @@ check_os_type() {
     "android")
       fmt_info "You are using termux on Android."
       ;;
+    "void")
+      fmt_info "You are using termux on Android."
+      ;;
     *)
       fmt_warning "The type of your operating system could not be detected."
       echo "The functionality of the installer will be limited."
@@ -146,26 +149,54 @@ check_os_type() {
   esac
 }
 
+check_dependencies() {
+  set -- "zsh" "unzip" "curl" "git"
+
+  [ "$os_type" = "fedora" ] && set -- "$@" "sqlite"
+
+  fmt_info "Checking dependencies..."
+
+  for dependency in "$@"; do
+    if ! command_exists "$dependency"; then
+      [ "$dependency" = "sqlite" ] && dependency="sqlite3"
+      install_package "$dependency" || {
+        fmt_error "$dependency is needed for zunder-zsh to work properly."
+        echo "Please do it manually or run again this script."
+        exit 1
+      }
+    fi
+    shift 1
+  done
+
+  [ "$#" -eq 0 ] && fmt_success "All dependencies satisfied."
+}
+
+# check_brew() {
+#   if [ "$os_type" = "darwin" ]; then
+#     if command_exists brew; then
+#       fmt_info "brew is installed in your system."
+#     else
+#       fmt_warning "brew is not installed in your system"
+#       echo
+#       fmt_prompt "Do you want to install it? [Y/n] "
+#       read -r response
+#       if [ "$response" != "n" ] && [ "$response" != "N" ]; then
+#         print_line
+#         fmt_info "Installing brew..."
+#         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+#           || fmt_error "Installation failed."
+#         print_line
+#       fi
+#     fi
+#   fi
+# }
+
 main() {
   check_os_type
-  if [ "$os_type" = "darwin" ]; then
-    if command_exists brew; then
-      fmt_info "brew is installed in your system."
-    else
-      fmt_warning "brew is not installed in your system"
-      echo
-      fmt_prompt "Do you want to install it? [Y/n] "
-      read -r response
-      if [ "$response" != "n" ] && [ "$response" != "N" ]; then
-        print_line
-        fmt_info "Installing brew..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-          || fmt_error "Installation failed."
-        print_line
-      fi
-    fi
-  fi
+  echo
+  check_dependencies
   if [ "$os_type" != 'darwin' ] && [ "$os_type" != 'android' ] && [ "$os_type" != 'unknown' ]; then
+    echo
     fc-list | grep -q "Symbols Nerd Font" || install_icons
   fi
 }
