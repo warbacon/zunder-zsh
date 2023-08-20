@@ -48,10 +48,6 @@ dependecy_check() {
     dependencies+=("sqlite3")
   fi
 
-  if ((distro == 6)); then
-    dependencies+=("exa" "file")
-  fi
-
   not_installed=0
   for dependency in "${dependencies[@]}"; do
     if ! command_exists "$dependency"; then
