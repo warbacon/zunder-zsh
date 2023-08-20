@@ -58,9 +58,9 @@ if [[ -n "${terminfo[khome]}" ]]; then
 fi
 # [End] - Go to end of line
 if [[ -n "${terminfo[kend]}" ]]; then
-  bindkey -M emacs "${terminfo[kend]}"  end-of-line
-  bindkey -M viins "${terminfo[kend]}"  end-of-line
-  bindkey -M vicmd "${terminfo[kend]}"  end-of-line
+  bindkey -M emacs "${terminfo[kend]}" end-of-line
+  bindkey -M viins "${terminfo[kend]}" end-of-line
+  bindkey -M vicmd "${terminfo[kend]}" end-of-line
 fi
 
 # [Shift-Tab] - move through the completion menu backwards
@@ -103,8 +103,17 @@ bindkey -M emacs '^[[1;5D' backward-word
 bindkey -M viins '^[[1;5D' backward-word
 bindkey -M vicmd '^[[1;5D' backward-word
 
+# [Alt-RightArrow] - move forward one word
+bindkey -M emacs '^[[1;3C' forward-word
+bindkey -M viins '^[[1;3C' forward-word
+bindkey -M vicmd '^[[1;3C' forward-word
+# [Alt-LeftArrow] - move backward one word
+bindkey -M emacs '^[[1;3D' backward-word
+bindkey -M viins '^[[1;3D' backward-word
+bindkey -M vicmd '^[[1;3D' backward-word
+
 # [Alt+s] - insert sudo at the beginning of the line (with sudo plugin)
 if [[ -n $widgets[sudo-command-line] ]]; then
-    bindkey -r emacs "\e\e"
-    bindkey -M emacs "^[s" sudo-command-line
+  bindkey -r emacs "\e\e"
+  bindkey -M emacs "^[s" sudo-command-line
 fi
