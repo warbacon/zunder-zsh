@@ -10,13 +10,11 @@
 - Autosuggestions and syntax highlighting.
 - Beautiful and lightweight prompt based on [gitstatus](https://github.com/romkatv/gitstatus).
 Check out [zunder-prompt](https://github.com/Warbacon/zunder-prompt).
-- Replaces the `ls` command with [exa](https://github.com/ogham/exa).
+- Replaces the `ls` command with [exa](https://github.com/ogham/exa) (if is installed).
 - Full [Git](https://git-scm.com/) integration.
-- [Fzf](https://github.com/junegunn/fzf) integration. Try using ALT+C, CTRL+T and CTRL+R.
 - Compatible with all [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) plugins
 thanks to [zinit](https://github.com/zdharma-continuum/zinit).
-- Much more and it's updating!
-See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
+- See [Installed plugins](https://github.com/Warbacon/zunder-zsh#installed-plugins).
 
 ### Essential aliases
 
