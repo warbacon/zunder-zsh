@@ -170,8 +170,6 @@ install_icons() {
 
 main() {
   declare -i distro
-  default_applied=false
-
   select_system
 
   dependecy_check
