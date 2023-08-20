@@ -22,7 +22,6 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
-autoload -U +X bashcompinit && bashcompinit
 
 # OTHER ------------------------------------------------------------------------
 setopt autocd # Change working directory without using cd

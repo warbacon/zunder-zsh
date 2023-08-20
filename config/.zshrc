@@ -1,10 +1,10 @@
 #===============================================================================
-#                                _                       _     
-#            _____   _ _ __   __| | ___ _ __     _______| |__  
-#           |_  / | | | '_ \ / _` |/ _ \ '__|___|_  / __| '_ \ 
+#                                _                       _
+#            _____   _ _ __   __| | ___ _ __     _______| |__
+#           |_  / | | | '_ \ / _` |/ _ \ '__|___|_  / __| '_ \
 #            / /| |_| | | | | (_| |  __/ | |_____/ /\__ \ | | |
 #           /___|\__,_|_| |_|\__,_|\___|_|      /___|___/_| |_|
-#                                                              
+#
 #===============================================================================
 
 # LOAD CONFIGURATIONS ----------------------------------------------------------
@@ -17,9 +17,10 @@ source "$ZDOTDIR/key-bindings.zsh"
 [[ -f "$ZDOTDIR/user-config.zsh" ]] && source "$ZDOTDIR/user-config.zsh"
 
 # LOAD COMPINIT ----------------------------------------------------------------
-autoload -Uz compinit && compinit
+autoload -Uz compinit bashcompinit \
+  && compinit \
+  && bashcompinit
 zinit cdreplay -q
 
 [[ "$ZDOTDIR/.zcompdump.zwc" -nt "$ZDOTDIR/.zcompdump" ]] \
-    || zcompile "$ZDOTDIR/.zcompdump"
-
+  || zcompile "$ZDOTDIR/.zcompdump"
