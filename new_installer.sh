@@ -83,10 +83,10 @@ install_package() {
     case $os_type in
       "arch") sudo pacman -S --noconfirm "$@" ;;
       "debian") sudo apt install -y "$@" ;;
-      "fedora") sudo dnf install "$@" ;;
+      "fedora") sudo dnf install --assumeyes "$@" ;;
       "darwin") brew install "$@" ;;
-      "android") pkg install "$@" ;;
-      "void") sudo xbps-install "$@" ;;
+      "android") pkg install -y "$@" ;;
+      "void") sudo xbps-install -y "$@" ;;
       *)
         echo
         fmt_error "Zunder-zsh doesn't support automatic package installations" \
@@ -114,7 +114,6 @@ check_os_type() {
     case "$PREFIX" in
       *com.termux*) os_type="android" ;;
     esac
-
   fi
   case $os_type in
     "arch")
@@ -133,7 +132,7 @@ check_os_type() {
       fmt_info "You are using termux on Android."
       ;;
     "void")
-      fmt_info "You are using termux on Android."
+      fmt_info "You are using Void Linux."
       ;;
     *)
       fmt_warning "The type of your operating system could not be detected."
@@ -158,14 +157,24 @@ check_dependencies() {
 
   for dependency in "$@"; do
     if ! command_exists "$dependency"; then
+
       [ "$dependency" = "sqlite" ] && dependency="sqlite3"
+
+      if [ "$os_type" = "unknown" ]; then
+        fmt_error "$dependency is needed for zunder-zsh to work properly."
+        echo "Please install it manually."
+        exit 1
+      fi
+
       install_package "$dependency" || {
         fmt_error "$dependency is needed for zunder-zsh to work properly."
-        echo "Please do it manually or run again this script."
+        echo "Please install it manually or run again this script."
         exit 1
       }
     fi
+
     shift 1
+
   done
 
   [ "$#" -eq 0 ] && fmt_success "All dependencies satisfied."
@@ -195,7 +204,7 @@ main() {
   check_os_type
   echo
   check_dependencies
-  if [ "$os_type" != 'darwin' ] && [ "$os_type" != 'android' ] && [ "$os_type" != 'unknown' ]; then
+  if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ]; then
     echo
     fc-list | grep -q "Symbols Nerd Font" || install_icons
   fi
