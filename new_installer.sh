@@ -8,6 +8,8 @@ FMT_CYAN=$(printf "\033[36m")
 FMT_BOLD=$(printf "\033[1m")
 FMT_RESET=$(printf "\033[0m")
 
+ZDOTDIR="$HOME/.config/zsh"
+
 set -e
 
 command_exists() {
@@ -81,12 +83,12 @@ install_package() {
   read -r response
   if [ "$response" != "n" ] && [ "$response" != "N" ]; then
     case $os_type in
-      "arch") sudo pacman -S --noconfirm "$@" ;;
-      "debian") sudo apt install -y "$@" ;;
-      "fedora") sudo dnf install --assumeyes "$@" ;;
-      "darwin") brew install "$@" ;;
-      "android") pkg install -y "$@" ;;
-      "void") sudo xbps-install -y "$@" ;;
+      "arch") sudo pacman -S --noconfirm "$*" ;;
+      "debian") sudo apt install -y "$*" ;;
+      "fedora") sudo dnf install --assumeyes "$*" ;;
+      "darwin") brew install "$*" ;;
+      "android") pkg install -y "$*" ;;
+      "void") sudo xbps-install -y "$*" ;;
       *)
         echo
         fmt_error "Zunder-zsh doesn't support automatic package installations" \
@@ -200,10 +202,43 @@ check_dependencies() {
 #   fi
 # }
 
+load_files() {
+  printf "%s::%s Zunder-zsh will store its configuration in %s.\n" \
+    "${FMT_BOLD}${FMT_CYAN}" "${FMT_RESET}${FMT_BOLD}" \
+    "${FMT_CYAN}${ZDOTDIR}${FMT_RESET}"
+  fmt_prompt "Continue? [y/N]: "
+  read -r prompt
+
+  echo
+  if [ "$prompt" = "y" ] || [ "$prompt" = "Y" ]; then
+    mkdir -vp "$ZDOTDIR" 2>/dev/null
+    cp -v ./config/aliases.zsh "$ZDOTDIR"
+    cp -v ./config/options.zsh "$ZDOTDIR"
+    cp -v ./config/key-bindings.zsh "$ZDOTDIR"
+    cp -v ./config/plugins.zsh "$ZDOTDIR"
+    cp -v ./config/.zshrc "$ZDOTDIR"
+    cp -v ./config/.zshenv "$HOME"
+    mv -v "$HOME/.zsh_history" "$ZDOTDIR" 2>/dev/null
+    [ ! -f "$ZDOTDIR/user-config.zsh" ] \
+      && echo "# Write your configurations here" >"$ZDOTDIR/user-config.zsh"
+  else
+    fmt_warning "Canceled. This won't apply your changes at all," \
+      "try running the script again."
+    exit 1
+  fi
+}
+
 main() {
   check_os_type
   echo
   check_dependencies
+  echo
+  load_files
+  if ! [ -d "$HOME/.local/share/zinit"  ]; then
+    echo 
+    fmt_info "Installing plugins..."
+    zsh -i -c exit
+  fi
   if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ]; then
     echo
     fc-list | grep -q "Symbols Nerd Font" || install_icons
