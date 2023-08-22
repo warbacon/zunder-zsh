@@ -211,16 +211,21 @@ load_files() {
 
   echo
   if [ "$prompt" = "y" ] || [ "$prompt" = "Y" ]; then
-    mkdir -vp "$ZDOTDIR" 2>/dev/null
+    [ ! -d "$ZDOTDIR" ] && mkdir -vp "$ZDOTDIR"
     cp -v ./config/aliases.zsh "$ZDOTDIR"
     cp -v ./config/options.zsh "$ZDOTDIR"
     cp -v ./config/key-bindings.zsh "$ZDOTDIR"
     cp -v ./config/plugins.zsh "$ZDOTDIR"
     cp -v ./config/.zshrc "$ZDOTDIR"
     cp -v ./config/.zshenv "$HOME"
-    mv -v "$HOME/.zsh_history" "$ZDOTDIR" 2>/dev/null
+    [ -f "$HOME/.zsh_history" ] \
+      && [ -f "$ZDOTDIR/.zsh_history" ] \
+      && [ -n "$(find "$HOME/.zsh_history" -newer "$ZDOTDIR/.zsh_history")" ] \
+      && mv -v "$HOME/.zsh_history" "$ZDOTDIR"
     [ ! -f "$ZDOTDIR/user-config.zsh" ] \
       && echo "# Write your configurations here" >"$ZDOTDIR/user-config.zsh"
+    echo
+    fmt_success "The configuration has been set up."
   else
     fmt_warning "Canceled. This won't apply your changes at all," \
       "try running the script again."
