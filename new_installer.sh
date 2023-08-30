@@ -182,26 +182,6 @@ check_dependencies() {
   [ "$#" -eq 0 ] && fmt_success "All dependencies satisfied."
 }
 
-# check_brew() {
-#   if [ "$os_type" = "darwin" ]; then
-#     if command_exists brew; then
-#       fmt_info "brew is installed in your system."
-#     else
-#       fmt_warning "brew is not installed in your system"
-#       echo
-#       fmt_prompt "Do you want to install it? [Y/n] "
-#       read -r response
-#       if [ "$response" != "n" ] && [ "$response" != "N" ]; then
-#         print_line
-#         fmt_info "Installing brew..."
-#         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-#           || fmt_error "Installation failed."
-#         print_line
-#       fi
-#     fi
-#   fi
-# }
-
 load_files() {
   printf "%s::%s Zunder-zsh will store its configuration in %s.\n" \
     "${FMT_BOLD}${FMT_CYAN}" "${FMT_RESET}${FMT_BOLD}" \
@@ -233,21 +213,48 @@ load_files() {
   fi
 }
 
+set_default() {
+  if [ "$os_type" != "android" ]; then
+    sudo usermod -s "$(which zsh)" "$USER"
+  else
+    chsh -s zsh
+  fi
+}
+
 main() {
   check_os_type
   echo
   check_dependencies
   echo
   load_files
-  if ! [ -d "$HOME/.local/share/zinit"  ]; then
-    echo 
+  if ! [ -d "$HOME/.local/share/zinit" ]; then
+    echo
     fmt_info "Installing plugins..."
     zsh -i -c exit
   fi
   if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ]; then
-    echo
-    fc-list | grep -q "Symbols Nerd Font" || install_icons
+    fc-list | grep -q "Symbols Nerd Font" || (echo && install_icons)
   fi
+
+  if [ "$(basename "$SHELL")" = "zsh" ]; then
+    echo
+    fmt_prompt "Zsh is not your current default shell, do you want to set it? [Y/n]: "
+    read -r prompt
+
+    if [ "$prompt" != "n" ] && [ "$prompt" != "N" ]; then
+      if set_default >/dev/null 2>&1; then
+        fmt_success "Zsh was applied as default shell."
+        fmt_warning "You may have to restart your computer to apply the changes."
+      else
+        fmt_error "Zsh could not be applied as the default shell."
+      fi
+    else
+      fmt_warning "Zsh won't be setted as the default shell."
+    fi
+  fi
+
+  echo
+  fmt_success "Installation complete."
 }
 
 main "$@"
