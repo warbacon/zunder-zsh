@@ -236,7 +236,7 @@ main() {
     fc-list | grep -q "Symbols Nerd Font" || (echo && install_icons)
   fi
 
-  if [ "$(basename "$SHELL")" = "zsh" ]; then
+  if [ "$(basename "$SHELL")" != "zsh" ]; then
     echo
     fmt_prompt "Zsh is not your current default shell, do you want to set it? [Y/n]: "
     read -r prompt
