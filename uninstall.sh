@@ -1,20 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 
-source ./lib/color.sh
-source ./lib/functions.sh
-source ./lib/constants.sh
+ZDOTDIR="$HOME/.config/zsh"
+
+set -e
 
 main() {
-    printf "%bDo you want to remove all the Zunder files? [y/N]: %b" "$YELLOW$BOLD" \
-        "$NORMAL"
+    printf "Do you want to remove all the Zunder files? [y/N]: "
     read -r prompt
-    if [[ $prompt =~ (Y|y) ]]; then
-        mv "$ZDOTDIR/.zsh_history" "$HOME" 2> /dev/null
-        rm -rf "$ZDOTDIR" "$HOME/.zshenv" "$HOME/.cache/p10k"* "$HOME/.cache/zinit" \
-               "$HOME/.local/share/zinit" "$HOME/.cache/starship" "$HOME/.cache/gitstatus"
+    if [ "$prompt" = "y" ] && [ "$prompt" = "Y" ]; then
+        [ -f "$HOME/.zsh_history" ] && mv "$HOME/.zsh_history" "$HOME/.zsh_history.old"
+        [ -f "$ZDOTDIR/.zsh_history" ] && mv "$ZDOTDIR/.zsh_history" "$HOME"
+        rm -rf "$ZDOTDIR" "$HOME/.zshenv" "$HOME/.cache/p10k"* \
+            "$HOME/.cache/zinit" "$HOME/.local/share/zinit" \
+            "$HOME/.cache/starship" "$HOME/.cache/gitstatus"
     fi
-    print_line
-    print_success "All done."
 }
 
 main "$@"
