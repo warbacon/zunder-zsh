@@ -203,9 +203,8 @@ load_files() {
       && [ -n "$(find "$HOME/.zsh_history" -newer "$ZDOTDIR/.zsh_history")" ] \
       && mv -v "$HOME/.zsh_history" "$ZDOTDIR"
     [ ! -f "$ZDOTDIR/user-config.zsh" ] \
-      && echo "# Write your configurations here" >"$ZDOTDIR/user-config.zsh"
-    echo
-    fmt_success "The configuration has been set up."
+      && echo "# Write your configurations here" >"$ZDOTDIR/user-config.zsh" \
+      || return 0
   else
     fmt_warning "Canceled. This won't apply your changes at all," \
       "try running the script again."
@@ -224,7 +223,7 @@ set_default() {
 main() {
   check_os_type
   echo
-  check_dependencies
+  [ "$os_type" != "darwin" ] && check_dependencies
   echo
   load_files
   if ! [ -d "$HOME/.local/share/zinit" ]; then
