@@ -32,6 +32,7 @@ zinit light-mode depth"1" nocd for \
   https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 zinit wait lucid light-mode nocd depth"1" for \
+  atinit"zicompinit; zicdreplay" \
   zdharma-continuum/fast-syntax-highlighting \
   if'[[ $TERM != "linux" ]]' \
   atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" \
