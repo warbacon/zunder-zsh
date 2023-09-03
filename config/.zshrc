@@ -15,3 +15,10 @@ source "$ZDOTDIR/key-bindings.zsh"
 
 # LOAD CUSTOM USER CONFIGURATION -----------------------------------------------
 [[ -f "$ZDOTDIR/user-config.zsh" ]] && source "$ZDOTDIR/user-config.zsh"
+
+# LOAD COMPINIT ----------------------------------------------------------------
+autoload -Uz compinit && compinit
+zinit cdreplay -q
+
+[[ "$ZDOTDIR/.zcompdump.zwc" -nt "$ZDOTDIR/.zcompdump" ]] \
+  || zcompile "$ZDOTDIR/.zcompdump"
