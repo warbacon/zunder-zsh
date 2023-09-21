@@ -9,7 +9,6 @@ setopt hist_verify            # Show command with history expansion to user befo
 setopt share_history          # Share history between all sessions.
 
 # COMPLETION STYLE -------------------------------------------------------------
-WORDCHARS=''
 unsetopt menu_complete
 unsetopt flowcontrol
 setopt auto_menu
@@ -25,6 +24,10 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 # OTHER ------------------------------------------------------------------------
 setopt autocd # Change working directory without using cd
+
+# Set word style to bash-like
+autoload -U select-word-style
+select-word-style bash
 
 # Change window title
 ## It doesn't change it when shell_integration is enabled in kitty terminal
