@@ -117,6 +117,7 @@ check_os_type() {
       *com.termux*) os_type="android" ;;
     esac
   fi
+  [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && is_wsl=true
   case $os_type in
     "arch")
       fmt_info "You are using an arch-like distro."

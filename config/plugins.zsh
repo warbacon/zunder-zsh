@@ -15,7 +15,7 @@ if [[ $TERM != "linux" ]]; then
   ZUNDER_PROMPT_CHAR_COLOR=3
 fi
 
-[[ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && is_wsl=true
+[[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && is_wsl=true
 
 # PLUGINS ----------------------------------------------------------------------
 # zunder-prompt
