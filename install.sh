@@ -232,7 +232,7 @@ main() {
     fmt_info "Installing plugins..."
     zsh -i -c exit
   fi
-  if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ]; then
+  if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ] && [ -z "$is_wsl" ]; then
     fc-list | grep -q "Symbols Nerd Font" || (echo && install_icons)
   fi
 
