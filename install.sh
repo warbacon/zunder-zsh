@@ -151,7 +151,7 @@ check_os_type() {
 }
 
 check_dependencies() {
-  set -- "zsh" "unzip" "curl" "git"
+  set -- "zsh" "curl" "git"
 
   [ "$os_type" = "fedora" ] && set -- "$@" "sqlite"
 
