@@ -15,8 +15,6 @@ if [[ $TERM != "linux" ]]; then
   ZUNDER_PROMPT_CHAR_COLOR=3
 fi
 
-[[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && is_wsl=true
-
 # PLUGINS ----------------------------------------------------------------------
 # zunder-prompt
 zinit light-mode compile'./gitstatus/(install|*.zsh)' depth"1" for \
@@ -33,10 +31,10 @@ zinit light-mode depth"1" nocd for \
   as"completion" has"docker" \
   https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-zinit wait lucid light-mode nocd depth"1" if'[[ -z is_wsl ]]' for \
+zinit wait lucid light-mode nocd depth"1" for \
+  if'[[ ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]]' \
   zdharma-continuum/fast-syntax-highlighting \
   if'[[ $TERM != "linux" ]]' \
   atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions
 
-unset is_wsl
