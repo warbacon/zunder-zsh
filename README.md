@@ -4,7 +4,7 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 
 ![Preview](./assets/preview.gif)
 
-## 💡Features
+## 💡 Features
 
 - There is no magic here. Zunder-zsh isn't a framework and tries to be clear
 about how it works.
@@ -158,7 +158,7 @@ You can change bash for the shell of your choice.
 
 Info [here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35#issuecomment-1315195049).
 
-## 🫵 I need you
+## 🤝 I need you
 
 If you encounter any issue or have any suggestions, please do not hesitate
 to contact me. I'm open to any discussion and **I'll be happy to help!**
