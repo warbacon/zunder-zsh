@@ -6,7 +6,7 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 
 ## 💡 Features
 
-- There is no magic here. Zunder-zsh isn't a framework and tries to be clear
+- There's no magic here. Zunder-zsh isn't a framework and tries to be clear
 about how it works.
 - Beautiful, clean and lag free prompt with git support.
 See [zunder-prompt](https://github.com/Warbacon/zunder-prompt).
@@ -47,14 +47,15 @@ without having to learn new things, just run the script and you are ready to go.
 Here there are no unnecessary things and everything works fast.
 
 **However**, if you are a more advanced user, you may need to extend zunder-zsh
-more than usual, thus making the configuration more complicated than if you were
-not using zunder-zsh. If this happens to you, I recommend that you create your
-own configuration, either by forking this project or creating it from scratch.
+more than usual, thus making the configuration more complicated than if you 
+weren't using zunder-zsh. If this happens to you, I recommend that you create
+your own configuration, either by forking this project or creating it from
+scratch.
 
 ### Zunder-zsh vs Oh My Zsh
 
-Oh My Zsh is a framework, **zunder-zsh is not**. This means that while Oh My Zsh
-requires you to configure your shell how they want, zunder-zsh does not,
+Oh My Zsh is a framework, **zunder-zsh isn't**. This means that while Oh My Zsh
+requires you to configure your shell how they want, zunder-zsh doesn't,
 since its level of abstraction is very low, making it so that anyone can
 understand what is happening behind the scenes and can be modified in the way
 you prefer.
@@ -82,7 +83,7 @@ because it produces input lag when typing.
 Depending on your operating system, the necessary icons will be installed
 if needed, but may require additional configuration. 
 
-If you do not see the icons correctly and do not want to complicate your life,
+If you don't see the icons correctly and don't want to complicate your life,
 you can install a [Nerd Font](https://www.nerdfonts.com/)
 and set it as default on your terminal.
 
@@ -160,6 +161,6 @@ Info [here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues
 
 ## 🤝 I need you
 
-If you encounter any issue or have any suggestions, please do not hesitate
+If you encounter any issue or have any suggestions, please don't hesitate
 to contact me. I'm open to any discussion and **I'll be happy to help!**
 
