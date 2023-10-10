@@ -11,7 +11,7 @@ about how it works.
 - Beautiful, clean and lag free prompt with git support.
 See [zunder-prompt](https://github.com/Warbacon/zunder-prompt).
 - Almost instant start-up.
-- Syntax highlightling and autosuggestions.
+- Syntax highlighting and autosuggestions.
 - [Exa](https://github.com/eza-community/eza) integration.
 - Automatic installation.
 
