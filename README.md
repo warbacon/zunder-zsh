@@ -33,12 +33,12 @@ Easily prefix your current or previous commands with sudo by pressing ALT+S.
 
 ### Aliases
 
-| Alias | Description                                                                                   |
-| ----- | --------------------------------------------------------------------------------------------- |
-| ll    | Long list directory contents. Uses exa if installed.                                          |
-| la    | List directory contents with hidden files. Uses exa if installed.                             |
-| lla   | Long list directory contents with hidden files. Uses exa if installed.                        |
-| lt    | Displays the directory tree in the current directory. Uses exa if installed. If not uses tree |
+| Alias | Description                                                                                       |
+| ----- | ------------------------------------------------------------------------------------------------- |
+| ll    | Long list directory contents. Uses exa if installed.                                              |
+| la    | List directory contents with hidden files. Uses exa if installed.                                 |
+| lla   | Long list directory contents with hidden files. Uses exa if installed.                            |
+| lt    | Displays the directory tree in the current directory. Uses exa if installed, otherwise uses tree. |
 
 ## 🤔 Why should I use it?
 
