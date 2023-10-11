@@ -80,17 +80,17 @@ because it produces input lag when typing.
 
 ### Nerd fonts
 
-Depending on your operating system, the necessary icons will be installed
+Depending on your operating system, the required icons will be installed
 if needed, but may require additional configuration. 
 
 If you don't see the icons correctly and don't want to complicate your life,
 you can install a [Nerd Font](https://www.nerdfonts.com/)
 and set it as default on your terminal.
 
-You can use [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling)
-and set as font Fira Code.
-
 > I recommend JetBrainsMono Nerd Font
+
+You can use [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling)
+on Android and set as font, for example, Fira Code.
 
 ### Installation
 
@@ -100,7 +100,7 @@ and set as font Fira Code.
 git clone https://github.com/Warbacon/zunder-zsh.git
 ```
 
-2. Enter the cloned repository and run the install script.
+2. Enter the cloned repository and run the install script:
 
 ```sh
 cd ./zunder-zsh
@@ -135,6 +135,28 @@ ZUNDER_PROMPT_CHAR_COLOR="green"   # default value: 3 ("yellow")
 `ZUNDER_PROMPT_CHAR_COLOR` does accept any color between 0 and 255
 or a color name.
 
+### Fzf integration
+
+> You need to install ``fzf`` manually
+
+```sh
+zinit snippet https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
+```
+
+This enables the integration of fzf into zsh, making it possible to use
+the following keybindings:
+
+| Keybinding | Description                                   |
+| ---------- | --------------------------------------------- |
+| Ctrl+r     | Search history of shell commands.             |
+| Ctrl+t     | List files and folders in current directory.  |
+| Alt+c      | Fuzzy change directory.                       |
+
+### Exa integration
+
+Zunder-zsh will enable exa integration automatically if ``exa`` is installed.
+You must install ``exa`` or ``eza`` manually for this to happen.
+
 ## 🔧 Troubleshooting
 
 **If you find any error in zunder-zsh, I would appreciate if you open an issue
@@ -147,7 +169,8 @@ you can run the ``uninstall.sh`` script located in this same repository:
 ./uninstall.sh
 ```
 
-Additionally, if you used previously another shell, you can revert it using the following command:
+Additionally, if you used previously another shell, you can revert it using
+the following command:
 
 ```sh
 sudo usermod -s $(which bash) $USER
