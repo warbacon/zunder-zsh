@@ -1,9 +1,8 @@
 # ALIASES ----------------------------------------------------------------------
 alias grep="grep --color=auto"
 
-[[ -n $commands[eza] && -z $commands[exa] ]] && alias exa="eza"
-
-if [[ -n $commands[exa] ]] || alias exa 2>&1 /dev/null; then
+if [[ -n $commands[exa] || -n $commands[eza] ]]; then
+  [[ -n $commands[eza] && -z $commands[exa] ]] && alias exa="eza"
   if [[ "$TERM" != "linux" ]]; then
     alias ls="exa --icons --group-directories-first"
     alias ls="exa --icons --group-directories-first"
