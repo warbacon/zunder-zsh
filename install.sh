@@ -152,7 +152,11 @@ check_os_type() {
 }
 
 check_dependencies() {
-  set -- "zsh" "curl" "git"
+  set -- "zsh" "git"
+
+  if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ] && [ -z "$is_wsl" ]; then
+    set -- "$@" "curl"
+  fi
 
   [ "$os_type" = "fedora" ] && set -- "$@" "sqlite"
 
