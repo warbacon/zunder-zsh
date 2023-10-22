@@ -69,6 +69,7 @@ the following operating systems:
 - Arch Linux and derivatives (EndeavourOS, Manjaro, etc.).
 - Debian and derivatives (Ubuntu, Linux Mint, etc.).
 - Fedora and derivatives (NobaraOS, Ultramarine Linux, etc.).
+- OpenSUSE and derivatives (Tumbleweed, Leap, GeckoLinux, etc.).
 - Void Linux.
 - MacOS.
 - Android (using [termux](https://termux.dev)).

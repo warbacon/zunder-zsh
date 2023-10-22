@@ -40,36 +40,10 @@ print_line() {
   printf "%*s\n" "$(stty size | cut -d ' ' -f2)" '' | tr ' ' '-'
 }
 
-user_can_sudo() {
-  # Check if sudo is installed
-  command_exists sudo || return 1
-  # Termux can't run sudo, so we can detect it and exit the function early.
-  [ "$os_type" = "android" ] && return 1
-  # The following command has 3 parts:
-  #
-  # 1. Run `sudo` with `-v`. Does the following:
-  #    • with privilege: asks for a password immediately.
-  #    • without privilege: exits with error code 1 and prints the message:
-  #      Sorry, user <username> may not run sudo on <hostname>
-  #
-  # 2. Pass `-n` to `sudo` to tell it to not ask for a password. If the
-  #    password is not required, the command will finish with exit code 0.
-  #    If one is required, sudo will exit with error code 1 and print the
-  #    message:
-  #    sudo: a password is required
-  #
-  # 3. Check for the words "may not run sudo" in the output to really tell
-  #    whether the user has privileges or not. For that we have to make sure
-  #    to run `sudo` in the default locale (with `LANG=`) so that the message
-  #    stays consistent regardless of the user's locale.
-  #
-  ! LANG='' sudo -n -v 2>&1 | grep -q "may not run sudo"
-}
-
 install_icons() {
   fmt_info "Installing icons..."
 
-  # Create directory if it does not exist
+  # Create directory if it doesn't exist
   mkdir -p "$HOME/.local/share/fonts"
 
   # Download font file
@@ -86,6 +60,7 @@ install_package() {
       "arch") sudo pacman -S --noconfirm "$*" ;;
       "debian") sudo apt install -y "$*" ;;
       "fedora") sudo dnf install --assumeyes "$*" ;;
+      "opensuse suse") sudo zypper install -y "$*" ;;
       "darwin") brew install "$*" ;;
       "android") pkg install -y "$*" ;;
       "void") sudo xbps-install -y "$*" ;;
@@ -120,25 +95,28 @@ check_os_type() {
   [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && is_wsl=true
   case $os_type in
     "arch")
-      fmt_info "You are using an arch-like distro."
+      fmt_info "You are using an Arch-like distro."
       ;;
     "debian")
-      fmt_info "You are using a debian-like distro."
+      fmt_info "You are using a Debian-like distro."
       ;;
     "fedora")
-      fmt_info "You are using a fedora-like distro."
+      fmt_info "You are using a Fedora-like distro."
+      ;;
+    "opensuse suse")
+      fmt_info "You are using an OpenSuse-like distro."
       ;;
     "darwin")
       fmt_info "You are using MacOS."
       ;;
     "android")
-      fmt_info "You are using termux on Android."
+      fmt_info "You are using Termux on Android."
       ;;
     "void")
       fmt_info "You are using Void Linux."
       ;;
     *)
-      fmt_warning "The type of your operating system could not be detected."
+      fmt_warning "The type of your operating system couldn't be detected."
       echo "The functionality of the installer will be limited."
       echo
       fmt_prompt "Continue? [Y/n] "
@@ -152,11 +130,7 @@ check_os_type() {
 }
 
 check_dependencies() {
-  set -- "zsh" "git"
-
-  if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ] && [ -z "$is_wsl" ]; then
-    set -- "$@" "curl"
-  fi
+  set -- "zsh" "git" "curl"
 
   [ "$os_type" = "fedora" ] && set -- "$@" "sqlite"
 
@@ -242,7 +216,7 @@ main() {
 
   if [ "$(basename "$SHELL")" != "zsh" ]; then
     echo
-    fmt_prompt "Zsh is not your current default shell, do you want to set it? [Y/n]: "
+    fmt_prompt "Zsh isn't your current default shell, do you want to set it? [Y/n]: "
     read -r prompt
 
     if [ "$prompt" != "n" ] && [ "$prompt" != "N" ]; then
@@ -250,7 +224,7 @@ main() {
         fmt_success "Zsh was applied as default shell."
         fmt_warning "You may have to restart your computer to apply the changes."
       else
-        fmt_error "Zsh could not be applied as the default shell."
+        fmt_error "Zsh couldn't be applied as the default shell."
       fi
     else
       fmt_warning "Zsh won't be setted as the default shell."
