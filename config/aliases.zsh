@@ -18,7 +18,11 @@ if [[ -n $commands[exa] || -n $commands[eza] ]]; then
     alias lt="exa -T"
   fi
 else
-  alias ls="ls --color=auto --group-directories-first"
+  if [[ "$(uname)" == "Darwin" ]]; then
+    alias ls="ls -G"
+  else
+    alias ls="ls --color=auto --group-directories-first"
+  fi
   alias ll="ls -lh"
   alias la="ls -A"
   alias lla="ls -lAh"
