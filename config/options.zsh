@@ -34,7 +34,11 @@ select-word-style bash
 ## because it has its own way of doing it.
 if [[ -z $KITTY_SHELL_INTEGRATION && $TERM != "linux" ]]; then
   function set_win_title() {
-    printf "\033]0;%s@%s:%s\007" "${USER}" "${HOST%%.*}" "${PWD/#$HOME/~}"
+    if [[ -z "$WT_SESSION" ]]; then
+      printf "\033]0;%s@%s:%s\007" "${USER}" "${HOST%%.*}" "${PWD/#$HOME/~}"
+    else
+      printf "\033]0;%s\007" "${PWD/#$HOME/~}"
+    fi
   }
   precmd_functions+=(set_win_title)
 fi
