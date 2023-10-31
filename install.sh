@@ -137,9 +137,8 @@ check_dependencies() {
   fmt_info "Checking dependencies..."
 
   for dependency in "$@"; do
+    [ "$dependency" = "sqlite" ] && dependency="sqlite3"
     if ! command_exists "$dependency"; then
-
-      [ "$dependency" = "sqlite" ] && dependency="sqlite3"
 
       if [ "$os_type" = "unknown" ]; then
         fmt_error "$dependency is needed for zunder-zsh to work properly."
