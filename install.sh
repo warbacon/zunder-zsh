@@ -169,7 +169,27 @@ load_files() {
 
   echo
   if [ "$prompt" = "y" ] || [ "$prompt" = "Y" ]; then
-    [ ! -d "$ZDOTDIR" ] && mkdir -vp "$ZDOTDIR"
+    if [ -d "$ZDOTDIR" ]; then
+        fmt_info "The $ZDOTDIR directory already exist. Trying to back it up..."
+      if [ -d "$ZDOTDIR-bak" ]; then
+        fmt_warning "The $ZDOTDIR-bak directory already exist."
+        fmt_prompt "Do you want to overwrite it? [y/N]: "
+        read -r prompt
+        if [ "$prompt" = "y" ] || [ "$prompt" = "Y" ]; then
+          rm -rfv "$ZDOTDIR-bak"
+          mv -v "$ZDOTDIR" "$ZDOTDIR-bak"
+          fmt_warning "The $ZDOTDIR-bak directory was overwritten."
+          fmt_success "The $ZDOTDIR directory backed up."
+        else
+          fmt_warning "The $ZDOTDIR directory will not be backed up."
+        fi
+      else
+        mv -v "$ZDOTDIR" "$ZDOTDIR-bak"
+        fmt_success "$ZDOTDIR backed up."
+      fi
+      echo
+    fi
+    mkdir -vp "$ZDOTDIR"
     cp -v ./config/aliases.zsh "$ZDOTDIR"
     cp -v ./config/options.zsh "$ZDOTDIR"
     cp -v ./config/key-bindings.zsh "$ZDOTDIR"
