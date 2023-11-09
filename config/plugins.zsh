@@ -9,18 +9,16 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
   || zcompile -R "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
 
-# CONFIGURATION ----------------------------------------------------------------
+# ZUNDER-PROMPT ----------------------------------------------------------------
 if [[ $TERM != "linux" ]]; then
   ZUNDER_PROMPT_CHAR=""
   ZUNDER_PROMPT_CHAR_COLOR=3
 fi
 
-# PLUGINS ----------------------------------------------------------------------
-# zunder-prompt
 zinit light-mode compile'./gitstatus/(install|*.zsh)' depth"1" for \
   Warbacon/zunder-prompt
 
-# zsh plugins
+# ZSH PLUGINS ----------------------------------------------------------------------
 zinit light-mode depth"1" nocd for \
   OMZP::command-not-found \
   OMZP::sudo \
