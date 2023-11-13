@@ -190,10 +190,7 @@ load_files() {
       echo
     fi
     mkdir -vp "$ZDOTDIR"
-    cp -v ./config/aliases.zsh "$ZDOTDIR"
-    cp -v ./config/options.zsh "$ZDOTDIR"
     cp -v ./config/key-bindings.zsh "$ZDOTDIR"
-    cp -v ./config/plugins.zsh "$ZDOTDIR"
     cp -v ./config/.zshrc "$ZDOTDIR"
     cp -v ./config/.zshenv "$HOME"
     [ -f "$HOME/.zsh_history" ] \
