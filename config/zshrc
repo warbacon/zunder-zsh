@@ -36,7 +36,7 @@ zinit light-mode depth"1" for \
     https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 zinit wait lucid light-mode depth"1" for \
-  if'[[ -f /proc/sys/fs/binfmt_misc/WSLInterop && $DISABLE_SYNTAX_HIGHLIGHTING != true ]]' \
+  if'[[ ! -f /proc/sys/fs/binfmt_misc/WSLInterop && $DISABLE_SYNTAX_HIGHLIGHTING != true ]]' \
     zdharma-continuum/fast-syntax-highlighting \
   if'[[ $TERM != "linux" && $DISABLE_AUTOSUGGESTIONS != true ]]' \
   atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" nocd \
