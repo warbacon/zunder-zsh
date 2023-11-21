@@ -8,7 +8,7 @@ FMT_CYAN=$(printf "\033[36m")
 FMT_BOLD=$(printf "\033[1m")
 FMT_RESET=$(printf "\033[0m")
 
-ZDOTDIR="$HOME/.config/zsh"
+SCRIPT_DIR=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 
 set -e
 
@@ -82,17 +82,21 @@ install_package() {
 
 check_os_type() {
   if [ -f /etc/os-release ]; then
-    os_type=$(grep "^ID_LIKE=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
-    if [ -z "$os_type" ]; then
-      os_type=$(grep "^ID=" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
-    fi
+    . /etc/os-release
+    [ -n "$ID_LIKE" ] && os_type="$ID_LIKE" || os_type="$ID"
   else
     [ "$(uname)" = "Darwin" ] && os_type="darwin"
+
     case "$PREFIX" in
       *com.termux*) os_type="android" ;;
     esac
   fi
-  [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && is_wsl=true
+
+  if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+    is_wsl=true
+    fmt_info "WSL detected."
+  fi
+
   case $os_type in
     "arch")
       fmt_info "You are using an Arch-like distro."
@@ -118,12 +122,13 @@ check_os_type() {
     *)
       fmt_warning "The type of your operating system couldn't be detected."
       echo "The functionality of the installer will be limited."
-      echo
       fmt_prompt "Continue? [Y/n] "
       read -r response
+
       if [ "$response" = "n" ] || [ "$response" = "N" ]; then
         exit 1
       fi
+
       os_type="unknown"
       ;;
   esac
@@ -139,7 +144,6 @@ check_dependencies() {
   for dependency in "$@"; do
     [ "$dependency" = "sqlite" ] && dependency="sqlite3"
     if ! command_exists "$dependency"; then
-
       if [ "$os_type" = "unknown" ]; then
         fmt_error "$dependency is needed for zunder-zsh to work properly."
         echo "Please install it manually."
@@ -152,64 +156,30 @@ check_dependencies() {
         exit 1
       }
     fi
-
     shift 1
-
   done
 
   [ "$#" -eq 0 ] && fmt_success "All dependencies satisfied."
 }
 
 load_files() {
-  printf "%s::%s Zunder-zsh will store its configuration in %s.\n" \
-    "${FMT_BOLD}${FMT_CYAN}" "${FMT_RESET}${FMT_BOLD}" \
-    "${FMT_CYAN}${ZDOTDIR}${FMT_RESET}"
+  fmt_info "Zunder-zsh will replace your .zshrc and .zshenv."
   fmt_prompt "Continue? [y/N]: "
   read -r prompt
 
-  echo
-  if [ "$prompt" = "y" ] || [ "$prompt" = "Y" ]; then
-    if [ -d "$ZDOTDIR" ]; then
-        fmt_info "The $ZDOTDIR directory already exist. Trying to back it up..."
-      if [ -d "$ZDOTDIR-bak" ]; then
-        fmt_warning "The $ZDOTDIR-bak directory already exist."
-        fmt_prompt "Do you want to overwrite it? [y/N]: "
-        read -r prompt
-        if [ "$prompt" = "y" ] || [ "$prompt" = "Y" ]; then
-          rm -rfv "$ZDOTDIR-bak"
-          mv -v "$ZDOTDIR" "$ZDOTDIR-bak"
-          fmt_warning "The $ZDOTDIR-bak directory was overwritten."
-          fmt_success "The $ZDOTDIR directory backed up."
-        else
-          fmt_warning "The $ZDOTDIR directory will not be backed up."
-        fi
-      else
-        mv -v "$ZDOTDIR" "$ZDOTDIR-bak"
-        fmt_success "$ZDOTDIR backed up."
-      fi
-      echo
-    fi
-    mkdir -vp "$ZDOTDIR"
-    cp -v ./config/key-bindings.zsh "$ZDOTDIR"
-    cp -v ./config/.zshrc "$ZDOTDIR"
-    cp -v ./config/.zshenv "$HOME"
-    [ -f "$HOME/.zsh_history" ] \
-      && [ -f "$ZDOTDIR/.zsh_history" ] \
-      && [ -n "$(find "$HOME/.zsh_history" -newer "$ZDOTDIR/.zsh_history")" ] \
-      && mv -v "$HOME/.zsh_history" "$ZDOTDIR"
-    [ ! -f "$ZDOTDIR/user-config.zsh" ] \
-      && echo "# Write your configurations here" >"$ZDOTDIR/user-config.zsh" \
-      || return 0
+  if [ "$prompt" = "Y" ] || [ "$prompt" = "y" ]; then
+    cp -v "$SCRIPT_DIR/config/zshrc" "$HOME/.zshrc"
+    cp -v "$SCRIPT_DIR/config/zshenv" "$HOME/.zshenv"
   else
-    fmt_warning "Canceled. This won't apply your changes at all," \
-      "try running the script again."
     exit 1
   fi
 }
 
 set_default() {
+  ZSH_PATH="$(which zsh)"
+
   if [ "$os_type" != "android" ]; then
-    sudo usermod -s "$(which zsh)" "$USER"
+    sudo usermod -s "$ZSH_PATH" "$USER"
   else
     chsh -s zsh
   fi
@@ -217,15 +187,19 @@ set_default() {
 
 main() {
   check_os_type
+
   echo
   [ "$os_type" != "darwin" ] && check_dependencies
+
   echo
   load_files
+
   if ! [ -d "$HOME/.local/share/zinit" ]; then
     echo
     fmt_info "Installing plugins..."
     zsh -i -c exit
   fi
+
   if [ "$os_type" != "darwin" ] && [ "$os_type" != "android" ] && [ "$os_type" != "unknown" ] && [ -z "$is_wsl" ]; then
     fc-list | grep -q "Symbols Nerd Font" || (echo && install_icons)
   fi

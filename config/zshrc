@@ -1,0 +1,126 @@
+#===============================================================================
+#                                _                       _
+#            _____   _ _ __   __| | ___ _ __     _______| |__
+#           |_  / | | | '_ \ / _` |/ _ \ '__|___|_  / __| '_ \
+#            / /| |_| | | | | (_| |  __/ | |_____/ /\__ \ | | |
+#           /___|\__,_|_| |_|\__,_|\___|_|      /___|___/_| |_|
+#
+#===============================================================================
+
+# ZUNDER-ZSH INITIAL CONFIG ----------------------------------------------------
+ZUNDER_ZSH_DIR="$HOME/.config/zunder-zsh"
+[[ ! -d "$HOME/.cache/zsh" ]] && mkdir -p "$HOME/.cache/zsh"
+
+# ZINIT ------------------------------------------------------------------------
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+
+# Compiles zinit.zsh if it's newer than its compiled version. Then sources it.
+[[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ]] \
+  || zcompile -R "$ZINIT_HOME/zinit.zsh"
+source "$ZINIT_HOME/zinit.zsh"
+
+# BEFORE CONFIG ----------------------------------------------------------------
+[ -f "$ZUNDER_ZSH_DIR/before.zsh" ] && source "$ZUNDER_ZSH_DIR/before.zsh"
+
+# ZSH PLUGINS ------------------------------------------------------------------
+zinit light-mode depth"1" for \
+    OMZP::command-not-found \
+    OMZL::key-bindings.zsh \
+  silent compile"./gitstatus/gitstatus.plugin.zsh" \
+    warbacon/zunder-prompt \
+  blockf \
+    zsh-users/zsh-completions \
+  as"completion" has"docker" \
+    https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+
+zinit wait lucid light-mode depth"1" for \
+  if'[[ -f /proc/sys/fs/binfmt_misc/WSLInterop && $DISABLE_SYNTAX_HIGHLIGHTING != true ]]' \
+    zdharma-continuum/fast-syntax-highlighting \
+  if'[[ $TERM != "linux" && $DISABLE_AUTOSUGGESTIONS != true ]]' \
+  atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" nocd \
+    zsh-users/zsh-autosuggestions
+ 
+# ADDITIONAL KEY-BINDINGS ------------------------------------------------------
+# [Alt-RightArrow] - move forward one word
+bindkey '^[[1;3C' forward-word
+# [Alt-LeftArrow] - move backward one word
+bindkey '^[[1;3D' backward-word
+
+# Set word style to bash-like
+autoload -U select-word-style && select-word-style bash
+
+# HISTORY ----------------------------------------------------------------------
+HISTFILE="$HOME/.zsh_history"   # History file location
+HISTSIZE=50000                  # No sé
+SAVEHIST=10000                  # Tampoco sé
+setopt share_history            # Share history between sessions
+
+# COMPLETION STYLE -------------------------------------------------------------
+setopt menu_complete
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+[[ -n $LS_COLORS ]] && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*' rehash true
+
+# ALIASES ----------------------------------------------------------------------
+alias grep="grep --color=auto"
+
+if [[ -n $commands[exa] || -n $commands[eza] ]]; then
+  [[ -n $commands[eza] && -z $commands[exa] ]] && alias exa="eza"
+  if [[ "$TERM" != "linux" ]]; then
+    alias ls="exa --icons --group-directories-first"
+    alias ls="exa --icons --group-directories-first"
+    alias ll="exa --icons --group-directories-first --git -lh"
+    alias la="exa --icons --group-directories-first -a"
+    alias lla="exa --icons --group-directories-first --git -lah"
+    alias lt="exa --icons -T"
+  else
+    alias ls="exa --group-directories-first"
+    alias ll="exa --group-directories-first --git -lh"
+    alias la="exa --group-directories-first -a"
+    alias lla="exa --group-directories-first --git -lah"
+    alias lt="exa -T"
+  fi
+else
+  if [[ "$OSTYPE" == darwin* ]]; then
+    alias ls="ls -G"
+  else
+    alias ls="ls --color=auto --group-directories-first"
+  fi
+  alias ll="ls -lh"
+  alias la="ls -A"
+  alias lla="ls -lAh"
+  [[ -n $commands[tree] ]] && alias lt="tree"
+fi
+
+# OTHER ------------------------------------------------------------------------
+# Type the name of a directory, and it will become the current directory
+setopt autocd
+
+# Sets window title
+if [[ -z $KITTY_SHELL_INTEGRATION && $TERM != "linux" ]]; then
+  function set_win_title() {
+    if [[ -z "$WT_SESSION" ]]; then 
+      printf "\033]0;%s@%s:%s\007" "${USER}" "${HOST%%.*}" "${PWD/#$HOME/~}"
+    else
+      printf "\033]0;%s\007" "${PWD/#$HOME/~}"
+    fi
+  }
+  precmd_functions+=(set_win_title)
+fi
+
+# Disable background color on paste
+zle_highlight+=(paste:none)
+
+# AFTER CONFIG -----------------------------------------------------------------
+[ -f "$ZUNDER_ZSH_DIR/after.zsh" ] && source "$ZUNDER_ZSH_DIR/after.zsh"
+
+# STARTS COMPINIT --------------------------------------------------------------
+ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"
+
+zicompinit
+[[ "$ZINIT[ZCOMPDUMP_PATH].zwc" -nt "$ZINIT[ZCOMPDUMP_PATH]" ]] \
+  || zcompile "$ZINIT[ZCOMPDUMP_PATH]"
