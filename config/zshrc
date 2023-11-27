@@ -8,16 +8,30 @@
 #===============================================================================
 
 # ZUNDER-ZSH INITIAL CONFIG ----------------------------------------------------
+# Directory where before.zsh and after.zsh are located
 ZUNDER_ZSH_DIR="$HOME/.config/zunder-zsh"
-[[ ! -d "$HOME/.cache/zsh" ]] && mkdir -p "$HOME/.cache/zsh"
+
+# Create .cache directory if it doesn't exist
+[ ! -d "$HOME/.cache/zsh" ] && mkdir -p "$HOME/.cache/zsh"
+
+# Disable syntax highlightling in WSL
+[ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && DISABLE_SYNTAX_HIGHLIGHTING=true
+#
+# Disable autosuggestions in Linux tty
+[ "$TERM" = "linux" ] && DISABLE_AUTOSUGGESTIONS=true
 
 # ZINIT ------------------------------------------------------------------------
+# Changes the zcompdump directory
+declare -A ZINIT
+ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"   
+
+# Zinit initialization
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
 # Compiles zinit.zsh if it's newer than its compiled version. Then sources it.
-[[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ]] \
+[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ] \
   || zcompile -R "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
 
@@ -25,20 +39,30 @@ source "$ZINIT_HOME/zinit.zsh"
 [ -f "$ZUNDER_ZSH_DIR/before.zsh" ] && source "$ZUNDER_ZSH_DIR/before.zsh"
 
 # ZSH PLUGINS ------------------------------------------------------------------
-zinit light-mode depth"1" for \
+# Zunder-prompt
+zinit light-mode silent if'[[ $DISABLE_ZUNDER_PROMPT != true ]]' \
+  depth"1" compile"./gitstatus/gitstatus.plugin.zsh" for \
+    warbacon/zunder-prompt
+
+# Oh My Zsh plugins
+zinit light-mode for \
     OMZP::command-not-found \
-    OMZL::key-bindings.zsh \
-  silent compile"./gitstatus/gitstatus.plugin.zsh" \
-    warbacon/zunder-prompt \
-  blockf \
+    OMZL::key-bindings.zsh
+
+# Additional completions
+zinit light-mode for \
+  blockf depth"1" \
     zsh-users/zsh-completions \
   as"completion" has"docker" \
-    https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+    https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
+  as"completion" has"conda" \
+    https://github.com/conda-incubator/conda-zsh-completion/blob/master/_conda
 
+# Fast-syntax-highlighting and zsh-autosuggestions
 zinit wait lucid light-mode depth"1" for \
-  if'[[ ! -f /proc/sys/fs/binfmt_misc/WSLInterop && $DISABLE_SYNTAX_HIGHLIGHTING != true ]]' \
+  if'[[ $DISABLE_SYNTAX_HIGHLIGHTING != true ]]' \
     zdharma-continuum/fast-syntax-highlighting \
-  if'[[ $TERM != "linux" && $DISABLE_AUTOSUGGESTIONS != true ]]' \
+  if'[[ $DISABLE_AUTOSUGGESTIONS != true ]]' \
   atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" nocd \
     zsh-users/zsh-autosuggestions
  
@@ -52,23 +76,30 @@ bindkey '^[[1;3D' backward-word
 autoload -U select-word-style && select-word-style bash
 
 # HISTORY ----------------------------------------------------------------------
-HISTFILE="$HOME/.zsh_history"   # History file location
-HISTSIZE=50000                  # No sé
-SAVEHIST=10000                  # Tampoco sé
+HISTFILE="$HOME/.zsh_history"   # Location of the history file
+HISTSIZE=50000                  # Maximum number of commands in the history
+SAVEHIST=10000                  # Number of commands to save between sessions
 setopt share_history            # Share history between sessions
 
 # COMPLETION STYLE -------------------------------------------------------------
-setopt menu_complete
+# Enable the completion menu
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+# Match completion menu colors with the LS_COLORS variable
 [[ -n $LS_COLORS ]] && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# Ignore cases if there are no uppercase letters
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+# Attempt to find new commands to complete
 zstyle ':completion:*' rehash true
 
 # ALIASES ----------------------------------------------------------------------
+# Enable colors in grep
 alias grep="grep --color=auto"
 
-if [[ -n $commands[exa] || -n $commands[eza] ]]; then
+# List files and directories aliases
+if [[ (-n $commands[exa] || -n $commands[eza]) && $DISABLE_EXA != true ]]; then
   [[ -n $commands[eza] && -z $commands[exa] ]] && alias exa="eza"
   if [[ "$TERM" != "linux" ]]; then
     alias ls="exa --icons --group-directories-first"
@@ -101,15 +132,21 @@ fi
 setopt autocd
 
 # Sets window title
-if [[ -z $KITTY_SHELL_INTEGRATION && $TERM != "linux" ]]; then
-  function set_win_title() {
-    if [[ -z "$WT_SESSION" ]]; then 
-      printf "\033]0;%s@%s:%s\007" "${USER}" "${HOST%%.*}" "${PWD/#$HOME/~}"
-    else
-      printf "\033]0;%s\007" "${PWD/#$HOME/~}"
-    fi
+if [ -z "$KITTY_SHELL_INTEGRATION" ]; then
+  function set_window_title() {
+    case "$TERM" in 
+      cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|foot*|contour*)
+        if [ -z "$WT_SESSION" ]; then
+          print -Pn "\e]2;${USER}@${HOST}:${PWD/$HOME/~}\a"
+        else
+          print -Pn "\e]2;${PWD/$HOME/~}\a"
+        fi
+        ;;
+    esac
   }
-  precmd_functions+=(set_win_title)
+  
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd set_window_title
 fi
 
 # Disable background color on paste
@@ -119,8 +156,7 @@ zle_highlight+=(paste:none)
 [ -f "$ZUNDER_ZSH_DIR/after.zsh" ] && source "$ZUNDER_ZSH_DIR/after.zsh"
 
 # STARTS COMPINIT --------------------------------------------------------------
-ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"
-
 zicompinit
+
 [[ "$ZINIT[ZCOMPDUMP_PATH].zwc" -nt "$ZINIT[ZCOMPDUMP_PATH]" ]] \
   || zcompile "$ZINIT[ZCOMPDUMP_PATH]"
