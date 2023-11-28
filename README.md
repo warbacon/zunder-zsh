@@ -150,7 +150,7 @@ your additional configurations.
 Usage:
 
 ```sh
-# ~/zunder-zsh/before.zsh
+# ~/.config/zunder-zsh/before.zsh
 
 DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 ```
