@@ -4,32 +4,34 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 
 ![Preview](./assets/preview.gif)
 
+## 🚩 Goals
+
+- Straightforward transition from _bash_.
+- Quick and **trouble-free** installation.
+- Responsive typing.
+- Fastest possible startup time without sacrificing functionality.
+- Provide **only completely necessary functionality** and be **easy to extend**.
+ 
 ## 💡 Features
 
-- There's no magic here. Zunder-zsh isn't a framework and tries to be clear
-about how it works.
-- Beautiful, clean and lag free prompt with git support.
-See [zunder-prompt](https://github.com/Warbacon/zunder-prompt).
-- Almost instant start-up.
 - Syntax highlighting and autosuggestions.
-- [Exa](https://github.com/eza-community/eza) integration.
 - Automatic installation.
+- Sensible keybindings.
+- Smarter completions.
+- [Exa](https://github.com/eza-community/eza) integration.
 
 ### Plugins
 
+- [zunder-prompt](https://github.com/Warbacon/zunder-prompt) - Insanely fast
+prompt built by me and based on [romkatv's gitstatus](https://github.com/romkatv/gitstatus).
 - [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
 Feature rich and fast syntax highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
 Fish-like fast/unobtrusive autosuggestions for zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) -
 Additional completion definitions for zsh.
-- [zsh-lscolors](https://github.com/Warbacon/zsh-lscolors) -
-My own plugin to set the ls_colors variable to those of the terminal
-and display them in the completions.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)
 plugin from Oh My Zsh - Provide suggested packages to be installed if a command cannot be found.
-- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) plugin from Oh My Zsh -
-Easily prefix your current or previous commands with sudo by pressing ALT+S.
 
 ### Aliases
 
@@ -46,12 +48,6 @@ Zunder-zsh has been designed so that any user can use it almost instantly
 without having to learn new things, just run the script and you are ready to go.
 Here there are no unnecessary things and everything works fast.
 
-**However**, if you are a more advanced user, you may need to extend zunder-zsh
-more than usual, thus making the configuration more complicated than if you 
-weren't using zunder-zsh. If this happens to you, I recommend that you create
-your own configuration, either by forking this project or creating it from
-scratch.
-
 ### Zunder-zsh vs Oh My Zsh
 
 Oh My Zsh is a framework, **zunder-zsh isn't**. This means that while Oh My Zsh
@@ -59,6 +55,12 @@ requires you to configure your shell how they want, zunder-zsh doesn't,
 since its level of abstraction is very low, making it so that anyone can
 understand what is happening behind the scenes and can be modified in the way
 you prefer.
+
+That means that zunder-zsh doesn't support updates, as is designed so that any
+user can modify the configuration as desired. However, if you are a user who
+makes very few modifications, you can use a method to upgrade directly without
+losing your custom settings.
+See [File Structure](https://github.com/Warbacon/zunder-zsh#file-structure).
 
 ## 💊 Compatibility
 
@@ -107,34 +109,66 @@ git clone https://github.com/Warbacon/zunder-zsh.git
 cd ./zunder-zsh
 ./install.sh
 ```
+## 📁 File Structure
 
-## 🖌️ Customizing zunder-zsh
+<pre>
+~
+├──/.zsh_history  <- zsh history
+├──/.zshenv       <- environment variables
+├──/.zshrc        <- main configuration
+│
+├──/.config/zunder-zsh [optional]
+│           ├── after.zsh       <- loads after main config
+│           └── before.zsh      <- loads before main config
+│
+├──/.cache/zsh
+│          ├── .zcompdump       <- completions cache
+│          └── .zcompdump.zwc   <- compiled version
+│
+└──/.local/share/zinit          <- installed plugins
+                 └── ...
+</pre>
 
-You can add custom configurations to zunder-zsh in 
-`~/.config/zsh/user-config.zsh` to make sure that it's not overwritten
-if you update zunder-zsh.
+The `~/.config/zunder-zsh` directory and its files are not created
+automatically. They are intended to extend zunder-zsh easily without modifying
+the main configuration.
 
-Here are some additional settings you can add:
+- `before.zsh` loads after the Zinit initialization but before all the main
+configuration. Here, you should write additional plugins you want to add and
+zunder-zsh specific options.
 
-### Disable autosuggestions
+- `after.zsh` loads after all the main configuration. Here, you should write all
+your additional configurations.
+
+## 🎨 Customizing zunder-zsh
+
+### Zunder-zsh specific options
+
+> [!IMPORTANT]  
+> These variables must be set in your `before.zsh`!
+
+Usage:
 
 ```sh
-ZSH_AUTOSUGGEST_STRATEGY=()
+# ~/zunder-zsh/before.zsh
+
+DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 ```
 
-### Change the symbol and its color in the prompt's character
+| Variable                    | Description                         | Default value          |
+| --------------------------- | ----------------------------------- | ---------------------- |
+| DISABLE_AUTOSUGGESTIONS     | Disables zsh-autosuggestions.       | "" (true in Linux tty) |
+| DISABLE_EXA                 | Disables exa/eza integration.       | ""                     |
+| DISABLE_SYNTAX_HIGHLIGHTING | Disables fast-syntax-highlighting.  | "" (true in WSL)       |
+| DISABLE_ZUNDER_PROMPT       | Disables zunder-prompt.             | ""                     |
+| ZUNDER_PROMPT_CHAR          | Sets the zunder-prompt char symbol. | "❯"                    |
 
-Zunder-zsh uses [zunder-prompt](https://github.com/Warbacon/zunder-prompt) as
-its prompt. To customize its symbol and color, you can modify
-the following environment variables:
+### Exa integration
 
-```sh
-ZUNDER_PROMPT_CHAR="❯"             # default value: ""
-ZUNDER_PROMPT_CHAR_COLOR="green"   # default value: 3 ("yellow")
-```
-
-`ZUNDER_PROMPT_CHAR_COLOR` does accept any color between 0 and 255
-or a color name.
+Zunder-zsh will enable exa integration automatically if ``exa`` is installed.
+You must install ``exa`` or ``eza`` manually for this to happen. You can
+You can force it to be disabled by setting `DISABLE_EXA` to _true_ in your
+`before.zsh`.
 
 ### Fzf integration
 
@@ -152,11 +186,6 @@ the following keybindings:
 | Ctrl+r     | Search history of shell commands.             |
 | Ctrl+t     | List files and folders in current directory.  |
 | Alt+c      | Fuzzy change directory.                       |
-
-### Exa integration
-
-Zunder-zsh will enable exa integration automatically if ``exa`` is installed.
-You must install ``exa`` or ``eza`` manually for this to happen.
 
 ## 🔧 Troubleshooting
 
