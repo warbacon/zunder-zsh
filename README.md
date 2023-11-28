@@ -19,6 +19,8 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Sensible keybindings.
 - Smarter completions.
 - [Exa](https://github.com/eza-community/eza) integration.
+- Integrated advanced plugin manager. 
+See [Zinit](https://github.com/zdharma-continuum/zinit).
 
 ### Plugins
 
@@ -216,4 +218,3 @@ Info [here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues
 
 If you encounter any issue or have any suggestions, please don't hesitate
 to contact me. I'm open to any discussion and **I'll be happy to help!**
-
