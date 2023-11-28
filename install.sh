@@ -166,6 +166,7 @@ check_dependencies() {
 
 load_files() {
   fmt_info "Zunder-zsh will replace your .zshrc and .zshenv."
+  fmt_warning "Make a backup copy if necessary."
   fmt_prompt "Continue? [y/N]: "
   read -r prompt
 
@@ -173,6 +174,9 @@ load_files() {
     cp -v "$SCRIPT_DIR/config/zshrc" "$HOME/.zshrc"
     cp -v "$SCRIPT_DIR/config/zshenv" "$HOME/.zshenv"
   else
+    echo
+    fmt_warning "Canceled."
+    echo "This won't apply the configuration at all."
     exit 1
   fi
 }
