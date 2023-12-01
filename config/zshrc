@@ -110,6 +110,7 @@ if [[ (-n $commands[exa] || -n $commands[eza]) && $DISABLE_EXA != true ]]; then
     alias lt="exa --icons -T"
   else
     alias ls="exa --group-directories-first"
+    alias ls="exa --group-directories-first"
     alias ll="exa --group-directories-first --git -lh"
     alias la="exa --group-directories-first -a"
     alias lla="exa --group-directories-first --git -lah"
@@ -119,7 +120,7 @@ else
   if [[ "$OSTYPE" == darwin* ]]; then
     alias ls="ls -G"
   else
-    alias ls="ls --color=auto --group-directories-first"
+    alias ls="ls --color --group-directories-first"
   fi
   alias ll="ls -lh"
   alias la="ls -A"
