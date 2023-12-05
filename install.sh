@@ -101,7 +101,7 @@ check_os_type() {
     "arch")
       fmt_info "You are using an Arch-like distro."
       ;;
-    "debian")
+    "*debian*")
       fmt_info "You are using a Debian-like distro."
       ;;
     "fedora")
