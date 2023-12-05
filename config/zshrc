@@ -17,8 +17,11 @@ ZUNDER_ZSH_DIR="$HOME/.config/zunder-zsh"
 # Disable syntax highlightling in WSL
 [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && DISABLE_SYNTAX_HIGHLIGHTING=true
 
-# Disable autosuggestions in Linux tty
-[ "$TERM" = "linux" ] && DISABLE_AUTOSUGGESTIONS=true
+# Disable autosuggestions and exa in Linux tty
+if [[ "$TERM" == "linux" ]]; then
+  DISABLE_AUTOSUGGESTIONS=true
+  DISABLE_EXA=true
+fi
 
 # ZINIT ------------------------------------------------------------------------
 # Changes the zcompdump directory
@@ -101,7 +104,7 @@ zstyle ':completion:*' rehash true
 alias grep="grep --color=auto"
 
 # List files and directories aliases
-if [[ (-n $commands[exa] || -n $commands[eza]) && "$TERM" != "linux" && $DISABLE_EXA != true ]]; then
+if [[ (-n $commands[exa] || -n $commands[eza]) && $DISABLE_EXA != true ]]; then
   [[ -n $commands[eza] && -z $commands[exa] ]] && alias exa="eza"
   alias ls="exa --icons --group-directories-first"
   alias ls="exa --icons --group-directories-first"
