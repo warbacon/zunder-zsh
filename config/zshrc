@@ -16,7 +16,7 @@ ZUNDER_ZSH_DIR="$HOME/.config/zunder-zsh"
 
 # Disable syntax highlightling in WSL
 [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && DISABLE_SYNTAX_HIGHLIGHTING=true
-#
+
 # Disable autosuggestions in Linux tty
 [ "$TERM" = "linux" ] && DISABLE_AUTOSUGGESTIONS=true
 
@@ -27,8 +27,10 @@ ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"
 
 # Zinit initialization
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
+[ ! -d "$ZINIT_HOME"/.git ] \
+  && git clone https://github.com/zdharma-continuum/zinit.git \
+    "$ZINIT_HOME"
 
 # Compiles zinit.zsh if it's newer than its compiled version. Then sources it.
 [ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ] \
@@ -99,23 +101,14 @@ zstyle ':completion:*' rehash true
 alias grep="grep --color=auto"
 
 # List files and directories aliases
-if [[ (-n $commands[exa] || -n $commands[eza]) && $DISABLE_EXA != true ]]; then
+if [[ (-n $commands[exa] || -n $commands[eza]) && "$TERM" != "linux" && $DISABLE_EXA != true ]]; then
   [[ -n $commands[eza] && -z $commands[exa] ]] && alias exa="eza"
-  if [[ "$TERM" != "linux" ]]; then
-    alias ls="exa --icons --group-directories-first"
-    alias ls="exa --icons --group-directories-first"
-    alias ll="exa --icons --group-directories-first --git -lh"
-    alias la="exa --icons --group-directories-first -a"
-    alias lla="exa --icons --group-directories-first --git -lah"
-    alias lt="exa --icons -T"
-  else
-    alias ls="exa --group-directories-first"
-    alias ls="exa --group-directories-first"
-    alias ll="exa --group-directories-first --git -lh"
-    alias la="exa --group-directories-first -a"
-    alias lla="exa --group-directories-first --git -lah"
-    alias lt="exa -T"
-  fi
+  alias ls="exa --icons --group-directories-first"
+  alias ls="exa --icons --group-directories-first"
+  alias ll="exa --icons --group-directories-first --git -lh"
+  alias la="exa --icons --group-directories-first -a"
+  alias lla="exa --icons --group-directories-first --git -lah"
+  alias lt="exa --icons -T"
 else
   if [[ "$OSTYPE" == darwin* ]]; then
     alias ls="ls -G"
@@ -125,7 +118,7 @@ else
   alias ll="ls -lh"
   alias la="ls -A"
   alias lla="ls -lAh"
-  [[ -n $commands[tree] ]] && alias lt="tree"
+  [[ -n $commands[tree] ]] && alias lt="tree -C"
 fi
 
 # OTHER ------------------------------------------------------------------------
