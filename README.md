@@ -11,7 +11,7 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Responsive typing.
 - Fastest possible startup time without sacrificing functionality.
 - Provide **only completely necessary functionality** and be **easy to extend**.
- 
+
 ## 💡 Features
 
 - Syntax highlighting and autosuggestions.
@@ -19,7 +19,7 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Sensible keybindings.
 - Smarter completions.
 - [Exa](https://github.com/eza-community/eza) integration.
-- Integrated advanced plugin manager. 
+- Integrated advanced plugin manager.
 See [Zinit](https://github.com/zdharma-continuum/zinit).
 
 ### Plugins
@@ -86,7 +86,7 @@ because it produces input lag when typing.
 ### Nerd fonts
 
 Depending on your operating system, the required icons will be installed
-if needed, but may require additional configuration. 
+if needed, but may require additional configuration.
 
 If you don't see the icons correctly and don't want to complicate your life,
 you can install a [Nerd Font](https://www.nerdfonts.com/)
@@ -101,9 +101,9 @@ on Android and set as font, for example, Fira Code.
 
 1. Clone this repository locally:
 
-```sh
-git clone https://github.com/Warbacon/zunder-zsh.git
-```
+    ```sh
+    git clone https://github.com/Warbacon/zunder-zsh.git
+    ```
 
 2. Enter the cloned repository and run the install script:
 
@@ -111,6 +111,7 @@ git clone https://github.com/Warbacon/zunder-zsh.git
 cd ./zunder-zsh
 ./install.sh
 ```
+
 ## 📁 File Structure
 
 <pre>
@@ -146,7 +147,7 @@ your additional configurations.
 
 ### Zunder-zsh specific options
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > These variables must be set in your `before.zsh`!
 
 Usage:
