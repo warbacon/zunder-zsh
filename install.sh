@@ -135,16 +135,12 @@ check_os_type() {
 }
 
 check_dependencies() {
-  set -- "zsh" "git" "curl"
-
-  [ "$os_type" = "fedora" ] && set -- "$@" "sqlite"
+  set -- "zsh" "git" "curl" "make"
 
   fmt_info "Checking dependencies..."
 
   for dependency in "$@"; do
     if ! command_exists "$dependency"; then
-
-      [ "$dependency" = "sqlite" ] && dependency="sqlite3"
 
       if [ "$os_type" = "unknown" ]; then
         fmt_error "$dependency is needed for zunder-zsh to work properly."
