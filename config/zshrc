@@ -45,9 +45,9 @@ source "$ZINIT_HOME/zinit.zsh"
 
 # ZSH PLUGINS ------------------------------------------------------------------
 # Zunder-prompt
-zinit light-mode silent if'[[ $DISABLE_ZUNDER_PROMPT != true ]]' \
-  depth"1" compile"./gitstatus/gitstatus.plugin.zsh" for \
-    warbacon/zunder-prompt
+zinit light-mode depth"1" if'[[ $DISABLE_ZUNDER_PROMPT != true ]]' for \
+  make"zwc" silent romkatv/gitstatus \
+  warbacon/zunder-prompt
 
 # Oh My Zsh plugins
 zinit light-mode for \
