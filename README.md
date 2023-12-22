@@ -24,7 +24,7 @@ See [Zinit](https://github.com/zdharma-continuum/zinit).
 
 ### Plugins
 
-- [zunder-prompt](https://github.com/Warbacon/zunder-prompt) - Insanely fast
+- [zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
 prompt built by me and based on [romkatv's gitstatus](https://github.com/romkatv/gitstatus).
 - [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
 Feature rich and fast syntax highlighting for zsh.
@@ -62,7 +62,7 @@ That means that zunder-zsh doesn't support updates, as is designed so that any
 user can modify the configuration as desired. However, if you are a user who
 makes very few modifications, you can use a method to upgrade directly without
 losing your custom settings.
-See [File Structure](https://github.com/Warbacon/zunder-zsh#file-structure).
+See [File Structure](https://github.com/warbacon/zunder-zsh#file-structure).
 
 ## 💊 Compatibility
 
@@ -102,7 +102,7 @@ on Android and set as font, for example, Fira Code.
 1. Clone this repository locally:
 
     ```sh
-    git clone https://github.com/Warbacon/zunder-zsh.git
+    git clone https://github.com/warbacon/zunder-zsh.git
     ```
 
 2. Enter the cloned repository and run the install script:
