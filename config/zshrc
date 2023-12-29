@@ -129,7 +129,7 @@ fi
 setopt autocd
 
 # Sets window title
-if [ -z "$KITTY_SHELL_INTEGRATION" ]; then
+if [[ "$KITTY_SHELL_INTEGRATION" =~ "no-title" ]]; then
   function set_window_title() {
     case "$TERM" in 
       cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|foot*|contour*)
