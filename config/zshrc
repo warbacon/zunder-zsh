@@ -26,7 +26,7 @@ fi
 # ZINIT ------------------------------------------------------------------------
 # Changes the zcompdump directory
 declare -A ZINIT
-ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"   
+ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"
 
 # Zinit initialization
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -70,7 +70,7 @@ zinit wait lucid light-mode depth"1" for \
   if'[[ $DISABLE_AUTOSUGGESTIONS != true ]]' \
   atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" nocd \
     zsh-users/zsh-autosuggestions
- 
+
 # ADDITIONAL KEY-BINDINGS ------------------------------------------------------
 # [Alt-RightArrow] - move forward one word
 bindkey '^[[1;3C' forward-word
@@ -129,9 +129,10 @@ fi
 setopt autocd
 
 # Sets window title
-if [[ "$KITTY_SHELL_INTEGRATION" =~ "no-title" ]]; then
+if [[ $TERM != "xterm-kitty" && "$KITTY_SHELL_INTEGRATION" =~ "no-title" || -z $KITTY_SHELL_INTEGRATION ]]
+then
   function set_window_title() {
-    case "$TERM" in 
+    case "$TERM" in
       cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|foot*|contour*)
         if [ -z "$WT_SESSION" ]; then
           print -Pn "\e]2;${USER}@${HOST}:${PWD/$HOME/~}\a"
@@ -141,7 +142,7 @@ if [[ "$KITTY_SHELL_INTEGRATION" =~ "no-title" ]]; then
         ;;
     esac
   }
-  
+
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd set_window_title
 fi
