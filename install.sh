@@ -135,7 +135,7 @@ check_os_type() {
 }
 
 check_dependencies() {
-  set -- "zsh" "git" "curl" "make"
+  set -- "zsh" "git" "curl"
 
   fmt_info "Checking dependencies..."
 
