@@ -58,7 +58,7 @@ install_package() {
   if [ "$response" != "n" ] && [ "$response" != "N" ]; then
     case $os_type in
       "arch") sudo pacman -S --noconfirm "$*" ;;
-      "debian") sudo apt install -y "$*" ;;
+      *debian*) sudo apt install -y "$*" ;;
       "fedora") sudo dnf install --assumeyes "$*" ;;
       "opensuse suse") sudo zypper install -y "$*" ;;
       "darwin") brew install "$*" ;;
