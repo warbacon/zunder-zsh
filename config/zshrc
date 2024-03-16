@@ -72,7 +72,7 @@ zstyle ':completion:*' cache-path "$CACHE_DIR/.zcompcache"
 zstyle ':completion:*' rehash true
 
 ## BEFORE CONFIG ==============================================================
-[ -f "$ZUNDER_ZSH_DIR/before.zsh" ] && source "$ZUNDER_ZSH_DIR/before.zsh"
+[ -f "$ZUNDER_ZSH_DIR/before.zsh" ] && source "$ZUNDER_ZSH_DIR/before.zsh" || true
 
 ## ZSH PLUGINS =================================================================
 # Zunder-prompt
@@ -198,4 +198,4 @@ if [[ $TERM != "xterm-kitty" ]]; then
 fi
 
 # AFTER CONFIG ================================================================
-[ -f "$ZUNDER_ZSH_DIR/after.zsh" ] && source "$ZUNDER_ZSH_DIR/after.zsh"
+[ -f "$ZUNDER_ZSH_DIR/after.zsh" ] && source "$ZUNDER_ZSH_DIR/after.zsh" || true
