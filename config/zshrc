@@ -71,6 +71,9 @@ zstyle ':completion:*' cache-path "$CACHE_DIR/.zcompcache"
 # Attempts to find new commands to complete.
 zstyle ':completion:*' rehash true
 
+## BEFORE CONFIG ==============================================================
+[ -f "$ZUNDER_ZSH_DIR/before.zsh" ] && source "$ZUNDER_ZSH_DIR/before.zsh"
+
 ## ZSH PLUGINS =================================================================
 # Zunder-prompt
 zinit light-mode depth"1" if'[[ $DISABLE_ZUNDER_PROMPT != true ]]' for \
@@ -193,3 +196,6 @@ if [[ $TERM != "xterm-kitty" ]]; then
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd set_window_title
 fi
+
+# AFTER CONFIG ================================================================
+[ -f "$ZUNDER_ZSH_DIR/after.zsh" ] && source "$ZUNDER_ZSH_DIR/after.zsh"
