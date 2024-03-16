@@ -154,6 +154,7 @@ alias grep="grep --color=auto"
 alias la="ls -A"
 alias ll="ls -l"
 alias lla="ls -lA"
+[[ -n "$commands[tree]" ]] && alias lt="tree -C"
 
 # Uses exa instead if installed and enabled.
 if [[ "$DISABLE_EXA" != true && ( -n "$commands[eza]" || -n "$commands[exa]" ) ]]; then
