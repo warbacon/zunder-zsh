@@ -26,23 +26,27 @@ See [Zinit](https://github.com/zdharma-continuum/zinit).
 
 - [zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
 prompt built by me and based on [romkatv's gitstatus](https://github.com/romkatv/gitstatus).
-- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
-Feature rich and fast syntax highlighting for zsh.
+- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting)
+- Feature rich and fast syntax highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
 Fish-like fast/unobtrusive autosuggestions for zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) -
 Additional completion definitions for zsh.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)
-plugin from Oh My Zsh - Provide suggested packages to be installed if a command cannot be found.
+plugin from Oh My Zsh - Provide suggested packages to be installed if a command
+cannot be found.
 
 ### Aliases
 
-| Alias | Description                                                                                       |
-| ----- | ------------------------------------------------------------------------------------------------- |
-| ll    | Long list directory contents. Uses exa if installed.                                              |
-| la    | List directory contents with hidden files. Uses exa if installed.                                 |
-| lla   | Long list directory contents with hidden files. Uses exa if installed.                            |
-| lt    | Displays the directory tree in the current directory. Uses exa if installed, otherwise uses tree. |
+| Alias | Description                                                            |
+| ----- | ---------------------------------------------------------------------- |
+| ll    | Long list directory contents. Uses exa if installed.                   |
+| la    | List directory contents with hidden files. Uses exa if installed.      |
+| lla   | Long list directory contents with hidden files. Uses exa if installed. |
+| lt    | Displays the directory tree in the current directory. Needs exa.       |
+
+`trash-cli` will be used if installed to prevent permanent deletions when
+running `rm`.
 
 ## 🤔 Why should I use it?
 
