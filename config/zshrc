@@ -144,17 +144,15 @@ SAVEHIST=10000                # Number of commands to save between sessions.
 setopt share_history          # Share history between sessions.
 
 ## ALIASES ====================================================================
-# Ls doesn't have color enabled by default, so this alias enables it.
+# ls, grep and tree doesn't have color enabled by default, so this aliases enables it.
 alias ls="ls --color=auto"
-
-# Grep doesn't have color enabled by default either.
 alias grep="grep --color=auto"
+[[ -n "$commands[tree]" ]] && alias lt="tree -C"
 
 # Useful aliases to list files.
 alias la="ls -A"
 alias ll="ls -l"
 alias lla="ls -lA"
-[[ -n "$commands[tree]" ]] && alias lt="tree -C"
 
 # Uses exa instead if installed and enabled.
 if [[ "$DISABLE_EXA" != true && ( -n "$commands[eza]" || -n "$commands[exa]" ) ]]; then
