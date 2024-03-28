@@ -111,10 +111,10 @@ on Android and set as font, for example, Fira Code.
 
 2. Enter the cloned repository and run the install script:
 
-```sh
-cd ./zunder-zsh
-./install.sh
-```
+    ```sh
+    cd ./zunder-zsh
+    ./install.sh
+    ```
 
 ## 📁 File Structure
 
