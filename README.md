@@ -52,7 +52,7 @@ running `rm`.
 
 Zunder-zsh has been designed so that any user can use it almost instantly
 without having to learn new things, just run the script and you are ready to go.
-Here there are no unnecessary things and everything works fast.
+There are no unnecessary things and everything works fast.
 
 ### Zunder-zsh vs Oh My Zsh
 
