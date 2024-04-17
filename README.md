@@ -26,8 +26,8 @@ See [Zinit](https://github.com/zdharma-continuum/zinit).
 
 - [zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
 prompt built by me and based on [romkatv's gitstatus](https://github.com/romkatv/gitstatus).
-- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting)
-- Feature rich and fast syntax highlighting for zsh.
+- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
+  Feature rich and fast syntax highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
 Fish-like fast/unobtrusive autosuggestions for zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) -
