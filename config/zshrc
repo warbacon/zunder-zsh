@@ -181,19 +181,13 @@ setopt autocd
 if [[ $TERM != "xterm-kitty" ]]; then
   case "$TERM" in
     cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|foot*|contour*)
-      if [ -z "$WT_SESSION" ]; then
-        function set_window_title() {
-          print -Pn "\e]2;${USER}@${HOST}:${PWD/$HOME/~}\a"
-        }
-      else
-        function set_window_title() {
-          print -Pn "\e]2;${PWD/$HOME/~}\a"
-        }
-      fi
+      function set_window_title() {
+        print -Pn "\e]2;${USER}@${HOST}:${PWD/$HOME/~}\a"
+      }
+      autoload -Uz add-zsh-hook
+      add-zsh-hook precmd set_window_title
       ;;
   esac
-  autoload -Uz add-zsh-hook
-  add-zsh-hook precmd set_window_title
 fi
 
 # AFTER CONFIG ================================================================
