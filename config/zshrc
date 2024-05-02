@@ -145,7 +145,11 @@ setopt share_history          # Share history between sessions.
 
 ## ALIASES ====================================================================
 # ls, grep and tree doesn't have color enabled by default, so this aliases enables it.
-alias ls="ls --color=auto"
+if [[ "$(uname)" = "Darwin" ]]; then
+    alias ls="ls -G"  # MacOS
+else
+    alias ls="ls --color=auto"  # GNU/Linux
+fi
 alias grep="grep --color=auto"
 [[ -n "$commands[tree]" ]] && alias lt="tree -C"
 
