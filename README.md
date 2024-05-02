@@ -10,7 +10,8 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Quick and **trouble-free** installation.
 - Responsive typing.
 - Fastest possible startup time without sacrificing functionality.
-- Provide **only completely necessary functionality** and be **easy to extend**.
+- Provide **only completely necessary functionality** and be **easy to
+  extend**.
 
 ## 💡 Features
 
@@ -19,22 +20,23 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Sensible keybindings.
 - Smarter completions.
 - [Exa](https://github.com/eza-community/eza) integration.
-- Integrated advanced plugin manager.
-See [Zinit](https://github.com/zdharma-continuum/zinit).
+- Integrated advanced plugin manager. See
+  [Zinit](https://github.com/zdharma-continuum/zinit).
 
 ### Plugins
 
 - [zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
-prompt built by me and based on [romkatv's gitstatus](https://github.com/romkatv/gitstatus).
+  prompt built by me and based on [romkatv's
+  gitstatus](https://github.com/romkatv/gitstatus).
 - [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
   Feature rich and fast syntax highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
-Fish-like fast/unobtrusive autosuggestions for zsh.
-- [zsh-completions](https://github.com/zsh-users/zsh-completions) -
-Additional completion definitions for zsh.
+  Fish-like fast/unobtrusive autosuggestions for zsh.
+- [zsh-completions](https://github.com/zsh-users/zsh-completions) - Additional
+  completion definitions for zsh.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)
-plugin from Oh My Zsh - Provide suggested packages to be installed if a command
-cannot be found.
+  plugin from Oh My Zsh - Provide suggested packages to be installed if a
+  command cannot be found.
 
 ### Aliases
 
@@ -51,28 +53,27 @@ running `rm`.
 ## 🤔 Why should I use it?
 
 Zunder-zsh has been designed so that any user can use it almost instantly
-without having to learn new things, just run the script and you are ready to go.
-There are no unnecessary things and everything works fast.
+without having to learn new things, just run the script and you are ready to
+go. There are no unnecessary things and everything works fast.
 
 ### Zunder-zsh vs Oh My Zsh
 
 Oh My Zsh is a framework, **zunder-zsh isn't**. This means that while Oh My Zsh
-requires you to configure your shell how they want, zunder-zsh doesn't,
-since its level of abstraction is very low, making it so that anyone can
-understand what is happening behind the scenes and can be modified in the way
-you prefer.
+requires you to configure your shell how they want, zunder-zsh doesn't, since
+its level of abstraction is very low, making it so that anyone can understand
+what is happening behind the scenes and can be modified in the way you prefer.
 
 That means that zunder-zsh doesn't support updates, as is designed so that any
 user can modify the configuration as desired. However, if you are a user who
 makes very few modifications, you can use a method to upgrade directly without
-losing your custom settings.
-See [File Structure](https://github.com/warbacon/zunder-zsh#file-structure).
+losing your custom settings. See [File
+Structure](https://github.com/warbacon/zunder-zsh#-file-structure).
 
 ## 💊 Compatibility
 
-Although zunder-zsh can run on any POSIX-compliant operating system,
-the installation script will have more functionality on
-the following operating systems:
+Although zunder-zsh can run on any POSIX-compliant operating system, the
+installation script will have more functionality on the following operating
+systems:
 
 - Arch Linux and derivatives (EndeavourOS, Manjaro, etc.).
 - Debian and derivatives (Ubuntu, Linux Mint, etc.).
@@ -82,24 +83,25 @@ the following operating systems:
 - MacOS.
 - Android (using [termux](https://termux.dev)).
 
-**Works also in wsl**, but syntax highlighting will be disabled
-because it produces input lag when typing.
+**Works also in wsl**, but syntax highlighting will be disabled because it
+produces input lag when typing.
 
 ## 🚀 Getting started
 
 ### Nerd fonts
 
-Depending on your operating system, the required icons will be installed
-if needed, but may require additional configuration.
+Depending on your operating system, the required icons will be installed if
+needed, but may require additional configuration.
 
 If you don't see the icons correctly and don't want to complicate your life,
-you can install a [Nerd Font](https://www.nerdfonts.com/)
-and set it as default on your terminal.
+you can install a [Nerd Font](https://www.nerdfonts.com/) and set it as default
+on your terminal.
 
 > I recommend JetBrainsMono Nerd Font
 
-You can use [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling)
-on Android and set as font, for example, Fira Code.
+You can use
+[Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) on Android
+and set as font, for example, Fira Code.
 
 ### Installation
 
@@ -141,11 +143,11 @@ automatically. They are intended to extend zunder-zsh easily without modifying
 the main configuration.
 
 - `before.zsh` loads after the Zinit initialization but before all the main
-configuration. Here, you should write additional plugins you want to add and
-zunder-zsh specific options.
+  configuration. Here, you should write additional plugins you want to add and
+  zunder-zsh specific options.
 
-- `after.zsh` loads after all the main configuration. Here, you should write all
-your additional configurations.
+- `after.zsh` loads after all the main configuration. Here, you should write
+  all your additional configurations.
 
 ## 🎨 Customizing zunder-zsh
 
@@ -173,8 +175,8 @@ DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 ### Exa integration
 
 Zunder-zsh will enable exa integration automatically if ``exa`` is installed.
-You must install ``exa`` or ``eza`` manually for this to happen. You can
-You can force it to be disabled by setting `DISABLE_EXA` to _true_ in your
+You must install ``exa`` or ``eza`` manually for this to happen. You can You
+can force it to be disabled by setting `DISABLE_EXA` to _true_ in your
 `before.zsh`.
 
 ### Fzf integration
@@ -185,8 +187,8 @@ You can force it to be disabled by setting `DISABLE_EXA` to _true_ in your
 zinit snippet https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
 ```
 
-This enables the integration of fzf into zsh, making it possible to use
-the following keybindings:
+This enables the integration of fzf into zsh, making it possible to use the
+following keybindings:
 
 | Keybinding | Description                                   |
 | ---------- | --------------------------------------------- |
@@ -199,15 +201,15 @@ the following keybindings:
 **If you find any error in zunder-zsh, I would appreciate if you open an issue
 and I will try to help you as soon as possible.**
 
-If you didn't like it or want to go back to your previous configuration,
-you can run the ``uninstall.sh`` script located in this same repository:
+If you didn't like it or want to go back to your previous configuration, you
+can run the ``uninstall.sh`` script located in this same repository:
 
 ```sh
 ./uninstall.sh
 ```
 
-Additionally, if you used previously another shell, you can revert it using
-the following command:
+Additionally, if you used previously another shell, you can revert it using the
+following command:
 
 ```sh
 sudo usermod -s $(which bash) $USER
@@ -217,9 +219,10 @@ You can change bash for the shell of your choice.
 
 ### Man command highlighting as error in Arch Linux
 
-Info [here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35#issuecomment-1315195049).
+Info
+[here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35#issuecomment-1315195049).
 
 ## 🤝 I need you
 
-If you encounter any issue or have any suggestions, please don't hesitate
-to contact me. I'm open to any discussion and **I'll be happy to help!**
+If you encounter any issue or have any suggestions, please don't hesitate to
+contact me. I'm open to any discussion and **I'll be happy to help!**
