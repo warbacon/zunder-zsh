@@ -18,7 +18,7 @@ CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 [[ ! -d "$CACHE_DIR" ]] && mkdir -p "$CACHE_DIR"
 
 # Disable syntax highlightling in WSL.
-[ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && DISABLE_SYNTAX_HIGHLIGHTING=true
+[[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && DISABLE_SYNTAX_HIGHLIGHTING=true
 
 # Disable autosuggestions and exa in Linux tty.
 if [[ "$TERM" == "linux" ]]; then
@@ -34,13 +34,13 @@ ZINIT[ZCOMPDUMP_PATH]="$CACHE_DIR/.zcompdump"
 
 # Zinit initialization
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
-[ ! -d "$ZINIT_HOME"/.git ] \
+[[ ! -d "$ZINIT_HOME" ]] && mkdir -p "$(dirname "$ZINIT_HOME")"
+[[ ! -d "$ZINIT_HOME"/.git ]] \
   && git clone https://github.com/zdharma-continuum/zinit.git --depth=1 \
     "$ZINIT_HOME"
 
 # Compiles zinit.zsh if it's newer than its compiled version. Then sources it.
-[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ] \
+[[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ]] \
   || zcompile -R "$ZINIT_HOME/zinit.zsh"
 source "$ZINIT_HOME/zinit.zsh"
 
@@ -72,7 +72,7 @@ zstyle ':completion:*' cache-path "$CACHE_DIR/.zcompcache"
 zstyle ':completion:*' rehash true
 
 ## BEFORE CONFIG ==============================================================
-[ -f "$ZUNDER_ZSH_DIR/before.zsh" ] && source "$ZUNDER_ZSH_DIR/before.zsh" || true
+[[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]] && source "$ZUNDER_ZSH_DIR/before.zsh" || true
 
 ## ZSH PLUGINS =================================================================
 # Zunder-prompt
@@ -195,4 +195,4 @@ if [[ $TERM != "xterm-kitty" ]]; then
 fi
 
 # AFTER CONFIG ================================================================
-[ -f "$ZUNDER_ZSH_DIR/after.zsh" ] && source "$ZUNDER_ZSH_DIR/after.zsh" || true
+[[ -f "$ZUNDER_ZSH_DIR/after.zsh" ]] && source "$ZUNDER_ZSH_DIR/after.zsh" || true
