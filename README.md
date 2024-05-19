@@ -183,8 +183,8 @@ can force it to be disabled by setting `DISABLE_EXA` to _true_ in your
 
 > You need to install ``fzf`` manually
 
-```sh
-zinit snippet https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
+```bash
+[[ -n "$commands[fzf]" ]] && eval "$(fzf --zsh)"
 ```
 
 This enables the integration of fzf into zsh, making it possible to use the
