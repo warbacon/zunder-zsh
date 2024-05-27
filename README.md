@@ -175,9 +175,8 @@ DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 ### Exa integration
 
 Zunder-zsh will enable exa integration automatically if ``exa`` is installed.
-You must install ``exa`` or ``eza`` manually for this to happen. You can You
-can force it to be disabled by setting `DISABLE_EXA` to _true_ in your
-`before.zsh`.
+You must install ``exa`` or ``eza`` manually for this to happen. You can force
+it to be disabled by setting `DISABLE_EXA` to _true_ in your `before.zsh`.
 
 ### Fzf integration
 
