@@ -60,7 +60,8 @@ zicompinit
 # Marks the selected item in the completion menu.
 zstyle ':completion:*:*:*:*:*' menu select
 
-# Makes the completion case-insensitive unless a uppercase is used and fuzzy.
+# Makes the completion case-insensitive unless a uppercase is used and
+# hyphen-insensitive (- and _ are the same).
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*'
 
 # Enables cache. I have not found any real use for it but theoretically it's
