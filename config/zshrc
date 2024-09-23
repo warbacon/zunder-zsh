@@ -63,7 +63,7 @@ zstyle ':completion:*:*:*:*:*' menu select
 # Makes the completion case-insensitive unless a uppercase is used and fuzzy.
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*'
 
-# Enables cache. I have not found any real use for it but theoretically it is
+# Enables cache. I have not found any real use for it but theoretically it's
 # useful to improve the speed of some completions.
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' cache-path "$CACHE_DIR/.zcompcache"
@@ -76,8 +76,11 @@ zstyle ':completion:*' rehash true
 # part of words, preventing the shell from splitting at these characters during
 # word completion.
 WORDCHARS='_-'
+
 ## BEFORE CONFIG ==============================================================
-[[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]] && source "$ZUNDER_ZSH_DIR/before.zsh" || true
+if [[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]]; then
+    source "$ZUNDER_ZSH_DIR/before.zsh"
+fi
 
 ## ZSH PLUGINS =================================================================
 # Zunder-prompt
@@ -195,4 +198,6 @@ if [[ $TERM != "xterm-kitty" ]]; then
 fi
 
 # AFTER CONFIG ================================================================
-[[ -f "$ZUNDER_ZSH_DIR/after.zsh" ]] && source "$ZUNDER_ZSH_DIR/after.zsh" || true
+if [[ -f "$ZUNDER_ZSH_DIR/after.zsh" ]]; then
+    source "$ZUNDER_ZSH_DIR/after.zsh"
+fi
