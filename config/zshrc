@@ -58,10 +58,10 @@ zicompinit
 [[ -n $LS_COLORS ]] && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Marks the selected item in the completion menu.
-zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:*' menu select
 
-# Makes the completion case-insensitive unless a uppercase is used.
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# Makes the completion case-insensitive unless a uppercase is used and fuzzy.
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*'
 
 # Enables cache. I have not found any real use for it but theoretically it is
 # useful to improve the speed of some completions.
@@ -71,6 +71,11 @@ zstyle ':completion:*' cache-path "$CACHE_DIR/.zcompcache"
 # Attempts to find new commands to complete.
 zstyle ':completion:*' rehash true
 
+# Specifies which characters are considered part of a word for completion
+# purposes. In this case, underscores (_) and hyphens (-) will be treated as
+# part of words, preventing the shell from splitting at these characters during
+# word completion.
+WORDCHARS='_-'
 ## BEFORE CONFIG ==============================================================
 [[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]] && source "$ZUNDER_ZSH_DIR/before.zsh" || true
 
@@ -131,11 +136,6 @@ bindkey -M emacs "^[[A" up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey -M emacs "^[[B" down-line-or-beginning-search
-
-# Makes zsh behave the same with words as bash. Recommended to leave it this
-# way since by default it simply behaves badly.
-autoload -U select-word-style
-select-word-style bash
 
 ## HISTORY ====================================================================
 HISTFILE="$HOME/.zsh_history" # Location of the history file.
