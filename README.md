@@ -20,23 +20,28 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Sensible keybindings.
 - Smarter completions.
 - [Exa](https://github.com/eza-community/eza) integration.
-- Integrated ~~advanced~~ plugin manager. ~~See
-  [Zinit](https://github.com/zdharma-continuum/zinit).~~
+- Extra fast and minimalistic integrated plugin manager. See
+  [Zap](https://github.com/zap-zsh/zap).
 
 ### Plugins
 
-- ~~[zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
-  prompt built by me and based on [romkatv's
-  gitstatus](https://github.com/romkatv/gitstatus).~~
-- ~~[fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
-  Feature rich and fast syntax highlighting for zsh.~~
+- [spaceship-prompt](https://spaceship-prompt.sh) - Minimalistic, powerful and
+  extremely customizable Zsh prompt. I provide a configuration file to make it
+  more performant and less noisy.
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) -
+  Fish shell like syntax highlighting for Zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
-  Fish-like fast/unobtrusive autosuggestions for zsh.
+  Fish-like fast/unobtrusive autosuggestions for Zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - Additional
-  completion definitions for zsh.
+  completion definitions for Zsh.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)
   plugin from Oh My Zsh - Provide suggested packages to be installed if a
   command cannot be found.
+
+> [!NOTE]
+> I provide a `plug-defer` function to Zap to defer loading of heavy plugins
+> and improve startup times. It uses [romkatv's
+> zsh-defer](https://github.com/romkatv/zsh-defer).
 
 ### Aliases
 
@@ -177,11 +182,12 @@ DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 ### Exa integration
 
 Zunder-zsh will enable exa integration automatically if `exa` is installed.
-You must install `exa` or `eza` manually for this to happen. You can force
-it to be disabled by setting `DISABLE_EXA` to _true_ in your `before.zsh`.
+**You must install `exa` or `eza` manually** for this to happen. You can force
+it to be disabled by setting `DISABLE_EXA` to `true` in your `before.zsh`.
 
 ### Fzf integration
 
+> [!IMPORTANT]
 > You need to install `fzf` manually
 
 ```bash
