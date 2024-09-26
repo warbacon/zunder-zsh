@@ -14,8 +14,14 @@ _spaceship_add_newline() {
 }
 precmd_functions+=(_spaceship_add_newline)
 
-SPACESHIP_CHAR_SYMBOL="❯ "
 SPACESHIP_CHAR_COLOR_SUCCESS="reset"
+if [[ "$TERM" = "linux" ]]; then
+    SPACESHIP_CHAR_SYMBOL="> "
+else
+    SPACESHIP_CHAR_SYMBOL="❯ "
+    SPACESHIP_CHAR_SYMBOL_SECONDARY="· "
+    SPACESHIP_CHAR_COLOR_SECONDARY=8
+fi
 
 SPACESHIP_DIR_LOCK_SYMBOL=" 󰌾"
 
