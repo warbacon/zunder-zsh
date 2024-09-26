@@ -172,6 +172,7 @@ DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 | Variable                     | Description                                      | Default value          |
 | ---------------------------- | ------------------------------------------------ | ---------------------- |
 | DISABLE_AUTOSUGGESTIONS      | Disables zsh-autosuggestions.                    | "" (true in Linux tty) |
+| DISABLE_SPACESHIP_PROMPT     | Disables spaceship-prompt.                       | ""                     |
 | DISABLE_EXA                  | Disables exa/eza integration.                    | ""                     |
 | SYNTAX_HIGHLIGHTING_PROVIDER | Changes the plugin used for syntax highlighting  | "" ("none" in WSL)     |
 

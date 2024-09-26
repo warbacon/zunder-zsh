@@ -5,7 +5,7 @@
 #           /___|\__,_|_| |_|\__,_|\___|_|      /___|___/_| |_|
 #
 ## INITIALIZATION =============================================================
-# Directory where before.zsh and after.zsh are located.
+# Directory where files related to zunder-zsh are located.
 ZUNDER_ZSH_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zunder-zsh"
 
 # By default zcompdump is created in the home directory, so we will create a
@@ -150,7 +150,7 @@ if [[ "$DISABLE_EXA" != true && (-n "$commands[eza]" || -n "$commands[exa]") ]];
     alias lt="exa --icons -T"
 fi
 
-# More secure rm, cp and mv operations
+# More secure rm, cp and mv operations.
 alias rm="rm -v"
 alias cp="cp -vi"
 alias mv="cp -vi"
@@ -178,7 +178,7 @@ fi
 
 ## ZSH PLUGINS =================================================================
 # Spacship prompt
-if [[ "$DISABLE_SPACESHIP" != true ]]; then
+if [[ "$DISABLE_SPACESHIP_PROMPT" != true ]]; then
     SPACESHIP_CONFIG="$ZUNDER_ZSH_DIR/spaceship.zsh"
     plug spaceship-prompt/spaceship-prompt
 fi
