@@ -26,14 +26,14 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 ### Plugins
 
 - [spaceship-prompt](https://spaceship-prompt.sh) - Minimalistic, powerful and
-  extremely customizable Zsh prompt. I provide a configuration file to make it
+  extremely customizable zsh prompt. I provide a configuration file to make it
   more performant and less noisy.
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) -
-  Fish shell like syntax highlighting for Zsh.
+  Fish shell like syntax highlighting for zsh.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
-  Fish-like fast/unobtrusive autosuggestions for Zsh.
+  Fish-like fast/unobtrusive autosuggestions for zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - Additional
-  completion definitions for Zsh.
+  completion definitions for zsh.
 - [command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found)
   plugin from Oh My Zsh - Provide suggested packages to be installed if a
   command cannot be found.
