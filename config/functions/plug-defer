@@ -1,0 +1,58 @@
+function plug-defer() {
+
+    function _try_source() {
+        if [[ "$plugin_name" == "*" ]]; then
+            # Treat * as a glob pattern
+            local -a initfiles=(
+                $plugin_dir/*.{plugin.,}{z,}sh{-theme,}(N)
+            )
+            for file in "${initfiles[@]}"; do
+                [[ -f "$file" ]] && source "$file"
+            done
+        else
+            # Use the specified plugin_name
+            local -a initfiles=(
+                $plugin_dir/${plugin_name}.{plugin.,}{z,}sh{-theme,}(N)
+                $plugin_dir/*.{plugin.,}{z,}sh{-theme,}(N)
+            )
+            (( $#initfiles )) && zsh-defer source $initfiles[1]
+        fi
+    }
+
+    # If the absolute is a directory then source as a local plugin
+    pushd -q "$ZAP_DIR"
+    local plugin_absolute="${1:A}"
+    popd -q
+    if [ -d "${plugin_absolute}" ]; then
+        local plugin="${plugin_absolute}"
+        local plugin_name="${plugin:t}"
+        local plugin_dir="${plugin_absolute}"
+    elif [ "${plugin_absolute:t}" = "*" ]; then
+        local plugin_name="${plugin_absolute:t}"
+        local plugin_dir="${plugin_absolute:h}"
+    else
+        # If the basename directory exists, then local source only
+        if [ -d "${plugin_absolute:h}" ]; then
+            [[ -f "${plugin_absolute}" ]] && source "${plugin_absolute}"
+            return
+        fi
+
+        local plugin="$1"
+        local plugin_name="${plugin:t}"
+        local plugin_dir="$ZAP_PLUGIN_DIR/$plugin_name"
+    fi
+
+    local git_ref="$2"
+    if [ ! -d "$plugin_dir" ]; then
+        echo "🔌 Zap is installing $plugin_name..."
+        git clone --depth 1 "${ZAP_GIT_PREFIX:-"https://github.com/"}${plugin}.git" "$plugin_dir" > /dev/null 2>&1 || { echo -e "\e[1A\e[K❌ Failed to clone $plugin_name"; return 12 }
+        echo -e "\e[1A\e[K⚡ Zap installed $plugin_name"
+    fi
+    [[ -n "$git_ref" ]] && {
+        git -C "$plugin_dir" remote set-branches origin '*' > /dev/null 2>&1
+        git -C "$plugin_dir" pull --unshallow > /dev/null 2>&1
+        git -C "$plugin_dir" checkout "$git_ref" > /dev/null 2>&1 || { echo "❌ Failed to checkout $git_ref"; return 13 }
+    }
+    _try_source && { ZAP_INSTALLED_PLUGINS+="$plugin_name" && return 0 } || echo "❌ $plugin_name not activated" && return 1
+}
+

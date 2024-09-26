@@ -20,16 +20,16 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 - Sensible keybindings.
 - Smarter completions.
 - [Exa](https://github.com/eza-community/eza) integration.
-- Integrated advanced plugin manager. See
-  [Zinit](https://github.com/zdharma-continuum/zinit).
+- Integrated ~~advanced~~ plugin manager. ~~See
+  [Zinit](https://github.com/zdharma-continuum/zinit).~~
 
 ### Plugins
 
-- [zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
+- ~~[zunder-prompt](https://github.com/warbacon/zunder-prompt) - Insanely fast
   prompt built by me and based on [romkatv's
-  gitstatus](https://github.com/romkatv/gitstatus).
-- [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
-  Feature rich and fast syntax highlighting for zsh.
+  gitstatus](https://github.com/romkatv/gitstatus).~~
+- ~~[fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting) -
+  Feature rich and fast syntax highlighting for zsh.~~
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) -
   Fish-like fast/unobtrusive autosuggestions for zsh.
 - [zsh-completions](https://github.com/zsh-users/zsh-completions) - Additional
@@ -40,15 +40,12 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 
 ### Aliases
 
-| Alias | Description                                                            |
-| ----- | ---------------------------------------------------------------------- |
-| ll    | Long list directory contents. Uses exa if installed.                   |
-| la    | List directory contents with hidden files. Uses exa if installed.      |
-| lla   | Long list directory contents with hidden files. Uses exa if installed. |
-| lt    | Displays the directory tree in the current directory. Needs exa.       |
-
-`trash-cli` will be used if installed to prevent permanent deletions when
-running `rm`.
+| Alias | Description                                                                |
+| ----- | -------------------------------------------------------------------------- |
+| ll    | Long list directory contents. Uses exa if installed.                       |
+| la    | List directory contents with hidden files. Uses exa if installed.          |
+| lla   | Long list directory contents with hidden files. Uses exa if installed.     |
+| lt    | Displays the directory tree in the current directory. Uses `tree` or `exa`.|
 
 ## 🤔 Why should I use it?
 
@@ -67,7 +64,7 @@ That means that zunder-zsh doesn't support updates, as is designed so that any
 user can modify the configuration as desired. However, if you are a user who
 makes very few modifications, you can use a method to upgrade directly without
 losing your custom settings. See [File
-Structure](https://github.com/warbacon/zunder-zsh#-file-structure).
+Structure](https://github.com/warbacon/zunder-zsh?tab=readme-ov-file#-file-structure).
 
 ## 💊 Compatibility
 
@@ -126,15 +123,18 @@ and set as font, for example, Fira Code.
 ├──/.zshenv       <- environment variables
 ├──/.zshrc        <- main configuration
 │
-├──/.config/zunder-zsh [optional]
+├──/.config/zunder-zsh
+│           ├── spaceship.zsh   <- spaceship config
 │           ├── after.zsh       <- loads after main config
-│           └── before.zsh      <- loads before main config
+│           ├── before.zsh      <- loads before main config
+│           └──/functions       <- extra useful functions
+│               └── ...
 │
 ├──/.cache/zsh
 │          ├── .zcompdump       <- completions cache
 │          └── .zcompdump.zwc   <- compiled version
 │
-└──/.local/share/zinit          <- installed plugins
+└──/.local/share/zap          <- installed plugins
                  └── ...
 </pre>
 
@@ -142,7 +142,7 @@ The `~/.config/zunder-zsh` directory and its files are not created
 automatically. They are intended to extend zunder-zsh easily without modifying
 the main configuration.
 
-- `before.zsh` loads after the Zinit initialization but before all the main
+- `before.zsh` loads after the Zap initialization but before all the main
   configuration. Here, you should write additional plugins you want to add and
   zunder-zsh specific options.
 
@@ -164,23 +164,25 @@ Usage:
 DISABLE_AUTOSUGGESTIONS=true    # zsh-autosuggestions will be disabled
 ```
 
-| Variable                    | Description                         | Default value          |
-| --------------------------- | ----------------------------------- | ---------------------- |
-| DISABLE_AUTOSUGGESTIONS     | Disables zsh-autosuggestions.       | "" (true in Linux tty) |
-| DISABLE_EXA                 | Disables exa/eza integration.       | ""                     |
-| DISABLE_SYNTAX_HIGHLIGHTING | Disables fast-syntax-highlighting.  | "" (true in WSL)       |
-| DISABLE_ZUNDER_PROMPT       | Disables zunder-prompt.             | ""                     |
-| ZUNDER_PROMPT_CHAR          | Sets the zunder-prompt char symbol. | "❯"                    |
+| Variable                     | Description                                      | Default value          |
+| ---------------------------- | ------------------------------------------------ | ---------------------- |
+| DISABLE_AUTOSUGGESTIONS      | Disables zsh-autosuggestions.                    | "" (true in Linux tty) |
+| DISABLE_EXA                  | Disables exa/eza integration.                    | ""                     |
+| SYNTAX_HIGHLIGHTING_PROVIDER | Changes the plugin used for syntax highlighting  | "" ("none" in WSL)     |
+
+> [!NOTE]
+> Allowed values for `SYNTAX_HIGHLIGHTING_PROVIDER`:
+> `zsh-syntax-hightlighting`, `fast-syntax-highlighting` and `none`.
 
 ### Exa integration
 
-Zunder-zsh will enable exa integration automatically if ``exa`` is installed.
-You must install ``exa`` or ``eza`` manually for this to happen. You can force
+Zunder-zsh will enable exa integration automatically if `exa` is installed.
+You must install `exa` or `eza` manually for this to happen. You can force
 it to be disabled by setting `DISABLE_EXA` to _true_ in your `before.zsh`.
 
 ### Fzf integration
 
-> You need to install ``fzf`` manually
+> You need to install `fzf` manually
 
 ```bash
 [[ -n "$commands[fzf]" ]] && eval "$(fzf --zsh)"
@@ -201,7 +203,7 @@ following keybindings:
 and I will try to help you as soon as possible.**
 
 If you didn't like it or want to go back to your previous configuration, you
-can run the ``uninstall.sh`` script located in this same repository:
+can run the `uninstall.sh` script located in this same repository:
 
 ```sh
 ./uninstall.sh
@@ -215,11 +217,6 @@ sudo usermod -s $(which bash) $USER
 ```
 
 You can change bash for the shell of your choice.
-
-### Man command highlighting as error in Arch Linux
-
-Info
-[here](https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/35#issuecomment-1315195049).
 
 ## 🤝 I need you
 

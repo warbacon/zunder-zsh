@@ -18,41 +18,46 @@ CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 [[ ! -d "$CACHE_DIR" ]] && mkdir -p "$CACHE_DIR"
 
 # Disable syntax highlightling in WSL.
-[[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && DISABLE_SYNTAX_HIGHLIGHTING=true
+[[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && SYNTAX_HIGHLIGHTING_PROVIDER="none"
 
 # Disable autosuggestions and exa in Linux tty.
 if [[ "$TERM" == "linux" ]]; then
-  DISABLE_AUTOSUGGESTIONS=true
-  DISABLE_EXA=true
+    DISABLE_AUTOSUGGESTIONS=true
+    DISABLE_EXA=true
 fi
 
-## ZINIT ======================================================================
-# Changes the zcompdump directory. The .zcompdump file is used to improve
-# compinit's initialization time.
-declare -A ZINIT
-ZINIT[ZCOMPDUMP_PATH]="$CACHE_DIR/.zcompdump"
+## ZAP =========================================================================
+# Clone zap
+ZAP_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/zap"
+[[ ! -d "$ZAP_DIR" ]] \
+    && git clone https://github.com/zap-zsh/zap.git --depth=1 "$ZAP_DIR"
 
-# Zinit initialization
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[[ ! -d "$ZINIT_HOME" ]] && mkdir -p "$(dirname "$ZINIT_HOME")"
-[[ ! -d "$ZINIT_HOME"/.git ]] \
-  && git clone https://github.com/zdharma-continuum/zinit.git --depth=1 \
-    "$ZINIT_HOME"
+# Load zap
+[ -f "$ZAP_DIR/zap.zsh" ] && source "$ZAP_DIR/zap.zsh"
 
-# Compiles zinit.zsh if it's newer than its compiled version. Then sources it.
-[[ "$ZINIT_HOME/zinit.zsh.zwc" -nt "$ZINIT_HOME/zinit.zsh" ]] \
-  || zcompile -R "$ZINIT_HOME/zinit.zsh"
-source "$ZINIT_HOME/zinit.zsh"
+# Load zsh-defer plugin and plug-defer command
+plug romkatv/zsh-defer
+fpath+=("$ZUNDER_ZSH_DIR/functions")
+autoload plug-defer
+
+## BEFORE CONFIG ==============================================================
+if [[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]]; then
+    source "$ZUNDER_ZSH_DIR/before.zsh"
+fi
 
 ## COMPLETIONS ================================================================
+# Changes the zcompdump directory. The .zcompdump file is used to improve
+# compinit's initialization time.
+ZCOMPDUMP_PATH="$CACHE_DIR/.zcompdump"
+
 # Initializes completion system. Relevant documentation:
 # https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Use-of-compinit.
-zicompinit
+autoload -Uz compinit && compinit -d $ZCOMPDUMP_PATH
 
 # Compiles the .zcompdump to load it faster next time.
 # Search for zcompile in https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html.
-[[ "$ZINIT[ZCOMPDUMP_PATH].zwc" -nt "$ZINIT[ZCOMPDUMP_PATH]" ]] \
-  || zcompile "$ZINIT[ZCOMPDUMP_PATH]"
+[[ "$ZCOMPDUMP_PATH.zwc" -nt "$ZCOMPDUMP_PATH" ]] \
+    || zsh-defer zcompile "$ZCOMPDUMP_PATH"
 
 # Matches completion menu colors with the LS_COLORS variable.
 [[ -n $LS_COLORS ]] && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -60,8 +65,7 @@ zicompinit
 # Marks the selected item in the completion menu.
 zstyle ':completion:*:*:*:*:*' menu select
 
-# Makes the completion case-insensitive unless a uppercase is used and
-# hyphen-insensitive (- and _ are the same).
+# Makes the completion case-insensitive unless a uppercase is used and fuzzy.
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*'
 
 # Enables cache. I have not found any real use for it but theoretically it's
@@ -77,33 +81,6 @@ zstyle ':completion:*' rehash true
 # part of words, preventing the shell from splitting at these characters during
 # word completion.
 WORDCHARS='_-'
-
-## BEFORE CONFIG ==============================================================
-if [[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]]; then
-    source "$ZUNDER_ZSH_DIR/before.zsh"
-fi
-
-## ZSH PLUGINS =================================================================
-# Zunder-prompt
-zinit light-mode depth"1" if'[[ $DISABLE_ZUNDER_PROMPT != true ]]' for \
-  romkatv/gitstatus \
-  warbacon/zunder-prompt
-
-# Oh My Zsh plugins
-zinit light-mode for \
-    OMZP::command-not-found
-
-# Additional completions
-zinit light-mode blockf depth"1" for \
-    zsh-users/zsh-completions
-
-# Fast-syntax-highlighting and zsh-autosuggestions
-zinit wait lucid light-mode depth"1" for \
-  if'[[ $DISABLE_SYNTAX_HIGHLIGHTING != true ]]' \
-    zdharma-continuum/fast-syntax-highlighting \
-  if'[[ $DISABLE_AUTOSUGGESTIONS != true ]]' \
-  atinit"ZSH_AUTOSUGGEST_MANUAL_REBIND=1" atload"_zsh_autosuggest_start" nocd \
-    zsh-users/zsh-autosuggestions
 
 ## KEYBINDINGS ================================================================
 # Forces the use of emacs keyboard shortcuts. By default uses the vim ones,
@@ -150,12 +127,12 @@ setopt share_history          # Share history between sessions.
 ## ALIASES ====================================================================
 # ls, grep and tree doesn't have color enabled by default, so this aliases enables it.
 if [[ "$(uname)" = "Darwin" ]]; then
-    alias ls="ls -G"  # MacOS
+    alias ls="ls -G" # MacOS
 else
-    alias ls="ls --color=auto"  # GNU/Linux
+    alias ls="ls --color=auto" # GNU/Linux
 fi
 alias grep="grep --color=auto"
-[[ -n "$commands[tree]" ]] && alias lt="tree -C"
+[[ -n "$commands[tree]" ]] && alias lt="tree"
 
 # Useful aliases to list files.
 alias la="ls -A"
@@ -163,19 +140,20 @@ alias ll="ls -l"
 alias lla="ls -lA"
 
 # Uses exa instead if installed and enabled.
-if [[ "$DISABLE_EXA" != true && ( -n "$commands[eza]" || -n "$commands[exa]" ) ]]; then
+if [[ "$DISABLE_EXA" != true && (-n "$commands[eza]" || -n "$commands[exa]") ]]; then
     [[ -n "$commands[eza]" && -z "$commands[exa]" ]] && alias exa="eza"
-      alias ls="exa --icons --group-directories-first"
-      alias ls="exa --icons --group-directories-first"
-      alias ll="exa --icons --group-directories-first --git -l"
-      alias la="exa --icons --group-directories-first -a"
-      alias lla="exa --icons --group-directories-first --git -la"
-      alias lt="exa --icons -T"
+    alias ls="exa --icons --group-directories-first"
+    alias ls="exa --icons --group-directories-first"
+    alias ll="exa --icons --group-directories-first --git -l"
+    alias la="exa --icons --group-directories-first -a"
+    alias lla="exa --icons --group-directories-first --git -la"
+    alias lt="exa --icons -T"
 fi
 
-# If trash-cli is installed, this creates an alias to use it instead of rm.
-# Using trash-cli is recommended since rm deletes files almost permanently.
-[[ -n "$commands[trash]" ]] && alias rm="trash"
+# More secure rm, cp and mv operations
+alias rm="rm -v"
+alias cp="cp -vi"
+alias mv="cp -vi"
 
 ## OTHER ======================================================================
 # Disables highlighting of pasted text.
@@ -187,16 +165,47 @@ setopt autocd
 
 # Sets window title. This is ignored in kitty because it has its way to do it.
 if [[ $TERM != "xterm-kitty" ]]; then
-  case "$TERM" in
-    cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|foot*|contour*)
-      function set_window_title() {
-        print -Pn "\e]2;${USER}@${HOST}:${PWD/$HOME/~}\a"
-      }
-      autoload -Uz add-zsh-hook
-      add-zsh-hook precmd set_window_title
-      ;;
-  esac
+    case "$TERM" in
+        cygwin | xterm* | putty* | rxvt* | konsole* | ansi | mlterm* | alacritty | st* | foot* | contour*)
+            function set_window_title() {
+                print -Pn "\e]2;${USER}@${HOST}:${PWD/$HOME/~}\a"
+            }
+            autoload -Uz add-zsh-hook
+            add-zsh-hook precmd set_window_title
+            ;;
+    esac
 fi
+
+## ZSH PLUGINS =================================================================
+# Spacship prompt
+if [[ "$DISABLE_SPACESHIP" != true ]]; then
+    SPACESHIP_CONFIG="$ZUNDER_ZSH_DIR/spaceship.zsh"
+    plug spaceship-prompt/spaceship-prompt
+fi
+
+# Command not found message
+plug warbacon/zsh-command-not-found
+
+# Additional completions
+plug zsh-users/zsh-completions
+
+# Autosuggestions
+if [[ "$DISABLE_AUTOSUGGESTIONS" != true ]]; then
+    plug-defer zsh-users/zsh-autosuggestions
+    ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+fi
+
+# Syntax highlighting
+case "$SYNTAX_HIGHLIGHTING_PROVIDER"; in
+    fast-syntax-highlighting)
+        plug-defer zdharma-continuum/fast-syntax-highlighting
+        ;;
+    none)
+        ;;
+    *)
+        plug-defer zsh-users/zsh-syntax-highlighting
+        ;;
+esac
 
 # AFTER CONFIG ================================================================
 if [[ -f "$ZUNDER_ZSH_DIR/after.zsh" ]]; then
