@@ -6,7 +6,7 @@
 #
 ## INITIALIZATION =============================================================
 # Directory where before.zsh and after.zsh are located.
-ZUNDER_ZSH_DIR="$HOME/.config/zunder-zsh"
+ZUNDER_ZSH_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zunder-zsh"
 
 # By default zcompdump is created in the home directory, so we will create a
 # directory for the zsh cache in a separate directory to clean things up a
@@ -33,7 +33,7 @@ ZAP_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/zap"
     && git clone https://github.com/zap-zsh/zap.git --depth=1 "$ZAP_DIR"
 
 # Load zap
-[ -f "$ZAP_DIR/zap.zsh" ] && source "$ZAP_DIR/zap.zsh"
+[[ -f "$ZAP_DIR/zap.zsh" ]] && source "$ZAP_DIR/zap.zsh"
 
 # Load zsh-defer plugin and plug-defer command
 plug romkatv/zsh-defer
