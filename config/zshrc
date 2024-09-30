@@ -26,7 +26,7 @@ if [[ "$TERM" == "linux" ]]; then
     DISABLE_EXA=true
 fi
 
-## ZAP =========================================================================
+## ZAP ========================================================================
 # Clone zap
 ZAP_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/zap"
 [[ ! -d "$ZAP_DIR" ]] \
@@ -176,8 +176,8 @@ if [[ $TERM != "xterm-kitty" ]]; then
     esac
 fi
 
-## ZSH PLUGINS =================================================================
-# Spacship prompt
+## ZSH PLUGINS ================================================================
+# Spaceship prompt
 if [[ "$DISABLE_SPACESHIP_PROMPT" != true ]]; then
     SPACESHIP_CONFIG="$ZUNDER_ZSH_DIR/spaceship.zsh"
     plug spaceship-prompt/spaceship-prompt
@@ -207,7 +207,7 @@ case "$SYNTAX_HIGHLIGHTING_PROVIDER"; in
         ;;
 esac
 
-# AFTER CONFIG ================================================================
+## AFTER CONFIG ===============================================================
 if [[ -f "$ZUNDER_ZSH_DIR/after.zsh" ]]; then
     source "$ZUNDER_ZSH_DIR/after.zsh"
 fi
