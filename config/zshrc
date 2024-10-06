@@ -181,7 +181,7 @@ fi
 if [[ "$DISABLE_SPACESHIP_PROMPT" != true ]]; then
     SPACESHIP_CONFIG="$ZUNDER_ZSH_DIR/spaceship.zsh"
     plug spaceship-prompt/spaceship-prompt
-else
+elif [[ -z "$PROMPT" ]]; then
     PROMPT=$'%B%F{cyan}%~%f%b ❱ '
 fi
 
