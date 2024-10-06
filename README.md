@@ -95,9 +95,9 @@ produces input lag when typing.
 Depending on your operating system, the required icons will be installed if
 needed, but may require additional configuration.
 
-If you don't see the icons correctly and don't want to complicate your life,
-you can install a [Nerd Font](https://www.nerdfonts.com/) and set it as default
-on your terminal.
+If the icons are not displayed correctly and you don't want to troubleshoot,
+install a [Nerd Font](https://www.nerdfonts.com/) and set it as the default
+font in your terminal emulator.
 
 > I recommend JetBrainsMono Nerd Font
 
