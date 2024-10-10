@@ -153,7 +153,7 @@ fi
 # More secure rm, cp and mv operations.
 alias rm="rm -v"
 alias cp="cp -vi"
-alias mv="cp -vi"
+alias mv="mv -vi"
 
 ## OTHER ======================================================================
 # Disables highlighting of pasted text.
