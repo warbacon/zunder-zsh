@@ -40,6 +40,9 @@ plug romkatv/zsh-defer
 fpath+=("$ZUNDER_ZSH_DIR/functions")
 autoload plug-defer
 
+# FALLBACK PROMPT =============================================================
+PROMPT=$'%B%F{cyan}%~%f%b ❱ '
+
 ## BEFORE CONFIG ==============================================================
 if [[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]]; then
     source "$ZUNDER_ZSH_DIR/before.zsh"
@@ -181,8 +184,6 @@ fi
 if [[ "$DISABLE_SPACESHIP_PROMPT" != true ]]; then
     SPACESHIP_CONFIG="$ZUNDER_ZSH_DIR/spaceship.zsh"
     plug spaceship-prompt/spaceship-prompt
-elif [[ -z "$PROMPT" ]]; then
-    PROMPT=$'%B%F{cyan}%~%f%b ❱ '
 fi
 
 # Command not found message
