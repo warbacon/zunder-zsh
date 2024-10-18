@@ -20,7 +20,10 @@ CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 # Disable syntax highlightling in WSL.
 [[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]] && SYNTAX_HIGHLIGHTING_PROVIDER="none"
 
-# Disable autosuggestions and exa in Linux tty.
+# Fallback prompt.
+PROMPT=$'%B%F{cyan}%~%f%#%b '
+
+# Disable autosuggestions and exa in Linux tty and replace prompt character.
 if [[ "$TERM" == "linux" ]]; then
     DISABLE_AUTOSUGGESTIONS=true
     DISABLE_EXA=true
@@ -39,9 +42,6 @@ ZAP_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/zap"
 plug romkatv/zsh-defer
 fpath+=("$ZUNDER_ZSH_DIR/functions")
 autoload plug-defer
-
-# FALLBACK PROMPT =============================================================
-PROMPT=$'%B%F{cyan}%~%f%b ❱ '
 
 ## BEFORE CONFIG ==============================================================
 if [[ -f "$ZUNDER_ZSH_DIR/before.zsh" ]]; then
