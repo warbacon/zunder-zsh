@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 RUN apt-get update
-RUN apt-get install -y zsh git vim nano
+RUN apt-get install -y zsh git vim nano eza
 
 RUN useradd -m zunder
 
