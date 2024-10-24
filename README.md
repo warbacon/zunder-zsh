@@ -105,6 +105,18 @@ You can use
 [Termux:Styling](https://f-droid.org/es/packages/com.termux.styling) on Android
 and set as font, for example, Fira Code.
 
+### Testing
+
+There is a public docker image on the Docker Hub that allows testing zunder-zsh
+in an isolated environment.
+
+
+You can test it using this command with `docker` installed:
+
+```sh
+docker run -it warbacon/zunder-zsh:latest
+```
+
 ### Installation
 
 1. Clone this repository locally:
