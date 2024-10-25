@@ -113,7 +113,7 @@ an isolated environment.
 You can test it using this command with `docker` installed:
 
 ```sh
-docker run -it warbacon/zunder-zsh:latest
+docker run -it --rm warbacon/zunder-zsh:latest
 ```
 
 ### Installation
