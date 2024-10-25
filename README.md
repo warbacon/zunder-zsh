@@ -107,9 +107,8 @@ and set as font, for example, Fira Code.
 
 ### Testing
 
-There is a public docker image on the Docker Hub that allows testing zunder-zsh
-in an isolated environment.
-
+There is a public docker image on Docker Hub that allows testing zunder-zsh in
+an isolated environment.
 
 You can test it using this command with `docker` installed:
 
