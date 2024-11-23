@@ -168,8 +168,8 @@ load_files() {
     read -r prompt
 
     if [ "$prompt" = "Y" ] || [ "$prompt" = "y" ]; then
-        cp -v "$SCRIPT_DIR/config/zshrc" "$HOME/.zshrc"
-        cp -v "$SCRIPT_DIR/config/zshenv" "$HOME/.zshenv"
+        cp -v "$SCRIPT_DIR/config/.zshrc" "$HOME/.zshrc"
+        cp -v "$SCRIPT_DIR/config/.zshenv" "$HOME/.zshenv"
         if [ ! -d "$ZUNDER_ZSH_DIR" ]; then
             mkdir -p "$ZUNDER_ZSH_DIR"
             cp -vr "$SCRIPT_DIR/config/before.zsh" "$ZUNDER_ZSH_DIR"
