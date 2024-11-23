@@ -4,6 +4,11 @@ Zunder-zsh is a minimalistic zsh configuration with sane defaults.
 
 ![Preview](./assets/preview.gif)
 
+> [!IMPORTANT]
+> Zunder-zsh 4.0 has been available for a while now, but it might be
+> interesting for everyone to read the release to see its improvements and
+> drawbacks.
+
 ## 🚩 Goals
 
 - Straightforward transition from _bash_.
@@ -202,7 +207,7 @@ it to be disabled by setting `DISABLE_EXA` to `true` in your `before.zsh`.
 > [!IMPORTANT]
 > You need to install `fzf` manually
 
-```bash
+```sh
 [[ -n "$commands[fzf]" ]] && eval "$(fzf --zsh)"
 ```
 
