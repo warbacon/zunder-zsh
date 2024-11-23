@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 RUN apt-get update
-RUN apt-get install -y zsh git vim nano eza
+RUN apt-get install -y zsh git vim nano eza kitty-terminfo
 
 RUN useradd -m zunder
 
@@ -21,6 +21,5 @@ ENV USER=zunder
 
 RUN zsh -ic exit
 
-ENV TERM=xterm-256color
 WORKDIR /home/zunder
 ENTRYPOINT [ "zsh" ]
